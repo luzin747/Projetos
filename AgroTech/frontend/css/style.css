@@ -1,0 +1,147 @@
+
+h5 {
+    font-size: 12pt;
+}
+
+.cont_table_situation {
+    text-align: center;
+}
+
+.cont_table_situation span{
+    font-size: 13pt;
+
+}
+
+.table_situation {
+    margin-top: 3%;
+    background: white;
+    width: 70vw;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+
+}
+
+th {
+    padding: 10px;
+    font-weight: 500;
+    color: rgba(34, 34, 34, 0.355);
+}
+
+table tr td {
+    text-align: center;
+}
+
+
+thead tr {
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.288);
+
+}
+
+tbody td {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.253);    
+    padding: 10px;
+}
+
+table tr td i {
+    margin-top: 2px;
+    font-size: 12pt;
+    padding: 4px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+
+}
+
+table tr td i:nth-child(1) {
+    background-color: rgb(0, 0, 0);
+
+}
+table tr td i:nth-child(2) {
+    background-color: red;
+
+}
+
+.cont-cards {
+    display: flex;
+}
+
+.cards {
+    width: 30%;
+    margin-left: 20px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.288);
+    background-color: white;
+    border-radius: 10px;
+}
+
+.linha-2 {
+    width: 100%;
+}
+
+.linha-2-cont {
+   display: flex; 
+   padding: 20px;
+}
+
+
+.linha-2-cont i {
+    font-size: 35pt;
+}
+
+/* .title-linha {
+    text-align: end;
+    background-color: blueviolet;
+    width: 100px;
+} */
+
+
+.linha-2-sub {
+    margin-left: 15px;
+}
+
+.linha-2-situation {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    
+}
+.linha-2-situation div{
+    text-align: center;
+}
+
+.linha-2-situation i {
+    font-size: 25pt;
+    color: rgb(0, 0, 0);
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.linha-2-situation h6 {
+    font-size: 11pt;
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+
+
+.linha-2-situation span {
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+

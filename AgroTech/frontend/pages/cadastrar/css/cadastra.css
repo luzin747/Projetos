@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,500;1,600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+body {
+    background-color: #f0f0f0f1;
+}
+.cont-cadastra {
+    display: flex;
+    justify-content: space-around;
+    /* background-color: #09ac24; */
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+    width: 70vw;
+    margin: 10% auto;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.cont-img-banner {
+    /* background-color: #96111138;
+    padding: 0px 6%; */
+    border-right: 1px solid rgba(0, 0, 0, 0.13);
+    padding-right: 1%;
+}
+
+.img-banner {
+    width: 100%;
+}
+
+.cont-cadastra h1 {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.cont-cadastra hr {
+    width: 80%;
+    margin: 2% auto;
+}
+
+.inps {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.inps div {
+    margin: 10px;
+}
+
+.inps input {
+    width: 15vw;
+    border: none;
+    background: none;
+    border-bottom:  1px solid black;
+}
+
+.btn-cadastrar {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* .btn-cadastrar button {
+    padding: 5px 0px;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 20px;
+} */
+
+button {
+    display: flex;
+    margin: 5% auto;
+    background-color: #212124;
+    border: none;
+    padding: 5px 0px;
+    color: white;
+    font-weight: 800;
+    border-radius: 15px;
+    font-size: 10pt;
+    cursor: pointer;
+    margin-bottom: 20px;
+
+    
+}
+
+.img-btn {
+    width: 15px;
+    margin: 2px 20px;    
+}
+
+.link-login {
+    text-align: center;
+    font-size: 10pt;
+    margin-top: 10px;
+}
+
+.link-login span {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: #212124;
+}
+
+.single-input{
+    position: relative;
+    margin-top: 30px;
+}
+.single-input label{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    color: rgb(150,150,150);
+    cursor: text;
+    transition: 0.5s ease-in-out;
+    font-size: 11pt;
+}
+
+.input{
+    width: 100%;
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid rgb(200,200,200);
+    outline: 0;
+    font-size: 16px;
+    color: rgb(80,80,80);
+    transition: 0.5s ease-in-out;
+}
+
+.input:focus,
+.input:valid{
+    border-bottom: 1px solid #2C1C36;
+}
+.input:focus ~ label,
+.input:valid ~ label{
+    transform: translateY(-14px);
+    font-size: 15px;
+    color: #2C1C36;
+}
+
+label {
+    font-size: 220px;
+}
+
+.model{
+    display: none;
+    visibility:hidden;
+}
+
+.modal-certo{
+    background-color:rgb(80, 76, 76);
+    position: absolute;
+    top: 22%;
+    left: 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    width: 25vw;
+    border-radius: 10%;
+}
+.btn-check{
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-certo > p{
+    margin-top: 2%;
+    color: white;
+}

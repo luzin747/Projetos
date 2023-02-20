@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech - Cadastrar</title>
+
+    <link rel="stylesheet" href="css/cadastra.css">
+</head>
+
+<body>
+
+    <div id="container">
+
+        <div class="cont-cadastra">
+
+            <div class="cont-img-banner">
+                <img class="img-banner" src="https://img.freepik.com/fotos-premium/trator-pulveriza-pesticidas-em-campos-de-milho-ao-por-do-sol_93624-412.jpg" alt="">
+            </div>
+
+            <div>
+                <h1>Cadastro AgroTech</h1>
+
+                <hr>
+
+                <div class="cont-inps">
+
+                    <div class="inps">
+                        <div class="single-input">
+                            <input type="text" class="input" id="nome">
+                            <label>Nome*</label>
+                        </div>
+
+                        <div class="single-input">
+                            <input class="input" type="text" id="email">
+                            <label>Email</label>
+                        </div>
+                    </div>
+
+
+                    <div class="inps">
+
+                        <div class="single-input">
+                            <input class="input" type="password" id="senha">
+                            <label>Senha*</label>
+                        </div>
+
+                        <div class="single-input">
+                            <input class="input" type="password" id="confirmar_senha">
+                            <label>Confirmar Senha*</label>
+                        </div>
+
+                    </div>
+
+                    <div class="btn-cadastrar " onClick="cad()">
+                        <button class="btn-cadastrar">
+                            <img class="img-btn" src="" alt="">
+
+                            Cadastrar
+                            <img class="img-btn" src="" alt="">
+                        </button>
+
+                    </div> 
+
+                </div class="input">
+                <a href="../../Login/index.html"><p class="link-login">Já Possui Cadastro? <span>Entrar!</span></p></a>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-certo model">
+
+        <img src="./img/IMAGES/2.gif" alt="">
+
+        <p>Ticket Cadastrado Com Sucesso!</p>
+
+        <button onclick="esconderModalCheck()" class="btn-check">OK</button>
+    </div>
+
+</body>
+
+<script src="./js/script.js"></script>
+</html>
