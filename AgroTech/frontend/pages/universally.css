@@ -174,3 +174,38 @@ main {
     color: #212124;
     
 }
+
+
+/* ESTILIZAÇÃO DO FILTRO */
+.filtro {
+    margin-right: 10px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    cursor: pointer;
+
+}
+
+.filtro i {
+    margin-left: -30px;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 15pt;
+    /* border-radius: 1px 15px 15px 0px; */
+    cursor: pointer;
+}
+
+.filtro input {	
+    padding: 10px 15px;
+    width: 20vw;
+    height: 3vh;
+    border-radius: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.39);
+
+}
+
+.filtro input:focus {
+    outline: 0;
+    border: none;
+}

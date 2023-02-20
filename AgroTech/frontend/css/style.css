@@ -1,33 +1,65 @@
+select {
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-bottom: 5px;
+}
+
+.container_tables {
+    width: 60%;
+    margin: 0 auto;
+
+}
+
+.div_master_conteudo {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
 
 h5 {
     font-size: 12pt;
 }
 
-.cont_table_situation {
-    text-align: center;
-}
-
-.cont_table_situation span{
+.cont_table_situation_title span{
     font-size: 13pt;
 
 }
+.cont_table_situation_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    background-color: #212124;
+    padding: 15px 15px;
+}
 
 .table_situation {
-    margin-top: 3%;
+    margin: 10px;
     background: white;
-    width: 70vw;
-    padding-top: 20px;
     padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
-    border-radius: 5px;
+    overflow-y: scroll;
+    width: 100%;
+    height: 70vh;
+
+}
+
+.table_situation::-webkit-scrollbar{
+    width: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.486);
+    
+}
+
+.table_situation::-webkit-scrollbar-thumb {
+    background-color: #515153;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 0px;
 
 }
 
@@ -72,16 +104,15 @@ table tr td i:nth-child(2) {
 }
 
 .cont-cards {
-    display: flex;
+    width: 30%;
+    margin-top: 3%;
 }
 
 .cards {
-    width: 30%;
-    margin-left: 20px;
     display: flex;
     margin: 0 auto;
-    margin-top: 30px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.288);
+    margin-top: 10%;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.144);
     background-color: white;
     border-radius: 10px;
 }
@@ -115,7 +146,7 @@ table tr td i:nth-child(2) {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-top: 40px;
+    margin-top: 5px;
     margin-bottom: 20px;
     
 }
