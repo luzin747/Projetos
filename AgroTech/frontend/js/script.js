@@ -66,7 +66,11 @@ function cardDetails() {
 
     document.querySelector('.qtd_veiculos').innerHTML = veiculos.length
 
+    console.log(veiculos);
+
+
     veiculos.forEach(v => {
+
 
         if (v.disponivel == true) {
 
@@ -84,14 +88,13 @@ function cardDetails() {
 
         novoCardVeiculos.classList.remove('model')
 
-        novoCardVeiculos.querySelector('.id_veiculo').innerHTML = v.id_veiculo
         novoCardVeiculos.querySelector('.placa').innerHTML = v.placa
         novoCardVeiculos.querySelector('.modelo').innerHTML = v.modelo
         novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
         novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
         novoCardVeiculos.querySelector('.disponivel').innerHTML = v.disponivel
         
-        document.querySelector('.contVeiculos').appendChild = novoCardVeiculos
+        document.querySelector('.contVeiculos').appendChild(novoCardVeiculos)
 
     })
 
@@ -121,7 +124,7 @@ function cardDetaisOperacoes() {
         novoCardOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
         novoCardOperacoes.querySelector('.descricao').innerHTML = o.descricao
         
-        document.querySelector('.contOperacoes').appendChild = novoCardOperacoes
+        document.querySelector('.contOperacoes').appendChild(novoCardOperacoes)
     })
 
     document.querySelector('.qtd_operacoes_andamento').innerHTML = qtd_Operacoes_Andamento

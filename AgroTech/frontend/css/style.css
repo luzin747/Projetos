@@ -4,19 +4,30 @@ select {
     margin-bottom: 5px;
 }
 
-.container_tables {
-    width: 60%;
-    margin: 0 auto;
+.cont_title_table {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
 
 }
 
 .div_master_conteudo {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    flex-direction: column; 
 }
 
+.container_tables {
+    margin-top: 2%;
+    align-items: center;
+    margin-left: 3%;
+}
 
+.cont_tables {
+    width: 76%;
+}
+.cont_status_users {
+    background-color: red;
+}
 
 h5 {
     font-size: 12pt;
@@ -31,7 +42,6 @@ h5 {
     justify-content: space-between;
     align-items: center;
     color: white;
-    background-color: #212124;
     padding: 15px 15px;
 }
 
@@ -39,10 +49,12 @@ h5 {
     margin: 10px;
     background: white;
     padding-bottom: 20px;
+    padding-left: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
     overflow-y: scroll;
     width: 100%;
-    height: 70vh;
+    height: 50vh;
+    border-radius: 10px;
 
 }
 
@@ -64,24 +76,25 @@ table {
 }
 
 th {
-    padding: 10px;
+    padding-bottom: 5px;
+    font-size: 13pt;
     font-weight: 500;
-    color: rgba(34, 34, 34, 0.355);
+    color: rgba(34, 34, 34, 0.888);
+    font-weight: bold;
+
+}
+
+thead tr {
+    border: 1px red;
 }
 
 table tr td {
     text-align: center;
 }
 
-
-thead tr {
-    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.288);
-
-}
-
 tbody td {
-    border-bottom: 2px solid rgba(0, 0, 0, 0.253);    
-    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.198);    
+    text-align: center;
 }
 
 table tr td i {
@@ -104,14 +117,16 @@ table tr td i:nth-child(2) {
 }
 
 .cont-cards {
-    width: 30%;
-    margin-top: 1%;
+    margin-top: 1.5%;
+    margin-left: 3%;
+    display: flex;
+    justify-content: start;
 }
 
 .cards {
     display: flex;
-    margin: 0 auto;
-    margin-top: 10%;
+    width: 30%;
+    margin: 10px 20px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.384);
     background-color: white;
     border-radius: 10px;

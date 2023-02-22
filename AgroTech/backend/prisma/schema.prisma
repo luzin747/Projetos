@@ -35,14 +35,20 @@ model Veiculos {
   tipo String
   disponivel Boolean @default(true)
   operacao Operacao []
+  manutencao Manutencao []
+
 }
 
 model Manutencao {
   id_manutencao Int @id @default(autoincrement())
+  id_veiculo Int
   data_inicio DateTime @default(now())
   data_fim DateTime?
   valor Float
   descricao String
+  veiculos Veiculos @relation(fields: [id_veiculo], references: [id_veiculo])
+
+
 }
 
 model Operacao {

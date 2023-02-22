@@ -16,31 +16,12 @@
 
 <body onload="carregar()">
 
-    <!-- <header>
-
-        <div class="nav-head">
-
-            <div>
-                <h1><i class='bx bxs-car-garage'></i>Agro Tech</h1>
-
-            </div>
-            <nav>
-                <ul>
-                    <li><i class='bx bxs-bell'></i></li>
-                    <li><i class='bx bxs-user'></i></li>
-                </ul>
-            </nav>
-        </div>
-    </header> -->
-
     <main>
         <div class="menu modal-menu">
             <!-- <p><i onclick="teste()" class='bx bx-menu'></i></p> -->
 
             <div>
                 <h1>AgroTech</h1>
-
-                <!-- <p>Menu</p> -->
 
                 <ul>
                     <li><a href="home.html"><i class='bx bx-category'></i></i><span
@@ -53,6 +34,9 @@
                                 class="nav-title">Motoristas</span></a></li>
                     <li><a href="pages/veiculos/veiculos.html"><i class='bx bx-money'></i><span
                                 class="nav-title">Veículos</span></a></li>
+                    <li><a href="pages/veiculos/veiculos.html"><i class='bx bx-money'></i><span
+                                class="nav-title">Manutenção</span></a></li>
+
 
 
                 </ul>
@@ -128,12 +112,9 @@
                     <div class="cards">
 
                         <div class="linha-2">
-                            <!-- <div class="title-linha">
-                        <p>teste</p>
-                    </div> -->
 
                             <div class="linha-2-cont">
-                                <i class='bx bx-grid-alt' ></i>
+                                <i class='bx bx-grid-alt'></i>
                                 <div class="linha-2-sub">
                                     <h5>Operaçãos</h5>
                                     <p><span class="qtd_operacoes"></span></p>
@@ -163,9 +144,6 @@
                     <div class="cards">
 
                         <div class="linha-2">
-                            <!-- <div class="title-linha">
-                        <p>teste</p>
-                    </div> -->
 
                             <div class="linha-2-cont">
                                 <i class='bx bxs-user-circle'></i>
@@ -177,33 +155,8 @@
 
                             </div>
 
-                            <!-- <div class="linha-2-situation mensa-s">
-
-                                <div>
-                                    <h6>Livres</h6>
-                                    <span class="clientes-ativos">100</span>
-                                </div>
-
-                                <i class='bx bx-transfer-alt'></i>
-
-                                <div>
-                                    <h6>Em Operação</h6>
-                                    <span class="clientes-inativos">0</span>
-                                </div>
-                            </div> -->
-                        </div>
-
-                    </div>
-
-                    <div class="cards">
-
-                        <div class="linha-2">
-                            <!-- <div class="title-linha">
-                        <p>teste</p>
-                    </div> -->
-
                             <div class="linha-2-cont">
-                                <i class='bx bxs-user-account' ></i>
+                                <i class='bx bxs-user-account'></i>
 
                                 <div class="linha-2-sub">
                                     <h5>Usuarios</h5>
@@ -212,124 +165,131 @@
 
                             </div>
 
-                            <!-- <div class="linha-2-situation mensa-s">
-
-                                <div>
-                                    <h6>Livres</h6>
-                                    <span class="clientes-ativos">100</span>
-                                </div>
-
-                                <i class='bx bx-transfer-alt'></i>
-
-                                <div>
-                                    <h6>Em Operação</h6>
-                                    <span class="clientes-inativos">0</span>
-                                </div>
-                            </div> -->
                         </div>
 
                     </div>
+
+                    <!-- <div class="cards">
+
+                        <div class="linha-2">
+
+                            <div class="linha-2-cont">
+                                <i class='bx bxs-user-account'></i>
+
+                                <div class="linha-2-sub">
+                                    <h5>Usuarios</h5>
+                                    <p class="qtd_usuarios">5</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div> -->
 
                 </div>
 
                 <div class="container_tables">
 
-                    <select name="" id="" class="tipo_tabela" onclick="filtroRelatorios()">
-                        <option value="default">Padrão</option>
-                        <option value="r_veiculos">Relatórios de Veículos</option>
-                        <option value="r_operacoes">Operações em Andamento</option>
+                    <div class="cont_tables">
 
-                    </select>
-
-                    <div class="table_situation veiculos_table">
-                        <div class="cont_table_situation_title">
+                        <div class="cont_title_table">
                             <h2>Relatórios Veículos</h2>
-
-
-                            <div class="filtro">
-                                <input placeholder="Pesquisar Veículo...." class="search" type="text">
-                                <!-- <button class="">Filtrar</button> -->
-                                <i class='bx bx-search-alt-2 btn-filter'></i>
-                            </div>
+                            <select name="" id="" class="tipo_tabela" onclick="filtroRelatorios()">
+                                <option value="default">Padrão</option>
+                                <option value="r_veiculos">Relatórios de Veículos</option>
+                                <option value="r_operacoes">Operações em Andamento</option>
+    
+                            </select>
                         </div>
 
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Veiculo</th>
-                                    <th>Modelo</th>
-                                    <th>Placa</th>
-                                    <th>Situação</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-
-
-                            <tbody class="contVeiculos">
-                                <tr class="veiculos model">
-                                    <td class="id_veiculo">Caminhão de Carga</td>
-                                    <td class="placa">RTX3090TI</td>
-                                    <td class="modelo">GTX0N3GB</td>
-                                    <td class="marca">GTX0N3GB</td>
-                                    <td class="tipo">GTX0N3GB</td>
-                                    <td class="disponivel">GTX0N3GB</td>
-                                    <td>
-                                        <a href="">Detalhes</a>
-                                        <!-- <i class='bx bx-edit' onclick="editarCliente(this)"></i>
-                                    <i class='bx bxs-trash-alt' onclick="excluirCliente(this)"></i> -->
-                                    </td>
-                                </tr>
-
-
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="table_situation opeacoes_table model">
-                        <div class="cont_table_situation_title">
-                            <h2>Relatório de Operações</h2>
-
-
-                            <div class="filtro">
-                                <input placeholder="Pesquisar Veículo...." class="search" type="text">
-                                <!-- <button class="">Filtrar</button> -->
-                                <i class='bx bx-search-alt-2 btn-filter'></i>
+                        <div class="table_situation veiculos_table">
+                            <div class="cont_table_situation_title">
+                                <div class="filtro">
+                                    <input placeholder="Pesquisar Veículo...." class="search" type="text">
+                                    <!-- <button class="">Filtrar</button> -->
+                                    <i class='bx bx-search-alt-2 btn-filter'></i>
+                                </div>
                             </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Modelo</th>
+                                        <th>Marca</th>
+                                        <th>Placa</th>
+                                        <th>Tipo</th>
+                                        <th>Situação</th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody class="contVeiculos">
+                                    <tr class="veiculos model">
+                                        <!-- <td class="id_veiculo">Caminhão de Carga</td> -->
+                                        <td class="placa">RTX3090TI</td>
+                                        <td class="modelo">GTX0N3GB</td>
+                                        <td class="marca">GTX0N3GB</td>
+                                        <td class="tipo">GTX0N3GB</td>
+                                        <td class="disponivel">GTX0N3GB</td>
+                                        <td>
+                                            <a href="">Detalhes</a>
+                                            <!-- <i class='bx bx-edit' onclick="editarCliente(this)"></i>
+                                    <i class='bx bxs-trash-alt' onclick="excluirCliente(this)"></i> -->
+                                        </td>
+                                    </tr>
+
+
+
+                                </tbody>
+                            </table>
                         </div>
 
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Motorista</th>
-                                    <th>Data Saída</th>
-                                    <th>Data Retorno</th>
-                                    <th>Descrição</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
+                        <div class="table_situation opeacoes_table model">
+                            <div class="cont_table_situation_title">
 
 
-                            <tbody class="contOperacoes">
-                                <tr class="operacoes model">
-                                    <td class="id_operacao">Caminhão de Carga</td>
-                                    <td class="motorista">RTX3090TI</td>
-                                    <td class="data_saida">GTX0N3GB</td>
-                                    <td class="data_retorno">GTX0N3GB</td>
-                                    <td class="descricao">GTX0N3GB</td>
-                                    <td>
-                                        <a href="">Detalhes</a>
-                                        <!-- <i class='bx bx-edit' onclick="editarCliente(this)"></i>
+                                <div class="filtro">
+                                    <input placeholder="Pesquisar Veículo...." class="search" type="text">
+                                    <!-- <button class="">Filtrar</button> -->
+                                    <i class='bx bx-search-alt-2 btn-filter'></i>
+                                </div>
+                            </div>
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Motorista</th>
+                                        <th>Data Saída</th>
+                                        <th>Data Retorno</th>
+                                        <th>Descrição</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody class="contOperacoes">
+                                    <tr class="operacoes model">
+                                        <td class="id_operacao">Caminhão de Carga</td>
+                                        <td class="motorista">RTX3090TI</td>
+                                        <td class="data_saida">GTX0N3GB</td>
+                                        <td class="data_retorno">GTX0N3GB</td>
+                                        <td class="descricao">GTX0N3GB</td>
+                                        <td>
+                                            <a href="">Detalhes</a>
+                                            <!-- <i class='bx bx-edit' onclick="editarCliente(this)"></i>
                                     <i class='bx bxs-trash-alt' onclick="excluirCliente(this)"></i> -->
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
 
 
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+
 
                 </div>
 

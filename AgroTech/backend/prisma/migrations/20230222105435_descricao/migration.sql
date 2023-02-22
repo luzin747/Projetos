@@ -49,6 +49,7 @@ CREATE TABLE `Manutencao` (
 CREATE TABLE `Operacao` (
     `id_opeacao` INTEGER NOT NULL AUTO_INCREMENT,
     `id_motorista` INTEGER NOT NULL,
+    `id_veiculo` INTEGER NOT NULL,
     `data_saida` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `data_retorno` DATETIME(3) NULL,
     `descricao` VARCHAR(191) NOT NULL,
@@ -58,3 +59,6 @@ CREATE TABLE `Operacao` (
 
 -- AddForeignKey
 ALTER TABLE `Operacao` ADD CONSTRAINT `Operacao_id_motorista_fkey` FOREIGN KEY (`id_motorista`) REFERENCES `Motorista`(`id_motorista`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Operacao` ADD CONSTRAINT `Operacao_id_veiculo_fkey` FOREIGN KEY (`id_veiculo`) REFERENCES `Veiculos`(`id_veiculo`) ON DELETE RESTRICT ON UPDATE CASCADE;

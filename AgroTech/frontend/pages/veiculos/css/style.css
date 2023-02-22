@@ -127,6 +127,7 @@ table tr td i:nth-child(2) {
 .m-editar .nomeCliente {
     font-size: 1.8rem;
     margin-top: 20px;
+    
     text-align: center;
 }
 .m-editar hr {

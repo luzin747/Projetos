@@ -74,20 +74,15 @@
                         <p>Quantidade: <b class="qtd-tickets">10</b></p>
                     </div>
 
-                    <!-- <div class="cont-qtd">
-                        <i class='bx bx-lock locked'></i>
-                        <p>Fechados: <b class="fechados">1</b></p>
-                    </div> -->
-
                     <div class="tools">
 
                         <div class="linha-2">
-                            <button class="button-new"><a href="CadastrarVeiculo/index.html"><i
+                            <button class="button-new"><a href="CadastrarMotorista/index.html"><i
                                         class='bx bxs-file-plus'></i>Novo</a></button>
                         </div>
 
                         <div class="filtro">
-                            <input placeholder="Pesquisar Cliente" class="search" type="text">
+                            <input placeholder="Pesquisar Motorista" class="search" type="text">
                             <!-- <button class="">Filtrar</button> -->
                             <i class='bx bx-search-alt-2 btn-filter'></i>
                         </div>
@@ -112,11 +107,11 @@
 
                         <tr class="tickets model">
                             <td class="id_motorista">1</td>
-                            <td class="nome">1</td>
-                            <td class="cpf">5</td>
-                            <td class="cnh">Veiculo Pequeno</td>
+                            <td class="nome">Veiculo Pequeno</td>
+                            <td class="cpf">1</td>
+                            <td class="cnh">5</td>
                             <td class="cont-btns">
-                                <i class='bx bx-edit ' onclick="editarCliente(this)"></i>
+                                <i class='bx bx-edit ' onclick="editar(this)"></i>
                                 <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i>
                             </td>
 
@@ -130,10 +125,13 @@
             <div class="m-editar model">
 
                 <div class="m-editar-inputs">
+                    <p class="nomeCliente"><b class="cliName">Editar Motorista</b> </p>
+
+                    <hr>
 
                     <div class="cont-id_vaga">
-                        <p>Veículo Id :</p>
-                        <span class="id_veiculo id_editar"></span>
+                        <p>Motorista Id :</p>
+                        <span class="id_motorista id_editar"></span>
 
                     </div>
 
@@ -142,51 +140,21 @@
                         <div class="inps">
 
                             <div>
-                                <p>Placa</p>
-                                <input type="text" class="placa_veiculo pv_editar" >
+                                <p>Nome</p>
+                                <input type="text" class="nome n_editar">
                             </div>
 
                             <div>
-                                <p>Modelo</p>
-                                <input type="text" class="modelo_veiculo mv_editar">
+                                <p>CPF</p>
+                                <input type="text" class="cpf cpf_editar">
                             </div>
 
                             <div>
-                                <p>Marca</p>
-                                <input type="text" class="marca_veiculo m_editar">
-                            </div>
-
-                            <div>
-                                <p>Tipo</p>
-                                <input type="text" class="tipo_veiculo m_tipo">
+                                <p>CNH</p>
+                                <input type="text" class="cnh cnh_tipo">
 
                             </div>
 
-
-
-                        </div>
-
-                        <div class="inps dispo">
-
-                            <div class="cont_dispo">
-
-                                <div>
-
-                                    <p>Disponibilidade</p>
-                                    <input type="text" class="disponibilidade" disabled="">
-
-                                </div>
-
-                                <div class="selects_inps_disp">
-                                    <p>Trocar Disponibilidade</p>
-
-                                    <select class="select_status">
-                                        <option value="sim">Default</option>
-                                        <option value="sim">Sim</option>
-                                        <option value="nao">Não</option>
-                                    </select>
-                                </div>
-                            </div>
 
 
                         </div>

@@ -1,19 +1,19 @@
-var uriVeiculos = 'http://localhost:3000/veiculo'
-var uriEditar = 'http://localhost:3000/veiculo'
+var uriMotorista = 'http://localhost:3000/motorista'
+var uriEditar = 'http://localhost:3000/motorista'
 
-var veiculos = []
+var motorista = []
 
-var cardVeiculos = document.querySelector('.tickets')
+var cardMotorista = document.querySelector('.tickets')
 
 
 function carregar() {
 
     const options = { method: 'GET' };
 
-    fetch(uriVeiculos, options)
+    fetch(uriMotorista, options)
         .then(res => res.json())
         .then(res => {
-            veiculos = res;
+            motorista = res;
             preencherTabela();
         }
         )
@@ -23,156 +23,56 @@ function carregar() {
 
 function preencherTabela() {
 
-    veiculos.forEach(v => {
+    motorista.forEach(m => {
 
-        var novoCardVeiculos = cardVeiculos.cloneNode(true)
+        var novoCardMotorista = cardMotorista.cloneNode(true)
 
-        novoCardVeiculos.classList.remove('model')
+        novoCardMotorista.classList.remove('model')
+        novoCardMotorista.querySelector('.id_motorista').innerHTML = m.id_motorista
+        novoCardMotorista.querySelector('.cpf').innerHTML = m.cpf
+        novoCardMotorista.querySelector('.cnh').innerHTML = m.cnh
+        novoCardMotorista.querySelector('.nome').innerHTML = m.nome
 
-        novoCardVeiculos.querySelector('.id_veiculos').innerHTML = v.id_veiculo
-        novoCardVeiculos.querySelector('.placas').innerHTML = v.placa
-        novoCardVeiculos.querySelector('.modelo').innerHTML = v.modelo
-        novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
-        novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
-
-        if (v.disponivel == false) {
-            novoCardVeiculos.querySelector('.disponivel').innerHTML = 'Não'
-
-        }
-
-        if (v.disponivel == true) {
-            novoCardVeiculos.querySelector('.disponivel').innerHTML = 'Sim'
-
-        }
-
-        document.querySelector('.contTickets').appendChild(novoCardVeiculos)
+        document.querySelector('.contTickets').appendChild(novoCardMotorista)
     })
-}
-
-function editarCliente(e) {
-
-    var mostrarModal = document.querySelector('.m-editar')
-
-    mostrarModal.classList.toggle('model')
-    document.querySelector('body').style.background = '#5e5e5e27';
-
-
-    //PREENCHER OS INPUTS COM AS INFORMAÇÕES DO CLIENTE DESEJADO
-
-    var id = e.parentNode.parentNode.querySelector('.cpf-clientes').innerHTML
-
-
-    clientes.forEach(c => {
-        if (id == c.cpf_cli) {
-
-
-            console.log(c.cpf_cli)
-
-            var id_vaga = document.querySelector('.id_vaga').innerHTML = c.number_vaga
-
-            document.querySelector('.ticket-id').value = c.ticket_id
-            document.querySelector('.cpf').value = c.cpf_cli
-            document.querySelector('.placa').value = c.placa_car
-            document.querySelector('.data_entrada').value = c.data_est
-            document.querySelector('.h_entrada').value = c.h_entrada
-
-            var categoria_veiculo = c.categoria_carro
-
-            if (categoria_veiculo == 'Pequeno' || categoria_veiculo == 'Veículo Pequeno' || categoria_veiculo == 'Ve?culo Pequeno') {
-                var categoria_veiculo = document.querySelector('.categoria_veiculo').value = 'Pequeno'
-            }
-
-            if (categoria_veiculo == 'Médio' || categoria_veiculo == 'Veículo Médio' || categoria_veiculo == 'Ve?culo M?dio') {
-                var categoria_veiculo = document.querySelector('.categoria_veiculo').value = 'Médio'
-
-            }
-            if (categoria_veiculo == 'Grande' || categoria_veiculo == 'Veículo Pequeno' || categoria_veiculo == 'Ve?culo Grande') {
-                var categoria_veiculo = document.querySelector('.categoria_veiculo').value = 'Grande'
-            }
-        }
-
-    })
-
 }
 
 function ativar(e) {
 
-    var id = e.parentNode.parentNode.querySelector('.id_veiculos').innerHTML
+    var id = e.parentNode.parentNode.querySelector('.id_motorista').innerHTML
 
     const options = { method: 'GET' };
 
-    fetch(uriVeiculos, options)
+    fetch(uriEditar, options)
         .then(res => res.json())
         .then(res => {
-            veiculos = res;
-            editarCliente(e);
+            motorista = res;
+            editar(e);
         }
         )
         .catch(err => console.error(err));
 }
 
-function editarCliente(e) {
+function editar(e) {
 
-    var id = e.parentNode.parentNode.querySelector('.id_veiculos').innerHTML
+    var id = e.parentNode.parentNode.querySelector('.id_motorista').innerHTML
 
     var mostrarModal = document.querySelector('.m-editar')
 
-    veiculos.forEach(v => {
+    motorista.forEach(m => {
 
-        if (id == v.id_veiculo) {
+        if (id == m.id_motorista) {
 
-
-            document.querySelector('.id_veiculo').innerHTML = v.id_veiculo
-            document.querySelector('.placa_veiculo').value = v.placa
-            document.querySelector('.modelo_veiculo').value = v.modelo
-            document.querySelector('.marca_veiculo').value = v.marca
-            document.querySelector('.tipo_veiculo').value = v.tipo
-
-            if (v.disponivel == false) {
-                document.querySelector('.disponibilidade').value = 'Não'
-
-            }
-
-            if (v.disponivel == true) {
-                document.querySelector('.disponibilidade').value = 'Sim'
-
-            }
+            document.querySelector('.id_editar').innerHTML = m.id_motorista
+            document.querySelector('.n_editar').value = m.nome
+            document.querySelector('.cpf_editar').value = m.cpf
+            document.querySelector('.cnh_tipo').value = m.cnh
 
         }
 
     })
 
     mostrarModal.classList.remove('model')
-
-
-    // veiculos.forEach(v => {
-    //   if(id == c.cpf_cli) {
-    //     console.log(c.cpf_cli)
-
-    //         var id_vaga = document.querySelector('.id_vaga').innerHTML  = c.number_vaga
-
-    //         document.querySelector('.ticket-id').value = c.ticket_id
-    //         document.querySelector('.cpf').value = c.cpf_cli
-    //         document.querySelector('.placa').value = c.placa_car
-    //         document.querySelector('.data_entrada').value = c.data_est
-    //         document.querySelector('.h_entrada').value = c.h_entrada
-
-    //         var categoria_veiculo = c.categoria_carro
-
-    //         if(categoria_veiculo == 'Pequeno' || categoria_veiculo == 'Veículo Pequeno' || categoria_veiculo == 'Ve?culo Pequeno') {
-    //           var categoria_veiculo = document.querySelector('.categoria_veiculo').value = 'Pequeno'
-    //         }
-
-    //         if(categoria_veiculo == 'Médio' || categoria_veiculo == 'Veículo Médio' || categoria_veiculo == 'Ve?culo M?dio') {
-    //           var categoria_veiculo = document.querySelector('.categoria_veiculo').value = 'Médio'
-
-    //         }
-    //         if(categoria_veiculo == 'Grande'|| categoria_veiculo == 'Veículo Pequeno' || categoria_veiculo == 'Ve?culo Grande') {
-    //           var categoria_veiculo = document.querySelector('.categoria_veiculo').value = 'Grande'           
-    //         }
-    //   }
-
-    // })
 
 }
 

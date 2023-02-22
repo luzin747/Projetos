@@ -2,11 +2,7 @@ main {
     display: flex;
 }
 
-.conteudo {
-    margin: 30px 50px;
-    width: 100%;
 
-}
 
 .linha-1 {
     font-size: 13pt;
@@ -33,8 +29,6 @@ main {
     color: rgb(236, 236, 236);
     background-color: rgba(15, 8, 8, 0.842);
 }
-
-
 
 table {
     width: 100%;
@@ -131,7 +125,7 @@ table tr td i:nth-child(2) {
 }
 .m-editar hr {
     width: 90%;
-    margin: 0.3% auto;
+    margin: 2% auto;
 }
 
 .cont-id_vaga {

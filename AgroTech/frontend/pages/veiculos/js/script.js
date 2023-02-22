@@ -23,6 +23,8 @@ function carregar() {
 
 function preencherTabela() {
 
+    console.log(veiculos);
+
     veiculos.forEach(v => {
 
         var novoCardVeiculos = cardVeiculos.cloneNode(true)
