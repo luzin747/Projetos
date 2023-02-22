@@ -1,0 +1,274 @@
+main {
+    display: flex;
+}
+
+.conteudo {
+    margin: 30px 50px;
+    width: 100%;
+
+}
+
+.linha-1 {
+    font-size: 13pt;
+    display: flex;
+    align-items: center;
+
+}
+
+.linha-1-sub {
+    margin-left: 20px;
+}
+.linha-1-sub h5 {
+    font-size: 14pt;
+    font-weight: 600;
+}
+.linha-1-sub p {
+    font-size: 12pt;
+}
+
+.linha-1 i  {
+    font-size: 20pt;
+    padding: 10px;
+    border-radius: 10px;
+    color: rgb(236, 236, 236);
+    background-color: rgba(15, 8, 8, 0.842);
+}
+
+
+
+table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+    align-items: center;
+}
+
+table tr{
+    display: flex;
+    
+}
+
+tbody {
+    
+
+}
+tbody tr {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.253);    
+
+}
+tbody tr td {
+    width: 100%;
+    padding: 10px;
+
+}
+
+table tr th {
+    width: 100%;
+    margin: 0 auto;
+    font-weight: 500;
+    color: rgba(34, 34, 34, 0.355);
+}
+table tr td{
+    margin-top: 2px;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+table tr td:nth-child(7) {
+   
+    
+
+}
+
+thead tr {
+    background-color: rgb(241, 241, 241);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.288);
+    padding: 10px;
+}
+
+
+
+table tr td i {
+    margin-top: 2px;
+    font-size: 12pt;
+    padding: 4px;
+    border-radius: 20px;
+    color: white;
+}
+
+table tr td i:nth-child(1) {
+    background-color: rgb(0, 0, 0);
+
+}
+table tr td i:nth-child(2) {
+    background-color: red;
+
+}
+
+.section-01 p {
+    text-align: center;
+    /* font-weight: 500;
+    font-size: 13pt; */
+}
+
+
+.m-editar {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    width: 30%;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px rgb(53, 53, 53);
+    background-color: white;
+    padding: 10px;
+}
+
+.m-editar .nomeCliente {
+    font-size: 1.8rem;
+    margin-top: 20px;
+    text-align: center;
+}
+.m-editar hr {
+    width: 90%;
+    margin: 0.3% auto;
+}
+
+.cont-id_vaga {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cont-id_vaga span {
+    margin-left: 10px;
+    height: 4vh;
+    width: 2vw;
+    padding-top: 7px;
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    background-color: #3B3B3B;
+    border-radius: 5px;
+}
+.inps {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px 10px 10px 10px;  
+    text-align: center;  
+
+    /* padding: 20px; */
+}
+
+.inps div {
+    /* margin-top: 10px; */
+    margin: 10px;
+    
+}
+.inps p{
+    font-size: 11pt;
+}
+.inps input {
+    height: 28px;
+    text-align: center;
+    font-size: 11pt;
+}
+
+.inps select {
+    height: 27px;
+    width: 5vw;
+}
+
+.status-cont {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 2px;
+    color: white;
+    width: 9vw;
+}
+.status-cont select {
+    margin-left: 10px;
+}
+
+.value-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #3B3B3B;
+    /* background-color: rgb(230, 230, 230); */
+    color: rgb(255, 255, 255);
+    text-align: center;
+    border-radius: 3px;
+    font-weight: 600;
+
+}
+
+.value-status div {
+    display: flex;
+}
+
+.value-status input {
+    margin-left: 10px;
+}
+
+.cont-button-status  button {
+    cursor: pointer;
+    padding: 5px 15px;
+    margin-left: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.cont-button-status  button:nth-child(1) {
+    background-color: black;
+    color: white;
+}
+
+.cont-button-status  button:nth-child(2) {
+    background-color: rgb(255, 255, 255);
+    border: none;
+    box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.336);
+    color: rgb(0, 0, 0);
+}
+
+.cont-btns {
+    cursor: pointer;
+}
+
+.modal-certo button {
+    background-color: #12D76E;
+    color: white;
+    font-weight: 500;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 25px;
+    margin-top: 10px;
+}
+
+.modal-errado-nao-existe button {
+    background-color: #ee0f0f;
+    color: white;
+    font-weight: 500;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 25px;
+    margin-top: 10px;
+}
+
+
+.cont_dispo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+

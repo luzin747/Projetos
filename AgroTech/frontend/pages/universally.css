@@ -209,3 +209,218 @@ main {
     outline: 0;
     border: none;
 }
+
+.cont-tools {
+    /* margin: 3% auto 0px auto; */
+    margin-top: 3%;
+    background-color: #2E2E2E;
+
+    border-radius: 25px;
+    width: 90%;
+    height: 7vh;
+
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 3%;
+}
+
+.tools {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    padding: 10px 5%;
+
+}
+
+.button-new {
+    font-size: 12pt;
+    border-radius: 5px;
+    border: none;
+    font-family: 100;
+    background-color: rgb(255, 255, 255);
+    padding: 5px 25px;
+    cursor: pointer;
+}
+
+.button-new:hover  {
+    transition: 0.3s;
+    background-color: rgb(0, 0, 0);
+    color: white;
+
+}
+
+.button-new:hover a {
+    color: white;
+
+}
+
+.button-new:hover a i {
+    color: white;
+
+}
+
+
+.button-new a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+.cont-tools .button-new i {
+    padding-right: 5px;
+    font-size: 15pt;
+    
+    color: rgb(0, 0, 0);
+}
+
+.filtro {
+    margin-right: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    cursor: pointer;
+
+}
+
+.filtro i {
+    margin-left: -30px;
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 17pt;
+    /* border-radius: 1px 15px 15px 0px; */
+    cursor: pointer;
+}
+
+.filtro input {	
+    padding: 5px 15px;
+    width: 20vw;
+    height: 3.5vh;
+    border-radius: 40px;
+    border: 1px solid black;
+
+}
+
+.filtro input:focus {
+    outline: 0;
+    border: none;
+}
+
+.cont-qtd {
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    background-color: white;
+    padding: 5px 10px;
+    margin-left: 2%;
+}
+.cont-qtd i {
+    font-size: 25pt;
+    border-radius: 30px;
+}
+.cont-qtd p {
+    margin-top: 2px;
+    margin-left: 5px;
+    color: black;
+    font-size: 10pt;
+    display: flex;
+
+}
+
+.cont-qtd b {
+    padding-left: 5px;
+}
+
+.user {color: black;}
+.disabled {color: red;}
+.right {color: green;}
+.locked {color: black;}
+.unlocked {color: black;}
+.open {color: black;}
+
+
+.money {
+    width: 30%;
+}
+
+.modal-certo , .modal-errado, .modal-errado-vagas, .modal-errado-nao-existe , .modal-errado-cpf-existente, .modal-certo-editar {
+    width: 25%;
+    position: fixed;
+    background-color: white;
+    left: 42%;
+    top: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.336);
+}
+.modal-excluir {
+    width: 25%;
+    position: fixed;
+    background-color: white;
+    left: 42%;
+    top: 28%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.336);
+}
+
+.modal-excluir p {
+    margin: 10px auto;
+}
+
+.modal-errado  img{width: 50%;}
+.modal-errado-vagas img {width: 50%;}
+.modal-errado-nao-existe img {width: 50%;}
+.modal-errado-cpf-existente img {width: 50%;}
+.modal-excluir img {width: 60%;}
+
+.modal-certo button {
+    background-color: #12D76E;
+    color: white;
+    font-weight: 500;
+}
+
+.btn-check {
+    background-color: #12D76E;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btn-error {
+    background-color: #eb1c1c;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.btn-excluir-sim {
+    background-color: #f70404;
+}
+.btn-excluir-nao {
+    background-color: #0e0e0e;
+    
+}
+.cont-btn {
+    display: flex;
+}
+.cont-btn button {
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px 25px;
+    margin-top: 15px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+}

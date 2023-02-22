@@ -10,7 +10,8 @@ const Operacao = require('../controller/operacaoController')
 router.post('/usuarios', Usuario.create)
 router.get('/usuarios', Usuario.read)
 router.post('/usuarios/login', Usuario.login)
-router.delete('/delete/:id', Usuario.remover)
+router.put('/usuarios/:id', Usuario.update);
+router.delete('/usuarios/delete/:id', Usuario.remover)
 
 router.post('/motorista', Motorista.create);
 router.get('/motorista', Motorista.read);

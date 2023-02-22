@@ -1,10 +1,14 @@
 var uriCard_Veículos = 'http://localhost:3000/veiculo'
 var uriCard_Operacoes = 'http://localhost:3000/operacao'
+var uriCard_Motoristas = 'http://localhost:3000/motorista'
+var uriCard_Motoristas = 'http://localhost:3000/usuarios'
 
 var veiculos = []
 var operacoes = []
+var motoristas = []
 
-
+var td_operacoes = document.querySelector('.operacoes')
+var td_veiculos = document.querySelector('.veiculos')
 
 function carregar() {
 
@@ -24,6 +28,24 @@ function carregar() {
         .then(res => {
             operacoes = res;
             cardDetaisOperacoes();
+        }
+        )
+        .catch(err => console.error(err));
+
+        fetch(uriCard_Motoristas, options)
+        .then(res => res.json())
+        .then(res => {
+            motoristas = res;
+            cardDetailsMotoristas();
+        }
+        )
+        .catch(err => console.error(err));
+
+        fetch(uriCard_Motoristas, options)
+        .then(res => res.json())
+        .then(res => {
+            usuarios = res;
+            cardDetailsUsuarios();
         }
         )
         .catch(err => console.error(err));
@@ -58,7 +80,18 @@ function cardDetails() {
 
         }
 
+        var novoCardVeiculos = td_veiculos.cloneNode(true)
 
+        novoCardVeiculos.classList.remove('model')
+
+        novoCardVeiculos.querySelector('.id_veiculo').innerHTML = v.id_veiculo
+        novoCardVeiculos.querySelector('.placa').innerHTML = v.placa
+        novoCardVeiculos.querySelector('.modelo').innerHTML = v.modelo
+        novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
+        novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
+        novoCardVeiculos.querySelector('.disponivel').innerHTML = v.disponivel
+        
+        document.querySelector('.contVeiculos').appendChild = novoCardVeiculos
 
     })
 
@@ -71,20 +104,67 @@ function cardDetaisOperacoes() {
 
     document.querySelector('.qtd_operacoes').innerHTML = operacoes.length
 
+
     operacoes.forEach(o => {
         if (o.data_retorno == null) {
 
             qtd_Operacoes_Andamento += 1
 
-
         }
+        var novoCardOperacoes = td_operacoes.cloneNode(true)
 
-        // if(v.disponivel == false) {
-        //     qtd_Veiculos_Terminadas += 1
+        novoCardOperacoes.classList.remove('model')
 
-        // } 
+        novoCardOperacoes.querySelector('.id_operacao').innerHTML = o.id_operacao
+        novoCardOperacoes.querySelector('.motorista').innerHTML = o.id_motorista
+        novoCardOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
+        novoCardOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
+        novoCardOperacoes.querySelector('.descricao').innerHTML = o.descricao
+        
+        document.querySelector('.contOperacoes').appendChild = novoCardOperacoes
     })
 
     document.querySelector('.qtd_operacoes_andamento').innerHTML = qtd_Operacoes_Andamento
 
+}
+
+function cardDetailsMotoristas() {
+    document.querySelector('.qtd_motoristas').innerHTML = motoristas.length
+
+    motoristas.forEach(o => {
+        
+    })
+
+    document.querySelector('.qtd_operacoes_andamento').innerHTML = qtd_Operacoes_Andamento
+}
+
+function cardDetailsUsuarios() {
+    document.querySelector('.qtd_usuarios').innerHTML = usuarios.length
+
+    
+}
+
+var tabela_veiculos = document.querySelector('.veiculos_table')
+var tabela_operacoes = document.querySelector('.opeacoes_table')
+
+function filtroRelatorios() {
+
+    var select = document.querySelector('.tipo_tabela')
+
+    let tipo = select.options[select.selectedIndex].value;
+
+    if (tipo == 'r_veiculos') {
+        tabela_veiculos.classList.remove('model')
+        tabela_operacoes.classList.add('model')
+
+
+    } else if (tipo == 'r_operacoes') {
+        tabela_veiculos.classList.add('model')
+        tabela_operacoes.classList.remove('model')
+
+
+    } else {
+        var valorTotal = 'R$ 20,00'
+
+    }
 }

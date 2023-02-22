@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroTech - Área Comum</title>
+
+    <!-- Css Links -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../universally.css">
+</head>
+
+<body>
+
+    <div id="container">
+
+        <main>
+            <div class="menu modal-menu">
+                <!-- <p><i onclick="teste()" class='bx bx-menu'></i></p> -->
+    
+                <div>
+                    <h1>AgroTech</h1>
+    
+                    <!-- <p>Menu</p> -->
+    
+                    <ul>
+                        <li><a href="home.html"><i class='bx bx-category'></i></i><span
+                                    class="nav-title">Controle</span></a></li>
+                        <li><a href="pages/estacionar/estacionar.html"><i class='bx bxs-parking'></i><span
+                                    class="nav-title">Área Gerencial</span></a></li>
+                        <li><a href="pages/clientes/clientes.html"><i class='bx bx-group'></i><span class="nav-title">Área
+                                    Comum</span></a></li>
+                        <li><a href="pages/mensalidades/mensalidades.html"><i class='bx bx-money'></i><span
+                                    class="nav-title">Motoristas</span></a></li>
+                        <li><a href="pages/mensalidades/mensalidades.html"><i class='bx bx-money'></i><span
+                                    class="nav-title">Carros</span></a></li>
+    
+    
+                    </ul>
+                </div>
+    
+                <div class="cont-logout">
+                    <i class='bx bx-log-out'></i>
+                    <span>Sair</span>
+                </div>
+    
+                <!-- <p class="section-config">Configurações <i class='bx bx-error-alt'></i></p>                             -->
+    
+                <!-- <ul>
+                <li><i class='bx bx-dollar'></i><span class="nav-title">Precificações <i class='bx bx-error-alt'></i></span></li>
+                <li><i class='bx bxs-user-detail'></i><span class="nav-title">Usuarios <i class='bx bx-error-alt'></i></span></li>
+                <li><i class='bx bx-cog'></i><span class="nav-title">Configurações <i class='bx bx-error-alt'></i></span></li>
+            </ul> -->
+            </div>
+
+            <div class="conteudo">
+                <div class="linha-1">
+                    <i class='bx bxs-parking'></i>
+
+                    <div class="linha-1-sub">
+                        <h5>Área Comum</h5>
+                        <p>Relatórios das Operações</b></p>
+                    </div>
+                </div>
+
+                <div class="cont-tools">
+
+                    <div class="cont-qtd">
+                        <i class='bx bxs-quote-single-right user'></i>
+                        <p>Tickets: <b class="qtd-tickets">10</b></p>
+                    </div>
+
+                    <!-- <div class="cont-qtd">
+                        <i class='bx bx-lock locked'></i>
+                        <p>Fechados: <b class="fechados">1</b></p>
+                    </div> -->
+
+                    <div class="cont-qtd">
+                        <i class='bx bx-lock-open open'></i>
+                        <p>Abertos: <b class="abertos">2</b></p>
+                    </div>
+
+                    <div class="tools">
+
+                        <div class="linha-2">
+                            <button class="button-new"><a href="cadastarTicket/cadastrarTicket.html"><i
+                                        class='bx bxs-file-plus'></i>Novo</a></button>
+                        </div>
+
+                        <div class="filtro">
+                            <input placeholder="Pesquisar Cliente" class="search" type="text">
+                            <!-- <button class="">Filtrar</button> -->
+                            <i class='bx bx-search-alt-2 btn-filter'></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Cliente</th>
+                            <th>Vagas</th>
+                            <th>Categoria</th>
+                            <th>Valor Hora</th>
+                            <th>Placa</th>
+                            <th>Pagamento</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody class="contTickets">
+
+                        <tr class="tickets model">
+                            <td class="id_registro">1</td>
+                            <td class="cpf-clientes">1</td>
+                            <td class="vagas">5</td>
+                            <td class="categoria_vaga">Veiculo Pequeno</td>
+                            <td class="valor_h">R$ 10,00</td>
+                            <td class="placa_veiculo">EKS-3769</td>
+                            <td class="forma_pagamento">PIX</td>
+                            <td class="status_pag">Pago</td>
+
+                            <td class="cont-btns">
+                                <i class='bx bx-edit ' onclick="ativar(this)"></i>
+                                <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="m-editar model">
+
+                <p class="nomeCliente"><b class="cliName"></b> </p>
+
+                <hr>
+
+                <div class="m-editar-inputs">
+
+                    <div class="cont-id_vaga">
+                        <p>Vaga Num :</p>
+                        <span class="id_vaga"></span>
+
+                    </div>
+
+                    <div class="cont-div-inps">
+
+                        <div class="inps">
+
+                            <div class="model">
+                                <p>Id Ticket</p>
+                                <input type="text" class="ticket-id" disabled="">
+                            </div>
+
+                            <div>
+                                <p>CPF Cliente</p>
+                                <input type="text" class="cpf" disabled="">
+                            </div>
+
+                            <div>
+                                <p>Placa</p>
+                                <input type="text" class="placa" disabled="">
+                            </div>
+
+                            <div>
+                                <p>Categoria do Veículo</p>
+                                <input type="text" class="categoria_veiculo" disabled="">
+                            </div>
+                        </div>
+
+                        <div class="inps">
+                            <div>
+                                <p>Data de Entrada</p>
+                                <input type="text" class="data_entrada" disabled="">
+                            </div>
+
+                            <div>
+                                <p>Horario de Entrada</p>
+                                <input type="text" class="h_entrada" disabled="">
+                            </div>
+
+                            <div>
+                                <p>Horario de Saida</p>
+                                <input type="text" class="h_saida" disabled="">
+                            </div>
+
+                            <div>
+                                <p>Tempo de Permanencia</p>
+                                <input type="text" class="tempo_permanencia" disabled="">
+                            </div>
+                        </div>
+
+                        <div class="inps value-status">
+
+                            <div class="status-cont">
+                                <p>Status:</p>
+                                <select class="select_status" name="" id=""  onclick="conferir()">
+                                    <option value="Aberto">Aberto</option>
+                                    <option value="Fechado">Fechado</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <p>Total a Pagar:</p>
+                                <input type="text" class="valor_Total" disabled="">
+                                
+                            </div>
+                            <div>
+                                <p>Formas de Pagamento:</p>
+                                <input type="text" class="formas_pagamentos">
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="cont-button-status">
+                            <div>
+                                <button onclick="edicao()">Salvar</button>
+                                <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
+                            </div>
+                            
+                          
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <!-- FIM DO MODAL EDITAR CLIENTE -->
+
+            <div class="modal-excluir model">
+
+                <img src="img/excluir.gif" alt="">
+
+                <p>Ticket Excluido com Sucesso !</p>
+
+                <div class="cont-btn">
+                    <!-- <button onclick="deletarRegistro(this)" class="btn-excluir-sim">SIM</button> -->
+                    <!-- <button onclick="esconderModalExcluir()" class="btn-excluir-nao">NÃO</button> -->
+                    <button onclick="esconderModalExcluir()" class="btn-excluir-nao">OK</button>
+                </div>
+            </div>
+
+            <div class="modal-certo model">
+
+                <img src="img/2.gif" alt="">
+
+                <p>Ticket Finalizado Com Sucesso!</p>
+
+                <button onclick="esconderModalCheck()" class="btn-check">OK</button>
+            </div>
+
+            <div class="modal-errado-nao-existe model">
+
+                <img src="img/error01 (1).gif" alt="">
+    
+                <p>Feche a Vaga para Finalizar o Ticket!</p>
+    
+                <button onclick="esconderModalFecharAntes()" class="btn-error">OK</button>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+
+<script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+<script src="js/estacionar.js"></script>
+
+</html>

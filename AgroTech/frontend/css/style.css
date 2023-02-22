@@ -105,14 +105,14 @@ table tr td i:nth-child(2) {
 
 .cont-cards {
     width: 30%;
-    margin-top: 3%;
+    margin-top: 1%;
 }
 
 .cards {
     display: flex;
     margin: 0 auto;
     margin-top: 10%;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.144);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.384);
     background-color: white;
     border-radius: 10px;
 }
@@ -128,7 +128,7 @@ table tr td i:nth-child(2) {
 
 
 .linha-2-cont i {
-    font-size: 35pt;
+    font-size: 26pt;
 }
 
 /* .title-linha {
