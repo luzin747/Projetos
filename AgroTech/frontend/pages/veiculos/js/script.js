@@ -187,18 +187,28 @@ function selecionarDisponibilidade() {
 
     console.log(seleStatus);
 
-    if(seleStatus == 'nao') {
+    if (seleStatus == 'nao') {
 
         var menutencao_descri = document.querySelector('.inps_descri')
+        var menutencao_btns = document.querySelector('.cont_button_c_manutencao')
+        var btn_salvar = document.querySelector('.cont_button')
 
+        btn_salvar.classList.add('model')
         menutencao_descri.classList.remove('model')
+        menutencao_btns.classList.remove('model')
     }
     else {
         var menutencao_descri = document.querySelector('.inps_descri')
+        var menutencao_btns = document.querySelector('.cont_button_c_manutencao')
+        var btn_salvar = document.querySelector('.cont_button')
 
         menutencao_descri.classList.add('model')
+        menutencao_btns.classList.add('model')
+        btn_salvar.classList.remove('model')
+
+
     }
-    
+
 }
 
 var disponivel = true
@@ -244,12 +254,63 @@ function salvar(e) {
         })
 }
 
+function salvarCManutenção(e) {
+
+
+
+
+
+    var select_status = document.querySelector(".select_status")
+    let seleStatus = select_status.options[select_status.selectedIndex].value;
+    if (seleStatus == 'sim') { var disponivel = true; }
+    if (seleStatus == 'nao') { var disponivel = false; }
+
+    var id_veiculo = document.querySelector('.id_editar').innerHTML
+    var placa = document.querySelector('.pv_editar').value
+    var modelo = document.querySelector('.mv_editar').value
+    var marca = document.querySelector('.m_editar').value
+    var tipo = document.querySelector('.m_tipo').value
+
+    let data = {
+        "placa": placa,
+        "modelo": modelo,
+        "marca": marca,
+        "tipo": tipo,
+        "disponivel": disponivel,
+    }
+
+    console.log(data);
+
+    fetch('http://localhost:3000/veiculos/' + id_veiculo, {
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+            if (resp == 200) {
+
+                funcaoCadManutencao()
+                // window.location.reload()
+            }
+
+        })
+}
+
+function funcaoCadManutencao() {
+
+    var id_veiculo = document.querySelector('.id_editar').innerHTML
+    var descricao_manutencao = document.querySelector('.descricao').value
+    var data_entrada = document.querySelector('.h_entrada').value
+}
 
 function fecharEditarCliente() {
     var mostrarModal = document.querySelector('.m-editar')
     mostrarModal.classList.toggle('model')
-  
+
     window.location.reload();
-  
-  }
+
+}
 
