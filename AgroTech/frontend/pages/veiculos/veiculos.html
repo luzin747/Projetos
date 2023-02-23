@@ -157,7 +157,7 @@
 
                             <div>
                                 <p>Placa</p>
-                                <input type="text" class="placa_veiculo pv_editar" >
+                                <input type="text" class="placa_veiculo pv_editar">
                             </div>
 
                             <div>
@@ -165,6 +165,12 @@
                                 <input type="text" class="modelo_veiculo mv_editar">
                             </div>
 
+
+
+
+                        </div >
+
+                        <div class="inps">
                             <div>
                                 <p>Marca</p>
                                 <input type="text" class="marca_veiculo m_editar">
@@ -175,8 +181,6 @@
                                 <input type="text" class="tipo_veiculo m_tipo">
 
                             </div>
-
-
 
                         </div>
 
@@ -194,14 +198,35 @@
                                 <div class="selects_inps_disp">
                                     <p>Trocar Disponibilidade</p>
 
-                                    <select class="select_status">
+                                    <select class="select_status" onclick="selecionarDisponibilidade()">
                                         <option value="sim">Default</option>
-                                        <option value="sim">Sim</option>
-                                        <option value="nao">Não</option>
+                                        <option value="sim">Disponivel</option>
+                                        <option value="nao">Na Manutenção</option>
                                     </select>
                                 </div>
                             </div>
 
+
+                        </div>
+
+                        <div class="inps_descri model">
+
+                            <p>Descrição da Manutenção</p>
+
+                            <textarea name="" id="" cols="40" rows="5"></textarea>
+
+                            <div class="inp_datas">
+                                <div>
+                                    <p>Horario de Entrada</p>
+                                    <input type="text" class="h_entrada" disabled="">
+                                </div>
+
+                                <div>
+                                    <p>Horario de Saida</p>
+                                    <button>Finalizar Manutenção</button>
+                                    <input type="text" class="h_saida model" disabled="">
+                                </div>
+                            </div>
 
                         </div>
 

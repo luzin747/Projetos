@@ -178,6 +178,29 @@ function editarCliente(e) {
 
 }
 
+function selecionarDisponibilidade() {
+
+    var select_status = document.querySelector(".select_status")
+    let seleStatus = select_status.options[select_status.selectedIndex].value;
+    if (seleStatus == 'sim') { var disponivel = true; }
+    if (seleStatus == 'nao') { var disponivel = false; }
+
+    console.log(seleStatus);
+
+    if(seleStatus == 'nao') {
+
+        var menutencao_descri = document.querySelector('.inps_descri')
+
+        menutencao_descri.classList.remove('model')
+    }
+    else {
+        var menutencao_descri = document.querySelector('.inps_descri')
+
+        menutencao_descri.classList.add('model')
+    }
+    
+}
+
 var disponivel = true
 
 function salvar(e) {

@@ -2,6 +2,39 @@ main {
     display: flex;
 }
 
+.inps_descri {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 9 auto;
+}
+
+.inp_datas {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4%;
+    margin-bottom: 3%;
+}
+
+.inp_datas button {
+    padding: 5px 15px;
+    border-radius: 30px;
+    border: 0px;
+    background-color: #212124;
+    color: white;
+}
+
+.inps_descri textarea {
+    padding: 5px;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.inps_descri p {
+   text-align: center;
+    margin-bottom: 10pX;
+}
+
 .conteudo {
     margin: 30px 50px;
     width: 100%;
@@ -115,7 +148,7 @@ table tr td i:nth-child(2) {
 
 .m-editar {
     position: absolute;
-    top: 20%;
+    top: 13%;
     left: 40%;
     width: 30%;
     margin: 0 auto;
@@ -123,6 +156,7 @@ table tr td i:nth-child(2) {
     background-color: white;
     padding: 10px;
 }
+
 
 .m-editar .nomeCliente {
     font-size: 1.8rem;
@@ -155,7 +189,6 @@ table tr td i:nth-child(2) {
 }
 .inps {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     margin: 0px 10px 10px 10px;  
     text-align: center;  
