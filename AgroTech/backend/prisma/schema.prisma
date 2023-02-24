@@ -42,8 +42,8 @@ model Veiculos {
 model Manutencao {
   id_manutencao Int @id @default(autoincrement())
   id_veiculo Int
-  data_inicio DateTime @default(now())
-  data_fim DateTime?
+  data_inicio String
+  data_fim String
   valor Float
   descricao String
   veiculos Veiculos @relation(fields: [id_veiculo], references: [id_veiculo])

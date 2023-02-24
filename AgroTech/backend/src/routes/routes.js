@@ -6,6 +6,7 @@ const Usuario = require('../controller/usuarioController')
 const Motorista = require('../controller/motoristaController')
 const Veiculo = require('../controller/veiculosController')
 const Operacao = require('../controller/operacaoController')
+const Manutencao = require('../controller/manutencoesController')
 
 router.post('/usuarios', Usuario.create)
 router.get('/usuarios', Usuario.read)
@@ -22,6 +23,11 @@ router.post('/veiculo', Veiculo.create);
 router.get('/veiculo', Veiculo.read);
 router.put('/veiculos/:id_veiculo', Veiculo.update);
 router.delete('/veiculos/:id_veiculo', Veiculo.deletar);
+
+router.post('/manutencao', Manutencao.create);
+router.get('/manutencao', Manutencao.read);
+router.put('/manutencao/:id_manutencao', Manutencao.update);
+router.delete('/manutencao/:id_manutencao', Manutencao.deletar);
 
 router.post('/operacao', Operacao.create);
 router.get('/operacao', Operacao.read);

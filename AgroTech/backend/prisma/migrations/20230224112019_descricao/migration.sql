@@ -37,8 +37,9 @@ CREATE TABLE `Veiculos` (
 -- CreateTable
 CREATE TABLE `Manutencao` (
     `id_manutencao` INTEGER NOT NULL AUTO_INCREMENT,
-    `data_inicio` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `data_fim` DATETIME(3) NULL,
+    `id_veiculo` INTEGER NOT NULL,
+    `data_inicio` VARCHAR(191) NOT NULL,
+    `data_fim` VARCHAR(191) NOT NULL,
     `valor` DOUBLE NOT NULL,
     `descricao` VARCHAR(191) NOT NULL,
 
@@ -56,6 +57,9 @@ CREATE TABLE `Operacao` (
 
     PRIMARY KEY (`id_opeacao`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `Manutencao` ADD CONSTRAINT `Manutencao_id_veiculo_fkey` FOREIGN KEY (`id_veiculo`) REFERENCES `Veiculos`(`id_veiculo`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `Operacao` ADD CONSTRAINT `Operacao_id_motorista_fkey` FOREIGN KEY (`id_motorista`) REFERENCES `Motorista`(`id_motorista`) ON DELETE RESTRICT ON UPDATE CASCADE;

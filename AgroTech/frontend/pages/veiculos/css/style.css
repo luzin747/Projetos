@@ -2,11 +2,13 @@ main {
     display: flex;
 }
 
+
+
 .inps_descri {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 9 auto;
+    margin-top: 3%;
 }
 
 .inp_datas {
@@ -68,12 +70,20 @@ main {
 }
 
 
+.cont_tables_tools {
+    width: 90%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
+    margin-top: 2%;
+
+
+}
 
 table {
     width: 100%;
-    margin-top: 30px;
+    height: 50vh;
     border-collapse: collapse;
     align-items: center;
+
 }
 
 table tr{
@@ -81,10 +91,7 @@ table tr{
     
 }
 
-tbody {
-    
 
-}
 tbody tr {
     border-bottom: 2px solid rgba(0, 0, 0, 0.253);    
 
@@ -108,18 +115,10 @@ table tr td{
     margin: 0 auto;
 }
 
-table tr td:nth-child(7) {
-   
-    
-
-}
-
 thead tr {
     background-color: rgb(241, 241, 241);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.288);
     padding: 10px;
 }
-
 
 
 table tr td i {
@@ -139,23 +138,77 @@ table tr td i:nth-child(2) {
 
 }
 
-.section-01 p {
-    text-align: center;
-    /* font-weight: 500;
-    font-size: 13pt; */
+.tools_pesquisa {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 10px 5%;
+    background-color: #212124;
+}
+
+
+
+
+
+
+.table_and_edit {
+    display: flex;
 }
 
 
 .m-editar {
+    margin: 2%;
+    width: 35%;
+    margin-left: 5%;
+    box-shadow: 0px 0px 10px rgba(53, 53, 53, 0.403);
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px 0px;
+    height: 100% !important;
+
+}
+.cont_icon {
+    width: 35%;
+    margin: 0 auto;
+    display: flex;
+    justify-self: center;
+    margin-top: -20%;
+
+}
+
+.linha_central {
+    margin-top: -2px;
+}
+
+.cont_sections {
+    display: flex;
+    margin-top: 3%;
+}
+
+.cont_sections div p {
+    font-weight: 500;
+}
+
+.cont_sections div hr {
+    margin-top: 10px;
+}
+
+.m-editar img {
+    width: 100%;
+}
+
+/* .m-editar {
     position: absolute;
-    top: 13%;
-    left: 40%;
+    top: 8%;
+    left: 38%;
     width: 30%;
     margin: 0 auto;
     box-shadow: 0px 0px 10px rgb(53, 53, 53);
     background-color: white;
     padding: 10px;
-}
+} */
 
 
 .m-editar .nomeCliente {
@@ -164,15 +217,13 @@ table tr td i:nth-child(2) {
     
     text-align: center;
 }
-.m-editar hr {
-    width: 90%;
-    margin: 0.3% auto;
-}
+
 
 .cont-id_vaga {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 3%;
 }
 
 .cont-id_vaga span {
@@ -191,7 +242,6 @@ table tr td i:nth-child(2) {
     display: flex;
     justify-content: center;
     margin: 0px 10px 10px 10px;  
-    text-align: center;  
 
     /* padding: 20px; */
 }
@@ -208,11 +258,14 @@ table tr td i:nth-child(2) {
     height: 28px;
     text-align: center;
     font-size: 11pt;
+    border-radius: 20px;
+    margin-top: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.426);
 }
 
 .inps select {
     height: 27px;
-    width: 5vw;
+    width: 9vw;
 }
 
 .status-cont {
@@ -302,7 +355,84 @@ table tr td i:nth-child(2) {
     align-items: center;
 }
 
+.descricao {
+    resize: none;
+}
 
+.inp_valor {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.inp_valor p {
+    margin-bottom: 0px;
+    
+}
+
+.manutencao_section_title {
+    margin-left: 5%;
+}
+
+.cont_manutencao {
+    width: 100%;
+}
+
+.manutencao {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
+    margin: 2%;
+    border-radius: 20px 0px;
+    padding: 10px;
+
+}
+
+.cont_information_manutencao {
+    display: flex;
+}
+
+.cont_icon_manutencao {
+    width: 8%;
+}
+
+.icon_manutencao img {
+    width: 100%;
+}
+
+.cont-icon_edit  {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 20pt;
+    margin-top: 3px ;
+    width: 15%;
+}
+
+.cont_inf_manu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    margin-left: 3%
+}
+
+.cont_inf_manu div {
+    display: flex;
+}
+.cont_inf_manu div  p {
+    padding: 2px;
+}
+
+.cont_inf_manu div  p:nth-child(1) {
+    font-weight: 500;
+}
+
+
+.cont_inf_id_data {
+    display: flex;
+    align-items: center;
+}
 
 
 
