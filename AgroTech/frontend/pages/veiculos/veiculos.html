@@ -298,7 +298,7 @@
                                         </div>
 
                                         <div class="cont_button_c_manutencao model">
-                                            <button onclick="salvarCManutenção(this)">Salvar</button>
+                                            <button onclick="salvarCManutenção(this)">Salvsar</button>
                                             <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                         </div>
 
@@ -311,7 +311,46 @@
 
                             <div class="cont_manutencao model">
 
-                                <div class="manutencao">
+                                <Button onclick="mostrarModalManutencao()">Adicionar Manutenção</Button>
+
+                                <div class="inps_descri_section_create_manu model">
+
+                                    <p>Descrição da Manutenção</p>
+
+                                    <textarea class="descricao_man" name="" id="" cols="40" rows="5"></textarea>
+
+                                    <div class="inp_valor">
+                                        <div>
+                                            <p>Valor</p>
+                                            <input type="text" class="valor_man">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="inp_datas">
+                                        <div>
+                                            <p>Data de Entrada</p>
+                                            <input type="text" class="h_entrada_inp" disabled="">
+                                        </div>
+
+                                        <div>
+                                            <p>Data Finalizada</p>
+                                            <button class="btn_finalizar_manutencao_inp"
+                                                onclick="finalizarManutencao()">Finalizar
+                                                Manutenção</button>
+                                            <input type="text" class="h_saida_inp model" disabled="">
+                                        </div>
+                                    </div>
+
+                                    <div class="cont_button_c_manutencao">
+                                        <button onclick="funcaoCadManutencao(this)">Salvar</button>
+                                        <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
+                                    </div>
+        
+                                </div>
+
+
+                                <div class="manutencao model">
                                     <div class="cont_information_manutencao">
                                         <div class="cont_icon_manutencao">
                                             <img class="icon_manutencao" src="img/icons/manutencao.png" alt="">
@@ -326,7 +365,7 @@
 
                                             <div>
                                                 <p>Data Entrada:</p>
-                                                <p class="date_manu">23/02/2002</p>
+                                                <p class="date_manu_entrada">23/02/2002</p>
                                             </div>
                                         </div>
 

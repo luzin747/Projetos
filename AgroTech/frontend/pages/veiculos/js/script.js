@@ -6,6 +6,7 @@ var veiculos = []
 var manutencao = []
 
 var cardVeiculos = document.querySelector('.tickets')
+var cardManutencoes = document.querySelector('.manutencao')
 
 
 function carregar() {
@@ -21,7 +22,7 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
-        fetch(uriManutencao, options)
+    fetch(uriManutencao, options)
         .then(res => res.json())
         .then(res => {
             manutencao = res;
@@ -124,11 +125,14 @@ function ativar(e) {
         .catch(err => console.error(err));
 }
 
+
 function editarCliente(e) {
 
     var id = e.parentNode.parentNode.querySelector('.id_veiculos').innerHTML
 
     var mostrarModal = document.querySelector('.m-editar')
+
+    carregarManutencoes(id)
 
     veiculos.forEach(v => {
 
@@ -154,12 +158,12 @@ function editarCliente(e) {
         }
 
         manutencao.forEach(m => {
-        
-            if(v.id_veiculo == m.id_veiculo) {
+
+            if (v.id_veiculo == m.id_veiculo) {
 
                 var data_saida = document.querySelector('.h_saida')
                 var btn_manutencao = document.querySelector('.btn_finalizar_manutencao')
-            
+
                 data_saida.classList.remove('model')
                 btn_manutencao.classList.add('model')
 
@@ -169,14 +173,15 @@ function editarCliente(e) {
                 document.querySelector('.valor').value = m.valor
                 document.querySelector('.h_entrada').value = m.data_inicio
                 document.querySelector('.h_saida').value = m.data_inicio
-              
+
 
             }
         })
 
     })
 
-    
+
+
 
     mostrarModal.classList.remove('model')
 
@@ -203,7 +208,7 @@ function editarCliente(e) {
 //     // var segundos = hoje.getSeconds()
 
 //     dataAtual = dia + '/' + mes + '/' + ano;
-   
+
 //     console.log(seleStatus);
 
 //     if (seleStatus == 'nao') {
@@ -211,7 +216,7 @@ function editarCliente(e) {
 //         var menutencao_descri = document.querySelector('.inps_descri')
 //         var menutencao_btns = document.querySelector('.cont_button_c_manutencao')
 //         var btn_salvar = document.querySelector('.cont_button')
-        
+
 //         document.querySelector('.h_entrada').value = dataAtual
 //         document.querySelector('.h_entrada').style.textAlign = "center"
 
@@ -220,7 +225,7 @@ function editarCliente(e) {
 //         menutencao_descri.classList.remove('model')
 //         menutencao_btns.classList.remove('model')
 
-        
+
 //     }
 //     else {
 //         var menutencao_descri = document.querySelector('.inps_descri')
@@ -237,6 +242,31 @@ function editarCliente(e) {
 // }
 
 var disponivel = true
+
+var soma = 0
+
+function MudarSection(e) {
+
+    var select = e.querySelector('.title').innerHTML
+    var select_id = e.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
+
+    if (select == 'Manutenções') {
+
+        document.querySelector('.information').classList.add('model')
+        document.querySelector('.cont_manutencao').classList.remove('model')
+
+
+
+
+    }
+
+    if (select == 'Informações') {
+        document.querySelector('.information').classList.remove('model')
+        document.querySelector('.cont_manutencao').classList.add('model')
+
+    }
+
+}
 
 function salvar(e) {
 
@@ -320,20 +350,21 @@ function salvarCManutenção(e) {
         })
 }
 
-function funcaoCadManutencao() {
+function funcaoCadManutencao(e) {
 
-    var id_veiculo = document.querySelector('.id_editar').innerHTML
-    var descricao_manutencao = document.querySelector('.descricao').value
-    var valor = document.querySelector('.valor').value
-    var data_entrada = document.querySelector('.h_entrada').value
-    var data_saida = document.querySelector('.h_saida').value
+    var id_veiculo = e.parentNode.parentNode.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
 
-    if(data_saida == "") {
+    var descricao_manutencao = document.querySelector('.descricao_man').value
+    var valor = document.querySelector('.valor_man').value
+    var data_entrada = document.querySelector('.h_entrada_inp').value
+    var data_saida = document.querySelector('.h_saida_inp').value
+
+    if (data_saida == "") {
         var data_finalizada = "---"
     }
 
     else {
-        data_finalizada = data_finalizada
+        data_finalizada = data_saida
     }
 
     let data = {
@@ -344,27 +375,31 @@ function funcaoCadManutencao() {
         "descricao": descricao_manutencao,
     }
 
+
+
     console.log(data);
 
-     fetch('http://localhost:3000/manutencao', {
-         "method": "POST",
-         "headers": {
-             "Content-Type": "application/json"
-         },
-         "body": JSON.stringify(data)
-     })
-         .then(resp => resp.status)
-         .then(resp => {
-             if (resp == 200) {
+    fetch('http://localhost:3000/manutencao', {
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+            if (resp == 200) {
 
                 alert('inserido com Sucesso')
-                 window.location.reload()
+                window.location.reload()
             }
 
-         })
+        })
 }
 
 function finalizarManutencao() {
+
+    console.log('asdada');
     var hoje = new Date()
     var dia = String(hoje.getDate()).padStart(2, '0')
     var mes = String(hoje.getMonth() + 1).padStart(2, '0')
@@ -377,8 +412,8 @@ function finalizarManutencao() {
 
     dataAtual = dia + '/' + mes + '/' + ano;
 
-    var data_saida = document.querySelector('.h_saida')
-    var btn_manutencao = document.querySelector('.btn_finalizar_manutencao')
+    var data_saida = document.querySelector('.h_saida_inp')
+    var btn_manutencao = document.querySelector('.btn_finalizar_manutencao_inp')
 
     data_saida.classList.remove('model')
     btn_manutencao.classList.add('model')
@@ -396,45 +431,78 @@ function fecharEditarCliente() {
 
 }
 
-function MudarSection(e) {
 
-    var select = e.querySelector('.title').innerHTML
-    var select_id = e.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
-
-    if(select == 'Manutenções') {
-        
-        document.querySelector('.information').classList.add('model')
-        document.querySelector('.cont_manutencao').classList.remove('model')
-
-    }
-
-    if(select == 'Informações') {
-        document.querySelector('.information').classList.remove('model')
-        document.querySelector('.cont_manutencao').classList.add('model')
-
-        carregarManutencoes(select_id)
-    }
-
-}
 
 function carregarManutencoes(e) {
 
+    var id = e;
 
-    
+    console.log(manutencao);
+
+
+    manutencao.forEach(m => {
+
+
+        if (m.id_veiculo == id) {
+
+            var novoCardManutencao = cardManutencoes.cloneNode(true)
+
+            novoCardManutencao.classList.remove('model')
+
+            novoCardManutencao.querySelector('.id_manu').innerHTML = m.id_manutencao
+            novoCardManutencao.querySelector('.date_manu_entrada').innerHTML = m.data_inicio
+
+
+            novoCardManutencao.querySelector('.descricao').value = m.descricao
+            novoCardManutencao.querySelector('.valor').value = m.valor
+            novoCardManutencao.querySelector('.h_entrada').value = m.data_inicio
+
+            document.querySelector('.cont_manutencao').appendChild(novoCardManutencao)
+
+        }
+    })
+
+
 }
 
 function HabilitarEdicaoManu(e) {
 
     var id_veiculo = e.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
+    var card_descri_manutencao = e.parentNode.parentNode.parentNode.querySelector('.inps_descri')
 
-    console.log(id_manu)
+    console.log(card_descri_manutencao)
 
     manutencao.forEach(m => {
 
-        if(m.id_veiculo == id) {
+        if (m.id_veiculo == id_veiculo) {
 
+            card_descri_manutencao.classList.remove('model')
+
+
+            document.querySelector('.descricao').innerHTML = m.descricao
         }
     })
 
+}
+
+function mostrarModalManutencao() {
+
+    var hoje = new Date()
+    var dia = String(hoje.getDate()).padStart(2, '0')
+    var mes = String(hoje.getMonth() + 1).padStart(2, '0')
+    var ano = hoje.getFullYear()
+
+    dataAtual = dia + '/' + mes + '/' + ano;
+
+
+    var menutencao_descri = document.querySelector('.inps_descri_section_create_manu')
+    var menutencao_btns = document.querySelector('.cont_button_c_manutencao')
+    var btn_salvar = document.querySelector('.cont_button')
+
+    menutencao_descri.classList.remove('model')
+    menutencao_btns.classList.remove('model')
+
+
+    document.querySelector('.h_entrada_inp').value = dataAtual
 }
 
