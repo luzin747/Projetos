@@ -51,8 +51,8 @@ CREATE TABLE `Operacao` (
     `id_opeacao` INTEGER NOT NULL AUTO_INCREMENT,
     `id_motorista` INTEGER NOT NULL,
     `id_veiculo` INTEGER NOT NULL,
-    `data_saida` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `data_retorno` DATETIME(3) NULL,
+    `data_saida` VARCHAR(191) NOT NULL,
+    `data_retorno` VARCHAR(191) NOT NULL,
     `descricao` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id_opeacao`)

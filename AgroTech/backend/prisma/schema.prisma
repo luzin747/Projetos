@@ -55,8 +55,8 @@ model Operacao {
   id_opeacao Int @id @default(autoincrement())
   id_motorista Int
   id_veiculo Int
-  data_saida DateTime @default(now())
-  data_retorno DateTime?
+  data_saida String
+  data_retorno String
   descricao String
   motorista Motorista @relation(fields: [id_motorista], references: [id_motorista])
   veiculos Veiculos @relation(fields: [id_veiculo], references: [id_veiculo])

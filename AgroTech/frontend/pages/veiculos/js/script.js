@@ -62,69 +62,7 @@ function preencherTabela() {
         document.querySelector('.contTickets').appendChild(novoCardVeiculos)
     })
 }
-
-function editarCliente(e) {
-
-    var mostrarModal = document.querySelector('.m-editar')
-
-    mostrarModal.classList.toggle('model')
-    document.querySelector('body').style.background = '#5e5e5e27';
-
-
-    //PREENCHER OS INPUTS COM AS INFORMAÇÕES DO CLIENTE DESEJADO
-
-    var id = e.parentNode.parentNode.querySelector('.cpf-clientes').innerHTML
-
-
-    clientes.forEach(c => {
-        if (id == c.cpf_cli) {
-
-
-            console.log(c.cpf_cli)
-
-            var id_vaga = document.querySelector('.id_vaga').innerHTML = c.number_vaga
-
-            document.querySelector('.ticket-id').value = c.ticket_id
-            document.querySelector('.cpf').value = c.cpf_cli
-            document.querySelector('.placa').value = c.placa_car
-            document.querySelector('.data_entrada').value = c.data_est
-            document.querySelector('.h_entrada').value = c.h_entrada
-
-            var categoria_veiculo = c.categoria_carro
-
-            if (categoria_veiculo == 'Pequeno' || categoria_veiculo == 'Veículo Pequeno' || categoria_veiculo == 'Ve?culo Pequeno') {
-                var categoria_veiculo = document.querySelector('.categoria_veiculo').value = 'Pequeno'
-            }
-
-            if (categoria_veiculo == 'Médio' || categoria_veiculo == 'Veículo Médio' || categoria_veiculo == 'Ve?culo M?dio') {
-                var categoria_veiculo = document.querySelector('.categoria_veiculo').value = 'Médio'
-
-            }
-            if (categoria_veiculo == 'Grande' || categoria_veiculo == 'Veículo Pequeno' || categoria_veiculo == 'Ve?culo Grande') {
-                var categoria_veiculo = document.querySelector('.categoria_veiculo').value = 'Grande'
-            }
-        }
-
-    })
-
-}
-
-function ativar(e) {
-
-    var id = e.parentNode.parentNode.querySelector('.id_veiculos').innerHTML
-
-    const options = { method: 'GET' };
-
-    fetch(uriVeiculos, options)
-        .then(res => res.json())
-        .then(res => {
-            veiculos = res;
-            editarCliente(e);
-        }
-        )
-        .catch(err => console.error(err));
-}
-
+var soma = 0
 
 function editarCliente(e) {
 
@@ -132,12 +70,19 @@ function editarCliente(e) {
 
     var mostrarModal = document.querySelector('.m-editar')
 
-    carregarManutencoes(id)
+    soma += 1
+
+    mostrarModal.classList.remove('model')
+
+
+    if (soma == 1) {
+        carregarManutencoes(id)
+    }
+
+
 
     veiculos.forEach(v => {
-
         if (id == v.id_veiculo) {
-
 
             document.querySelector('.id_veiculo').innerHTML = v.id_veiculo
             document.querySelector('.placa_veiculo').value = v.placa
@@ -179,11 +124,6 @@ function editarCliente(e) {
         })
 
     })
-
-
-
-
-    mostrarModal.classList.remove('model')
 
 }
 
@@ -353,7 +293,6 @@ function salvarCManutenção(e) {
 function funcaoCadManutencao(e) {
 
     var id_veiculo = e.parentNode.parentNode.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
-
     var descricao_manutencao = document.querySelector('.descricao_man').value
     var valor = document.querySelector('.valor_man').value
     var data_entrada = document.querySelector('.h_entrada_inp').value
@@ -374,10 +313,6 @@ function funcaoCadManutencao(e) {
         "valor": Number(valor),
         "descricao": descricao_manutencao,
     }
-
-
-
-    console.log(data);
 
     fetch('http://localhost:3000/manutencao', {
         "method": "POST",
@@ -431,8 +366,6 @@ function fecharEditarCliente() {
 
 }
 
-
-
 function carregarManutencoes(e) {
 
     var id = e;
@@ -452,10 +385,18 @@ function carregarManutencoes(e) {
             novoCardManutencao.querySelector('.id_manu').innerHTML = m.id_manutencao
             novoCardManutencao.querySelector('.date_manu_entrada').innerHTML = m.data_inicio
 
+            novoCardManutencao.querySelector('.id_manutencao_hidden').innerHTML = m.id_manutencao
 
             novoCardManutencao.querySelector('.descricao').value = m.descricao
             novoCardManutencao.querySelector('.valor').value = m.valor
-            novoCardManutencao.querySelector('.h_entrada').value = m.data_inicio
+            novoCardManutencao.querySelector('.data_entrada').value = m.data_inicio
+
+            if (m.data_fim != '---') {
+                novoCardManutencao.querySelector('.data_fim_inp').value = m.data_fim
+                novoCardManutencao.querySelector('.btn_finalizar_card').classList.add('model')
+                novoCardManutencao.querySelector('.data_fim_inp').classList.remove('model')
+
+            }
 
             document.querySelector('.cont_manutencao').appendChild(novoCardManutencao)
 
@@ -470,21 +411,16 @@ function HabilitarEdicaoManu(e) {
     var id_veiculo = e.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
     var card_descri_manutencao = e.parentNode.parentNode.parentNode.querySelector('.inps_descri')
 
-    console.log(card_descri_manutencao)
-
     manutencao.forEach(m => {
 
         if (m.id_veiculo == id_veiculo) {
 
             card_descri_manutencao.classList.remove('model')
 
-
-            document.querySelector('.descricao').innerHTML = m.descricao
         }
     })
 
 }
-
 function mostrarModalManutencao() {
 
     var hoje = new Date()
@@ -504,5 +440,53 @@ function mostrarModalManutencao() {
 
 
     document.querySelector('.h_entrada_inp').value = dataAtual
+}
+
+function salvarEdicaoCard(e) {
+
+    var id_manutencao = e.parentNode.parentNode.querySelector('.id_manutencao_hidden').innerHTML
+    var id_veiculo = e.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
+
+
+    console.log(id_manutencao);
+    var descricao_manutencao = e.parentNode.parentNode.querySelector('.descricao').value
+    var valor = e.parentNode.parentNode.querySelector('.valor').value
+    var data_entrada = e.parentNode.parentNode.querySelector('.data_entrada').value
+    var data_saida = e.parentNode.parentNode.querySelector('.data_fim_inp').value
+
+    if (data_saida == "") {
+        var data_finalizada = "---"
+    }
+
+    else {
+        data_finalizada = data_saida
+    }
+
+    let data = {
+        "id_veiculo": Number(id_veiculo),
+        "data_inicio": data_entrada,
+        "data_fim": data_finalizada,
+        "valor": Number(valor),
+        "descricao": descricao_manutencao,
+    }
+
+    console.log(data);
+
+    fetch('http://localhost:3000/manutencao/' + id_manutencao, {
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+            if (resp == 200) {
+
+                alert('Atualizado com Sucesso')
+                window.location.reload()
+            }
+
+        })
 }
 

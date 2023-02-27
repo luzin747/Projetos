@@ -11,7 +11,6 @@ const create = async (req, res) => {
     res.status(200).json(operacao).end();
 }
 
-
 const read = async (req, res) => {
     let operacao = await prisma.operacao.findMany();
 

@@ -27,17 +27,17 @@
                     <!-- <p>Menu</p> -->
 
                     <ul>
-                        <li><a href="home.html"><i class='bx bx-category'></i></i><span
-                                    class="nav-title">Controle</span></a></li>
-                        <li><a href="pages/estacionar/estacionar.html"><i class='bx bxs-parking'></i><span
+                        <li><a href="../../home.html"><i class='bx bx-category'></i></i><span
+                                    class="nav-title">Painel de Controle</span></a></li>
+                        <li><a href="../AreaGerencial/AreaGerencial.html"><i class='bx bxs-parking'></i><span
                                     class="nav-title">Área Gerencial</span></a></li>
-                        <li><a href="pages/clientes/clientes.html"><i class='bx bx-group'></i><span
+                        <li><a href="../AreaComum/areaComum.html"><i class='bx bx-group'></i><span
                                     class="nav-title">Área
                                     Comum</span></a></li>
-                        <li><a href="pages/mensalidades/mensalidades.html"><i class='bx bx-money'></i><span
+                        <li><a href="../Motoristas/motoristas.html"><i class='bx bx-money'></i><span
                                     class="nav-title">Motoristas</span></a></li>
-                        <li><a href="pages/mensalidades/mensalidades.html"><i class='bx bx-money'></i><span
-                                    class="nav-title">Carros</span></a></li>
+                        <li><a href="#"><i class='bx bx-money'></i><span
+                                    class="nav-title">Veículos</span></a></li>
 
 
                     </ul>
@@ -98,7 +98,7 @@
 
                 <div class="table_and_edit">
                     <div class="cont_tables_tools">
-                       
+
                         <table>
 
                             <div>
@@ -128,7 +128,7 @@
                                     <td class="tipo">R$ 10,00</td>
                                     <td class="disponivel">EKS-3769</td>
                                     <td class="cont-btns">
-                                        <i class='bx bx-show' onclick="editarCliente(this)"></i>
+                                        <i class='bx bx-show btn_show_modal_manu' onclick="editarCliente(this)"></i>
                                         <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i>
                                     </td>
 
@@ -137,17 +137,14 @@
                             </tbody>
                         </table>
 
-                        
-                           
-                        
                         <div class="tools_pesquisa">
 
                             <div class="cont-qtd">
                                 <i class='bx bxs-quote-single-right user'></i>
                                 <p>Tickets: <b class="qtd-tickets">10</b></p>
                             </div>
-        
-        
+
+
                             <div class="cont-qtd">
                                 <i class='bx bx-lock-open open'></i>
                                 <p>Abertos: <b class="abertos">2</b></p>
@@ -163,11 +160,12 @@
                                             class='bx bxs-file-plus'></i> Adicionar +</a></button>
                             </div>
 
-                           
+
 
                         </div>
 
                     </div>
+
 
                     <div class="m-editar model">
                         <div class="m-editar-inputs">
@@ -298,7 +296,7 @@
                                         </div>
 
                                         <div class="cont_button_c_manutencao model">
-                                            <button onclick="salvarCManutenção(this)">Salvsar</button>
+                                            <button onclick="salvarCManutenção(this)">Salvar</button>
                                             <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                         </div>
 
@@ -346,7 +344,7 @@
                                         <button onclick="funcaoCadManutencao(this)">Salvar</button>
                                         <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                     </div>
-        
+
                                 </div>
 
 
@@ -360,7 +358,7 @@
                                         <div class="cont_inf_manu">
                                             <div>
                                                 <p>Id:</p>
-                                                <p class="id_manu">1</p>
+                                                <p class="id_manu"></p>
                                             </div>
 
                                             <div>
@@ -390,20 +388,31 @@
                                             </div>
                                         </div>
 
+                                        <p class="id_manutencao_hidden model"></p>
+
                                         <div class="inp_datas">
                                             <div>
                                                 <p>Data de Entrada</p>
-                                                <input type="text" class="h_entrada" disabled="">
+                                                <input type="text" class="data_entrada" disabled="">
                                             </div>
 
                                             <div>
                                                 <p>Data Finalizada</p>
-                                                <button class="btn_finalizar_manutencao"
+                                                <button class="btn_finalizar_card"
                                                     onclick="finalizarManutencao()">Finalizar
                                                     Manutenção</button>
-                                                <input type="text" class="h_saida model" disabled="">
+                                                <input type="text" class="data_fim_inp model" disabled="">
                                             </div>
+
+
+
                                         </div>
+
+                                        <div class="cont_button">
+                                            <button onclick="salvarEdicaoCard(this)">Salvar</button>
+                                            <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
+                                        </div>
+
                                     </div>
 
                                     <!-- <div class="cont-button-status">
@@ -417,9 +426,11 @@
                                             <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                         </div>
 
-
-
                                     </div> -->
+                                </div>
+
+                                <div class="cont_button">
+                                    <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                 </div>
 
 
@@ -456,6 +467,9 @@
                                         </div>
                                     </div>
 
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -465,132 +479,6 @@
                 </div>
 
             </div>
-
-            <!-- <div class="m-editar model">
-
-                <div class="m-editar-inputs">
-
-                    <p class="nomeCliente"><b class="cliName">Editar Veículo</b> </p>
-
-                    <hr>
-
-
-                    <div class="cont-id_vaga">
-                        <p>Veículo Id :</p>
-                        <span class="id_veiculo id_editar"></span>
-
-                    </div>
-
-                    <div class="cont-div-inps">
-
-                        <div class="inps">
-
-                            <div>
-                                <p>Placa</p>
-                                <input type="text" class="placa_veiculo pv_editar">
-                            </div>
-
-                            <div>
-                                <p>Modelo</p>
-                                <input type="text" class="modelo_veiculo mv_editar">
-                            </div>
-
-
-
-
-                        </div>
-
-                        <div class="inps">
-                            <div>
-                                <p>Marca</p>
-                                <input type="text" class="marca_veiculo m_editar">
-                            </div>
-
-                            <div>
-                                <p>Tipo</p>
-                                <input type="text" class="tipo_veiculo m_tipo">
-
-                            </div>
-
-                        </div>
-
-                        <div class="inps dispo">
-
-                            <div class="cont_dispo">
-
-                                <div>
-
-                                    <p>Disponibilidade</p>
-                                    <input type="text" class="disponibilidade" disabled="">
-
-                                </div>
-
-                                <div class="selects_inps_disp">
-                                    <p>Trocar Disponibilidade</p>
-
-                                    <select class="select_status" onclick="selecionarDisponibilidade()">
-                                        <option value="sim">Default</option>
-                                        <option value="sim">Disponivel</option>
-                                        <option value="nao">Na Manutenção</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                        <div class="inps_descri model">
-
-                            <p>Descrição da Manutenção</p>
-
-                            <textarea class="descricao" name="" id="" cols="40" rows="5"></textarea>
-
-                            <div class="inp_valor">
-                                <div>
-                                    <p>Valor</p>
-                                    <input type="text" class="valor">
-
-                                </div>
-                            </div>
-
-                            <div class="inp_datas">
-                                <div>
-                                    <p>Data de Entrada</p>
-                                    <input type="text" class="h_entrada" disabled="">
-                                </div>
-
-                                <div>
-                                    <p>Data Finalizada</p>
-                                    <button class="btn_finalizar_manutencao" onclick="finalizarManutencao()">Finalizar
-                                        Manutenção</button>
-                                    <input type="text" class="h_saida model" disabled="">
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="cont-button-status">
-                            <div class="cont_button">
-                                <button onclick="salvar(this)">Salvar</button>
-                                <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
-                            </div>
-
-                            <div class="cont_button_c_manutencao model">
-                                <button onclick="salvarCManutenção(this)">Salvar</button>
-                                <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
-                            </div>
-
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div> -->
-            <!-- FIM DO MODAL EDITAR CLIENTE -->
 
             <div class="modal-excluir model">
 
