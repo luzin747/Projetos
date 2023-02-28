@@ -13,7 +13,7 @@ select {
 
 .div_master_conteudo {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .container_tables {
@@ -25,6 +25,7 @@ select {
 .cont_tables {
     width: 76%;
 }
+
 .cont_status_users {
     background-color: red;
 }
@@ -33,10 +34,11 @@ h5 {
     font-size: 12pt;
 }
 
-.cont_table_situation_title span{
+.cont_table_situation_title span {
     font-size: 13pt;
 
 }
+
 .cont_table_situation_title {
     display: flex;
     justify-content: space-between;
@@ -58,10 +60,10 @@ h5 {
 
 }
 
-.table_situation::-webkit-scrollbar{
+.table_situation::-webkit-scrollbar {
     width: 12px;
     border-left: 1px solid rgba(255, 255, 255, 0.486);
-    
+
 }
 
 .table_situation::-webkit-scrollbar-thumb {
@@ -94,8 +96,9 @@ table tr td {
 }
 
 tbody td {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.198);    
+    border-bottom: 1px solid rgba(0, 0, 0, 0.198);
     text-align: center;
+    margin-bottom: -30px;
 }
 
 table tr td i {
@@ -112,25 +115,51 @@ table tr td i:nth-child(1) {
     background-color: rgb(0, 0, 0);
 
 }
+
 table tr td i:nth-child(2) {
     background-color: red;
 
 }
 
-.cont-cards {
-    margin-top: 1.5%;
-    margin-left: 3%;
+.cont_cards {
+    margin-top: 2%;
     display: flex;
     justify-content: start;
 }
 
 .cards {
     display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30%;
     margin: 10px 20px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.384);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.147);
     background-color: white;
-    border-radius: 10px;
+    border-radius: 0px;
+    padding: 20px;
+}
+
+.cards i {
+    font-size: 30pt;
+}
+
+.card_title {
+    font-size: 13pt;
+}
+
+.inf_card {
+    display: flex;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.qtd_veiculo,
+.qtd_manutencao,
+.total_manutencao,
+.qtd_motoristas {
+    font-weight: bold;
+    font-size: 14pt;
+    margin-left: 5%;
 }
 
 .linha-2 {
@@ -138,8 +167,8 @@ table tr td i:nth-child(2) {
 }
 
 .linha-2-cont {
-   display: flex; 
-   padding: 20px;
+    display: flex;
+    padding: 20px;
 }
 
 
@@ -164,9 +193,10 @@ table tr td i:nth-child(2) {
     justify-content: space-around;
     margin-top: 5px;
     margin-bottom: 20px;
-    
+
 }
-.linha-2-situation div{
+
+.linha-2-situation div {
     text-align: center;
 }
 
@@ -192,3 +222,56 @@ table tr td i:nth-child(2) {
     padding: 5px 10px;
 }
 
+.filter_date {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    text-align: center;
+}
+
+.filter_date p {
+    margin-right: 20px;
+}
+
+.cont_talbles {
+    display: flex;
+    margin-top: 3%;
+    height: 30vh;
+}
+
+.cont_talbles div {
+    margin: 10px;
+
+}
+
+.cont_talbles div p {
+    color: black;
+    font-size: 15pt;
+    margin: 10px;
+    font-weight: bold;
+    text-align: end;
+}
+
+table {
+    width: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.147);
+    overflow-y: scroll;
+}
+
+table thead tr {
+    font-weight: 200;
+    background-color: #212124;
+
+}
+
+table thead tr th {
+    color: white;
+    padding: 15px;
+    font-weight: 300;
+
+}
+
+table tbody tr td {
+    padding: 15px;
+
+}

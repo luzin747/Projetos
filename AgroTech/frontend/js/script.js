@@ -1,18 +1,36 @@
 var uriCard_Veículos = 'http://localhost:3000/veiculo'
 var uriCard_Operacoes = 'http://localhost:3000/operacao'
 var uriCard_Motoristas = 'http://localhost:3000/motorista'
-var uriCard_Motoristas = 'http://localhost:3000/usuarios'
+var uriCard_Usuarios = 'http://localhost:3000/usuarios'
+var uriCard_Manutencoes = 'http://localhost:3000/manutencao'
 
 var veiculos = []
 var operacoes = []
 var motoristas = []
+var manutencao = []
 
-var td_operacoes = document.querySelector('.operacoes')
-var td_veiculos = document.querySelector('.veiculos')
+// var td_operacoes = document.querySelector('.operacoes')
+// var td_veiculos = document.querySelector('.veiculos')
 
 function carregar() {
 
     const options = { method: 'GET' };
+
+    fetch(uriCard_Motoristas, options)
+        .then(res => res.json())
+        .then(res => {
+            motoristas = res;
+        }
+        )
+        .catch(err => console.error(err));
+
+    fetch(uriCard_Manutencoes, options)
+        .then(res => res.json())
+        .then(res => {
+            manutencao = res;
+        }
+        )
+        .catch(err => console.error(err));
 
     fetch(uriCard_Veículos, options)
         .then(res => res.json())
@@ -23,32 +41,32 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
-    fetch(uriCard_Operacoes, options)
-        .then(res => res.json())
-        .then(res => {
-            operacoes = res;
-            cardDetaisOperacoes();
-        }
-        )
-        .catch(err => console.error(err));
+    // fetch(uriCard_Operacoes, options)
+    //     .then(res => res.json())
+    //     .then(res => {
+    //         operacoes = res;
+    //         cardDetaisOperacoes();
+    //     }
+    //     )
+    //     .catch(err => console.error(err));
 
-        fetch(uriCard_Motoristas, options)
-        .then(res => res.json())
-        .then(res => {
-            motoristas = res;
-            cardDetailsMotoristas();
-        }
-        )
-        .catch(err => console.error(err));
+    //     fetch(uriCard_Motoristas, options)
+    //     .then(res => res.json())
+    //     .then(res => {
+    //         motoristas = res;
+    //         cardDetailsMotoristas();
+    //     }
+    //     )
+    //     .catch(err => console.error(err));
 
-        fetch(uriCard_Motoristas, options)
-        .then(res => res.json())
-        .then(res => {
-            usuarios = res;
-            cardDetailsUsuarios();
-        }
-        )
-        .catch(err => console.error(err));
+    //     fetch(uriCard_Motoristas, options)
+    //     .then(res => res.json())
+    //     .then(res => {
+    //         usuarios = res;
+    //         cardDetailsUsuarios();
+    //     }
+    //     )
+    //     .catch(err => console.error(err));
 
 
 }
@@ -63,43 +81,52 @@ var soma = 0
 function cardDetails() {
 
     soma += 1
+    var valor_total = 0
 
-    document.querySelector('.qtd_veiculos').innerHTML = veiculos.length
+    // document.querySelector('.qtd_veiculos').innerHTML = veiculos.length
 
-    console.log(veiculos);
+    // console.log(veiculos);
 
-
-    veiculos.forEach(v => {
-
-
-        if (v.disponivel == true) {
-
-            qtd_Veiculos_Livres += 1
+    // veiculos.forEach(v => {
 
 
-        }
+    //     if (v.disponivel == true) {
 
-        if (v.disponivel == false) {
-            qtd_Veiculos_Manutencao += 1
+    //         qtd_Veiculos_Livres += 1
 
-        }
 
-        var novoCardVeiculos = td_veiculos.cloneNode(true)
+    //     }
 
-        novoCardVeiculos.classList.remove('model')
+    //     if (v.disponivel == false) {
+    //         qtd_Veiculos_Manutencao += 1
 
-        novoCardVeiculos.querySelector('.placa').innerHTML = v.placa
-        novoCardVeiculos.querySelector('.modelo').innerHTML = v.modelo
-        novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
-        novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
-        novoCardVeiculos.querySelector('.disponivel').innerHTML = v.disponivel
+    //     }
+
+    //     var novoCardVeiculos = td_veiculos.cloneNode(true)
+
+    //     novoCardVeiculos.classList.remove('model')
+
+    //     novoCardVeiculos.querySelector('.placa').innerHTML = v.placa
+    //     novoCardVeiculos.querySelector('.modelo').innerHTML = v.modelo
+    //     novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
+    //     novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
+    //     novoCardVeiculos.querySelector('.disponivel').innerHTML = v.disponivel
         
-        document.querySelector('.contVeiculos').appendChild(novoCardVeiculos)
+    //     document.querySelector('.contVeiculos').appendChild(novoCardVeiculos)
 
-    })
+    // })
+    manutencao.forEach(m => {valor_total += m.valor})
 
-    document.querySelector('.qtd_veiculos_livres').innerHTML = qtd_Veiculos_Livres
-    document.querySelector('.qtd_veiculos_manutencao').innerHTML = qtd_Veiculos_Manutencao
+
+    document.querySelector('.qtd_veiculo').innerHTML = veiculos.length
+    document.querySelector('.qtd_manutencao').innerHTML = manutencao.length
+    document.querySelector('.total_manutencao').innerHTML = 'R$'+valor_total + ',00'
+    document.querySelector('.qtd_motoristas').innerHTML = motoristas.length
+
+
+
+    // document.querySelector('.qtd_veiculos_livres').innerHTML = qtd_Veiculos_Livres
+    // document.querySelector('.qtd_veiculos_manutencao').innerHTML = qtd_Veiculos_Manutencao
 
 }
 

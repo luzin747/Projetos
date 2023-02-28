@@ -53,14 +53,7 @@
         </div>
 
         <div class="conteudo">
-            <div class="linha-1">
-                <i class='bx bx-home'></i>
-
-                <div class="linha-1-sub">
-                    <h5>Painel de Controle Administrativo</h5>
-                    <p>Seja Muito Bem Vindo <b>Usuario</b></p>
-                </div>
-            </div>
+            <!-- 
 
             <div class="div_master_conteudo">
 
@@ -70,10 +63,6 @@
                     <div class="cards">
 
                         <div class="linha-2">
-                            <!-- <div class="title-linha">
-                        <p>teste</p>
-                    </div> -->
-
                             <div class="linha-2-cont">
                                 <i class='bx bxs-car'></i>
 
@@ -165,24 +154,6 @@
 
                     </div>
 
-                    <!-- <div class="cards">
-
-                        <div class="linha-2">
-
-                            <div class="linha-2-cont">
-                                <i class='bx bxs-user-account'></i>
-
-                                <div class="linha-2-sub">
-                                    <h5>Usuarios</h5>
-                                    <p class="qtd_usuarios">5</p>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div> -->
-
                 </div>
 
                 <div class="container_tables">
@@ -203,7 +174,6 @@
                             <div class="cont_table_situation_title">
                                 <div class="filtro">
                                     <input placeholder="Pesquisar Veículo...." class="search" type="text">
-                                    <!-- <button class="">Filtrar</button> -->
                                     <i class='bx bx-search-alt-2 btn-filter'></i>
                                 </div>
                             </div>
@@ -222,7 +192,6 @@
 
                                 <tbody class="contVeiculos">
                                     <tr class="veiculos model">
-                                        <!-- <td class="id_veiculo">Caminhão de Carga</td> -->
                                         <td class="placa">RTX3090TI</td>
                                         <td class="modelo">GTX0N3GB</td>
                                         <td class="marca">GTX0N3GB</td>
@@ -230,8 +199,6 @@
                                         <td class="disponivel">GTX0N3GB</td>
                                         <td>
                                             <a href="">Detalhes</a>
-                                            <!-- <i class='bx bx-edit' onclick="editarCliente(this)"></i>
-                                    <i class='bx bxs-trash-alt' onclick="excluirCliente(this)"></i> -->
                                         </td>
                                     </tr>
 
@@ -247,7 +214,6 @@
 
                                 <div class="filtro">
                                     <input placeholder="Pesquisar Veículo...." class="search" type="text">
-                                    <!-- <button class="">Filtrar</button> -->
                                     <i class='bx bx-search-alt-2 btn-filter'></i>
                                 </div>
                             </div>
@@ -274,8 +240,7 @@
                                         <td class="descricao">GTX0N3GB</td>
                                         <td>
                                             <a href="">Detalhes</a>
-                                            <!-- <i class='bx bx-edit' onclick="editarCliente(this)"></i>
-                                    <i class='bx bxs-trash-alt' onclick="excluirCliente(this)"></i> -->
+                                            
                                         </td>
                                     </tr>
 
@@ -290,8 +255,134 @@
                 </div>
 
 
+            </div> -->
+
+            <div class="linha-1">
+                <i class='bx bx-home'></i>
+
+                <div class="linha-1-sub">
+                    <h5>Dashboard</h5>
+                    <p>Seja Muito Bem Vindo <b>Usuario</b></p>
+                </div>
             </div>
 
+            <div class="filter_date">
+                <p>Filtrar por Período</p>
+
+                <input type="date" name="" id="">
+
+                <i class='bx bx-search-alt-2'></i>
+            </div>
+
+            <div class="cont_cards">
+
+                <div class="cards">
+                    <i class='bx bx-car'></i>
+
+                    <div class="inf_card">
+                        <p class="card_title">Ativos: </p>
+                        <p class="qtd_veiculo"></p>
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <i class='bx bx-cog'></i>
+
+                    <div class="inf_card">
+                        <p class="card_title">Manutenção: </p>
+                        <p class="qtd_manutencao"></p>
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <i class='bx bxs-wallet'></i>
+
+                    <div class="inf_card">
+                        <p class="card_title">Manutenções: </p>
+                        <p class="total_manutencao"></p>
+                    </div>
+                </div>
+
+                <div class="cards">
+                    <i class='bx bx-user'></i>
+
+                    <div class="inf_card">
+                        <p class="card_title">Motoristas: </p>
+                        <p class="qtd_motoristas"></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="cont_talbles">
+
+                <div>
+                    <p>Operações</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Motorista</th>
+                                <th>Véiculo</th>
+                                <th>Data Saída</th>
+                                <th>Data Retorno</th>
+                                <th>Descricao</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody class="contOperac">
+                            <tr class="veiculos">
+                                <td class="placa">RTX3090TI</td>
+                                <td class="modelo">GTX0N3GB</td>
+                                <td class="marca">GTX0N3GB</td>
+                                <td class="tipo">GTX0N3GB</td>
+                                <td class="disponivel">GTX0N3GB</td>
+                                <td>
+                                    <a href="">Detalhes</a>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <p>Véiculos</p>
+                    <table class="table_veiculos">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Motorista</th>
+                                <th>Véiculo</th>
+                                <th>Data Saída</th>
+                                <th>Data Retorno</th>
+                                <th>Descricao</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody class="contOperac">
+                            <tr class="veiculos">
+                                <td class="placa">RTX3090TI</td>
+                                <td class="modelo">GTX0N3GB</td>
+                                <td class="marca">GTX0N3GB</td>
+                                <td class="tipo">GTX0N3GB</td>
+                                <td class="disponivel">GTX0N3GB</td>
+                                <td>
+                                    <a href="">Detalhes</a>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
 
         </div>
     </main>

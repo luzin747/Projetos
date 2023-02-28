@@ -61,7 +61,10 @@ function preencherTabela() {
 
         document.querySelector('.contTickets').appendChild(novoCardVeiculos)
     })
+
+    document.querySelector('.qtd_veiculos').innerHTML = veiculos.length
 }
+
 var soma = 0
 
 function editarCliente(e) {
@@ -78,8 +81,6 @@ function editarCliente(e) {
     if (soma == 1) {
         carregarManutencoes(id)
     }
-
-
 
     veiculos.forEach(v => {
         if (id == v.id_veiculo) {
@@ -421,6 +422,7 @@ function HabilitarEdicaoManu(e) {
     })
 
 }
+
 function mostrarModalManutencao() {
 
     var hoje = new Date()
