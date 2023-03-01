@@ -80,28 +80,25 @@ var disponivel = true
 
 function salvar(e) {
 
-    var select_status = document.querySelector(".select_status")
-    let seleStatus = select_status.options[select_status.selectedIndex].value;
-    if (seleStatus == 'sim') { var disponivel = true; }
-    if (seleStatus == 'nao') { var disponivel = false; }
+    // var select_status = document.querySelector(".select_status")
+    // let seleStatus = select_status.options[select_status.selectedIndex].value;
+    // if (seleStatus == 'sim') { var disponivel = true; }
+    // if (seleStatus == 'nao') { var disponivel = false; }
 
-    var id_veiculo = document.querySelector('.id_editar').innerHTML
-    var placa = document.querySelector('.pv_editar').value
-    var modelo = document.querySelector('.mv_editar').value
-    var marca = document.querySelector('.m_editar').value
-    var tipo = document.querySelector('.m_tipo').value
+    var id_motorista = document.querySelector('.id_editar').innerHTML
+    var nome = document.querySelector('.n_editar').value
+    var cpf = document.querySelector('.cpf_editar').value
+    var cnh = document.querySelector('.cnh_tipo').value
 
     let data = {
-        "placa": placa,
-        "modelo": modelo,
-        "marca": marca,
-        "tipo": tipo,
-        "disponivel": disponivel,
+        "nome": nome,
+        "cpf": cpf,
+        "cnh": cnh,
     }
 
     console.log(data);
 
-    fetch('http://localhost:3000/veiculos/' + id_veiculo, {
+    fetch('http://localhost:3000/motorista/' + id_motorista, {
         "method": "PUT",
         "headers": {
             "Content-Type": "application/json"

@@ -7,7 +7,10 @@ a {
     color: black;
 }
 
-
+.conteudo {
+    margin-top: 4%;
+    margin-left: 16%;
+}
 .linha-3 {
     background-color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.329);

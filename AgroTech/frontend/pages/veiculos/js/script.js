@@ -26,7 +26,6 @@ function carregar() {
         .then(res => res.json())
         .then(res => {
             manutencao = res;
-            manutencao();
         }
         )
         .catch(err => console.error(err));
@@ -50,12 +49,14 @@ function preencherTabela() {
         novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
 
         if (v.disponivel == false) {
-            novoCardVeiculos.querySelector('.disponivel').innerHTML = 'Não'
+            novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+
 
         }
 
         if (v.disponivel == true) {
-            novoCardVeiculos.querySelector('.disponivel').innerHTML = 'Sim'
+            novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_off.png'
+
 
         }
 

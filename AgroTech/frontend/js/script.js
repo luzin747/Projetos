@@ -24,10 +24,29 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
-    fetch(uriCard_Manutencoes, options)
+
+        fetch(uriCard_Manutencoes, options)
         .then(res => res.json())
         .then(res => {
             manutencao = res;
+        }
+        )
+        .catch(err => console.error(err));
+        
+
+    fetch(uriCard_Veículos, options)
+        .then(res => res.json())
+        .then(res => {
+            veiculos = res;
+        }
+        )
+        .catch(err => console.error(err));
+
+        fetch(uriCard_Operacoes, options)
+        .then(res => res.json())
+        .then(res => {
+            operacoes = res;
+            preencherTabelas();
         }
         )
         .catch(err => console.error(err));
@@ -78,6 +97,57 @@ var qtd_Operacoes_Andamento = 0
 var qtd_Veiculos_Terminadas = 0
 
 var soma = 0
+function preencherTabelas() {
+
+    var linhaOperacoes = document.querySelector('.operacoes')
+
+    operacoes.forEach(o => {
+
+
+        var novaLinhaOperacoes = linhaOperacoes.cloneNode(true)
+
+        novaLinhaOperacoes.classList.remove('model')
+            
+        novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
+        novaLinhaOperacoes.querySelector('.motorista').innerHTML = o.id_motorista
+        novaLinhaOperacoes.querySelector('.veiculo').innerHTML = o.id_veiculo
+        novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
+        novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
+        novaLinhaOperacoes.querySelector('.descricao').innerHTML = o.descricao
+
+        document.querySelector('.contOperac').appendChild(novaLinhaOperacoes)
+
+    })
+
+    var linhaVeiculos = document.querySelector('.veiculos')
+
+    veiculos.forEach(v => {
+
+        var novaLinhaVeiculos = linhaVeiculos.cloneNode(true)
+
+        novaLinhaVeiculos.classList.remove('model')
+            
+        novaLinhaVeiculos.querySelector('.id_veiculo').innerHTML = v.id_veiculo
+        novaLinhaVeiculos.querySelector('.placa').innerHTML = v.placa
+        novaLinhaVeiculos.querySelector('.modelo').innerHTML = v.modelo
+        novaLinhaVeiculos.querySelector('.marca').innerHTML = v.marca
+        if(v.disponivel == true) {
+            novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+
+        }
+        else {
+            novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_off.png'
+
+        }
+
+        // novaLinhaVeiculos.querySelector('.situacao').innerHTML = v.disponivel
+
+        document.querySelector('.contVeiculos').appendChild(novaLinhaVeiculos)
+    })
+
+
+}
+
 function cardDetails() {
 
     soma += 1
@@ -117,13 +187,10 @@ function cardDetails() {
     // })
     manutencao.forEach(m => {valor_total += m.valor})
 
-
     document.querySelector('.qtd_veiculo').innerHTML = veiculos.length
     document.querySelector('.qtd_manutencao').innerHTML = manutencao.length
     document.querySelector('.total_manutencao').innerHTML = 'R$'+valor_total + ',00'
     document.querySelector('.qtd_motoristas').innerHTML = motoristas.length
-
-
 
     // document.querySelector('.qtd_veiculos_livres').innerHTML = qtd_Veiculos_Livres
     // document.querySelector('.qtd_veiculos_manutencao').innerHTML = qtd_Veiculos_Manutencao

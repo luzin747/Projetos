@@ -27,8 +27,8 @@
                     <!-- <p>Menu</p> -->
 
                     <ul>
-                        <li><a href="../../home.html"><i class='bx bx-category'></i></i><span
-                                    class="nav-title">Painel de Controle</span></a></li>
+                        <li><a href="../../home.html"><i class='bx bx-category'></i></i><span class="nav-title">Painel
+                                    de Controle</span></a></li>
                         <li><a href="../AreaGerencial/AreaGerencial.html"><i class='bx bxs-parking'></i><span
                                     class="nav-title">Área Gerencial</span></a></li>
                         <li><a href="../AreaComum/areaComum.html"><i class='bx bx-group'></i><span
@@ -36,8 +36,7 @@
                                     Comum</span></a></li>
                         <li><a href="../Motoristas/motoristas.html"><i class='bx bx-money'></i><span
                                     class="nav-title">Motoristas</span></a></li>
-                        <li><a href="#"><i class='bx bx-money'></i><span
-                                    class="nav-title">Veículos</span></a></li>
+                        <li><a href="#"><i class='bx bx-money'></i><span class="nav-title">Veículos</span></a></li>
 
 
                     </ul>
@@ -98,46 +97,44 @@
 
                 <div class="table_and_edit">
                     <div class="cont_tables_tools">
-
-                        <table>
-
-                            <div>
-
-                            </div>
-
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Modelo</th>
-                                    <th>Placa</th>
-                                    <th>Marca</th>
-                                    <th>Tipo</th>
-                                    <th>Situação</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
+                        <div style=" height: 60vh; overflow-y: scroll;">
 
 
-                            <tbody class="contTickets">
+                            <table>
 
-                                <tr class="tickets model">
-                                    <td class="id_veiculos">1</td>
-                                    <td class="modelo">1</td>
-                                    <td class="placas">5</td>
-                                    <td class="marca">Veiculo Pequeno</td>
-                                    <td class="tipo">R$ 10,00</td>
-                                    <td class="disponivel">EKS-3769</td>
-                                    <td class="cont-btns">
-                                        <i class='bx bx-show btn_show_modal_manu' onclick="editarCliente(this)"></i>
-                                        <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i>
-                                    </td>
 
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>Situação</th>
+                                        <th>#</th>
+                                        <th>Modelo</th>
+                                        <th>Placa</th>
+                                        <th>Marca</th>
+                                        <th>Tipo</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
 
-                            </tbody>
 
-                        </table>
+                                <tbody class="contTickets">
 
+                                    <tr class="tickets model">
+                                        <td class=""><img class="img_situation" src="img/icons/cicle_on.png" alt=""> </td>
+                                        <td class="id_veiculos">1</td>
+                                        <td class="modelo">1</td>
+                                        <td class="placas">5</td>
+                                        <td class="marca">Veiculo Pequeno</td>
+                                        <td class="tipo">R$ 10,00</td>
+                                        <td class="cont-btns">
+                                            <i class='bx bx-show btn_show_modal_manu' onclick="editarCliente(this)"></i>
+                                            <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
                         <div class="tools_pesquisa">
 
                             <div class="cont-qtd">
@@ -166,9 +163,6 @@
                         </div>
 
                     </div>
-
-                    
-
 
                     <div class="m-editar model">
                         <div class="m-editar-inputs">
@@ -474,7 +468,6 @@
                             </div>
                         </div>
                     </div>
-
 
                 </div>
 
