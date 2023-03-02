@@ -31,7 +31,7 @@ function carregar() {
         .catch(err => console.error(err));
 
 }
-
+var qtd_disponiveis = 0;
 function preencherTabela() {
 
     console.log(veiculos);
@@ -49,21 +49,25 @@ function preencherTabela() {
         novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
 
         if (v.disponivel == false) {
-            novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
-
-
+            novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_oFF.png'
+            
         }
 
         if (v.disponivel == true) {
-            novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_off.png'
-
+            novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+            qtd_disponiveis += 1
 
         }
 
         document.querySelector('.contTickets').appendChild(novoCardVeiculos)
     })
 
-    document.querySelector('.qtd_veiculos').innerHTML = veiculos.length
+    console.log(document.querySelector('.qtd_veiculos'));
+    document.querySelector('.qtd-veiculos-tool').innerHTML = veiculos.length
+    document.querySelector('.qtd-disponiveis').innerHTML = qtd_disponiveis
+
+
+    
 }
 
 var soma = 0
@@ -197,9 +201,6 @@ function MudarSection(e) {
         document.querySelector('.information').classList.add('model')
         document.querySelector('.cont_manutencao').classList.remove('model')
 
-
-
-
     }
 
     if (select == 'Informações') {
@@ -244,7 +245,6 @@ function salvar(e) {
         .then(resp => {
             if (resp == 200) {
                 alert('Editar com Suesso')
-
                 window.location.reload()
             }
 
@@ -328,7 +328,27 @@ function funcaoCadManutencao(e) {
             if (resp == 200) {
 
                 alert('inserido com Sucesso')
-                window.location.reload()
+
+                var menutencao_descri = document.querySelector('.inps_descri_section_create_manu')
+                var menutencao_btns = document.querySelector('.cont_button_c_manutencao')
+            
+                menutencao_descri.classList.add('model')
+                menutencao_btns.classList.add('model')
+
+                const options = { method: 'GET' };
+
+                fetch(uriManutencao, options)
+                    .then(res => res.json())
+                    .then(res => {
+                        manutencao = res;
+                        carregarManutencoes(id_veiculo);
+
+                    }
+                    )
+                    .catch(err => console.error(err));
+
+
+
             }
 
         })
@@ -345,7 +365,6 @@ function finalizarManutencao() {
     var hora = hoje.getHours()
     var minutos = hoje.getMinutes()
     var segundos = hoje.getSeconds()
-    // var segundos = hoje.getSeconds()
 
     dataAtual = dia + '/' + mes + '/' + ano;
 
@@ -370,17 +389,28 @@ function fecharEditarCliente() {
 
 function carregarManutencoes(e) {
 
-    var id = e;
+    var cardManutencao = document.querySelector('.manutencao')
+    var btn_add_manutencao = document.querySelector('.btn_add_manutencao')
+    var inps_descri_section_create_manu = document.querySelector('.inps_descri_section_create_manu')
+                
+    var novoCardManutencaoTeste = cardManutencao.cloneNode(true)
+    var novo_btn_add_manutencao = btn_add_manutencao.cloneNode(true)
+    var novo_inps_descri_section_create_manu = inps_descri_section_create_manu.cloneNode(true)
+    
+    document.querySelector('.cont_manutencao').innerHTML = ""
 
-    console.log(manutencao);
+    document.querySelector('.cont_manutencao').appendChild(novo_btn_add_manutencao)
+
+    document.querySelector('.cont_manutencao').appendChild(novo_inps_descri_section_create_manu)
+
+    console.log( document.querySelector('.cont_manutencao'));
 
 
     manutencao.forEach(m => {
 
+        if (m.id_veiculo == e) {
 
-        if (m.id_veiculo == id) {
-
-            var novoCardManutencao = cardManutencoes.cloneNode(true)
+            var novoCardManutencao = novoCardManutencaoTeste.cloneNode(true)
 
             novoCardManutencao.classList.remove('model')
 
@@ -397,14 +427,12 @@ function carregarManutencoes(e) {
                 novoCardManutencao.querySelector('.data_fim_inp').value = m.data_fim
                 novoCardManutencao.querySelector('.btn_finalizar_card').classList.add('model')
                 novoCardManutencao.querySelector('.data_fim_inp').classList.remove('model')
-
             }
 
             document.querySelector('.cont_manutencao').appendChild(novoCardManutencao)
 
         }
     })
-
 
 }
 

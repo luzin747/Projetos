@@ -25,14 +25,14 @@ function carregar() {
         .catch(err => console.error(err));
 
 
-        fetch(uriCard_Manutencoes, options)
+    fetch(uriCard_Manutencoes, options)
         .then(res => res.json())
         .then(res => {
             manutencao = res;
         }
         )
         .catch(err => console.error(err));
-        
+
 
     fetch(uriCard_Veículos, options)
         .then(res => res.json())
@@ -42,7 +42,7 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
-        fetch(uriCard_Operacoes, options)
+    fetch(uriCard_Operacoes, options)
         .then(res => res.json())
         .then(res => {
             operacoes = res;
@@ -103,14 +103,23 @@ function preencherTabelas() {
 
     operacoes.forEach(o => {
 
-
         var novaLinhaOperacoes = linhaOperacoes.cloneNode(true)
 
         novaLinhaOperacoes.classList.remove('model')
-            
+
         novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
-        novaLinhaOperacoes.querySelector('.motorista').innerHTML = o.id_motorista
-        novaLinhaOperacoes.querySelector('.veiculo').innerHTML = o.id_veiculo
+        motoristas.forEach(m => {
+            if (o.id_motorista == m.id_motorista) {
+                novaLinhaOperacoes.querySelector('.motorista').innerHTML = m.nome
+
+            }
+        })
+        veiculos.forEach(v => {
+            if(o.id_veiculo == v.id_veiculo) {
+                novaLinhaOperacoes.querySelector('.veiculo').innerHTML = v.modelo
+
+            }
+        })
         novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
         novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
         novaLinhaOperacoes.querySelector('.descricao').innerHTML = o.descricao
@@ -126,12 +135,12 @@ function preencherTabelas() {
         var novaLinhaVeiculos = linhaVeiculos.cloneNode(true)
 
         novaLinhaVeiculos.classList.remove('model')
-            
+
         novaLinhaVeiculos.querySelector('.id_veiculo').innerHTML = v.id_veiculo
         novaLinhaVeiculos.querySelector('.placa').innerHTML = v.placa
         novaLinhaVeiculos.querySelector('.modelo').innerHTML = v.modelo
         novaLinhaVeiculos.querySelector('.marca').innerHTML = v.marca
-        if(v.disponivel == true) {
+        if (v.disponivel == true) {
             novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
 
         }
@@ -181,15 +190,15 @@ function cardDetails() {
     //     novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
     //     novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
     //     novoCardVeiculos.querySelector('.disponivel').innerHTML = v.disponivel
-        
+
     //     document.querySelector('.contVeiculos').appendChild(novoCardVeiculos)
 
     // })
-    manutencao.forEach(m => {valor_total += m.valor})
+    manutencao.forEach(m => { valor_total += m.valor })
 
     document.querySelector('.qtd_veiculo').innerHTML = veiculos.length
     document.querySelector('.qtd_manutencao').innerHTML = manutencao.length
-    document.querySelector('.total_manutencao').innerHTML = 'R$'+valor_total + ',00'
+    document.querySelector('.total_manutencao').innerHTML = 'R$' + valor_total + ',00'
     document.querySelector('.qtd_motoristas').innerHTML = motoristas.length
 
     // document.querySelector('.qtd_veiculos_livres').innerHTML = qtd_Veiculos_Livres
@@ -217,7 +226,7 @@ function cardDetaisOperacoes() {
         novoCardOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
         novoCardOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
         novoCardOperacoes.querySelector('.descricao').innerHTML = o.descricao
-        
+
         document.querySelector('.contOperacoes').appendChild(novoCardOperacoes)
     })
 
@@ -229,7 +238,7 @@ function cardDetailsMotoristas() {
     document.querySelector('.qtd_motoristas').innerHTML = motoristas.length
 
     motoristas.forEach(o => {
-        
+
     })
 
     document.querySelector('.qtd_operacoes_andamento').innerHTML = qtd_Operacoes_Andamento
@@ -238,7 +247,7 @@ function cardDetailsMotoristas() {
 function cardDetailsUsuarios() {
     document.querySelector('.qtd_usuarios').innerHTML = usuarios.length
 
-    
+
 }
 
 var tabela_veiculos = document.querySelector('.veiculos_table')

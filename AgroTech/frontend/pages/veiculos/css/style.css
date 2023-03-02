@@ -161,13 +161,12 @@ table tr td i:nth-child(2) {
 
 .m-editar {
     position: absolute;
-    top: 15%;
+    top: 14%;
     left: 35%;
-    width: 40%;
+    width:35%;
     box-shadow: 0px 0px 10px rgba(53, 53, 53, 0.403);
     background-color: white;
     padding: 10px;
-    border-radius: 20px 0px;
 
 }
 .cont_icon {
@@ -368,7 +367,6 @@ table tr td i:nth-child(2) {
 
 .inp_valor p {
     margin-bottom: 0px;
-    
 }
 
 .manutencao_section_title {
@@ -467,4 +465,7 @@ table tr td i:nth-child(2) {
     width: 30px;
     margin: 5% auto 0px auto;
     border-radius: 100%;
+}
+
+.cont_button {
 }

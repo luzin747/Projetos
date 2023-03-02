@@ -66,43 +66,12 @@
                     </div>
                 </div>
 
-                <!-- <div class="cont-tools">
-
-                    <div class="cont-qtd">
-                        <i class='bx bxs-quote-single-right user'></i>
-                        <p>Tickets: <b class="qtd-tickets">10</b></p>
-                    </div>
-
-
-                    <div class="cont-qtd">
-                        <i class='bx bx-lock-open open'></i>
-                        <p>Abertos: <b class="abertos">2</b></p>
-                    </div>
-
-                    <div class="tools">
-
-                        <div class="linha-2">
-                            <button class="button-new"><a href="CadastrarVeiculo/index.html"><i
-                                        class='bx bxs-file-plus'></i>Novo</a></button>
-                        </div>
-
-                        <div class="filtro">
-                            <input placeholder="Pesquisar Veiculo" class="search" type="text">
-                            <i class='bx bx-search-alt-2 btn-filter'></i>
-                        </div>
-
-                    </div>
-
-                </div> -->
 
                 <div class="table_and_edit">
                     <div class="cont_tables_tools">
                         <div style=" height: 60vh; overflow-y: scroll;">
 
-
                             <table>
-
-
                                 <thead>
                                     <tr>
                                         <th>Situação</th>
@@ -119,7 +88,8 @@
                                 <tbody class="contTickets">
 
                                     <tr class="tickets model">
-                                        <td class=""><img class="img_situation" src="img/icons/cicle_on.png" alt=""> </td>
+                                        <td class=""><img class="img_situation" src="img/icons/cicle_on.png" alt="">
+                                        </td>
                                         <td class="id_veiculos">1</td>
                                         <td class="modelo">1</td>
                                         <td class="placas">5</td>
@@ -134,18 +104,19 @@
                                 </tbody>
 
                             </table>
+                            
                         </div>
                         <div class="tools_pesquisa">
 
                             <div class="cont-qtd">
                                 <i class='bx bxs-quote-single-right user'></i>
-                                <p>Tickets: <b class="qtd-tickets">10</b></p>
+                                <p>Quantidade: <p class="qtd-veiculos-tool"></p></p>
                             </div>
 
 
                             <div class="cont-qtd">
                                 <i class='bx bx-lock-open open'></i>
-                                <p>Abertos: <b class="abertos">2</b></p>
+                                <p>Disponiveis: <b class="qtd-disponiveis"></b></p>
                             </div>
 
                             <div class="filtro">
@@ -168,7 +139,6 @@
                         <div class="m-editar-inputs">
 
                             <div class="cont_icon">
-
                                 <img src="img/icons/vaiculo_grande.png" />
                             </div>
                             <!-- <p class="nomeCliente"><b class="cliName">Editar Veículo</b> </p> -->
@@ -303,7 +273,8 @@
 
                             <div class="cont_manutencao model">
 
-                                <Button onclick="mostrarModalManutencao()">Adicionar Manutenção</Button>
+                                <Button class="btn_add_manutencao" onclick="mostrarModalManutencao()">Adicionar
+                                    Manutenção</Button>
 
                                 <div class="inps_descri_section_create_manu model">
 
@@ -312,11 +283,12 @@
                                     <textarea class="descricao_man" name="" id="" cols="40" rows="5"></textarea>
 
                                     <div class="inp_valor">
+
                                         <div>
                                             <p>Valor</p>
                                             <input type="text" class="valor_man">
-
                                         </div>
+
                                     </div>
 
                                     <div class="inp_datas">
@@ -342,92 +314,10 @@
                                 </div>
 
 
-                                <div class="manutencao model">
-                                    <div class="cont_information_manutencao">
-                                        <div class="cont_icon_manutencao">
-                                            <img class="icon_manutencao" src="img/icons/manutencao.png" alt="">
 
-                                        </div>
-
-                                        <div class="cont_inf_manu">
-                                            <div>
-                                                <p>Id:</p>
-                                                <p class="id_manu"></p>
-                                            </div>
-
-                                            <div>
-                                                <p>Data Entrada:</p>
-                                                <p class="date_manu_entrada">23/02/2002</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="cont-icon_edit">
-                                            <i class='bx bxs-edit' onclick="HabilitarEdicaoManu(this)"></i>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="inps_descri model">
-
-                                        <p>Descrição da Manutenção</p>
-
-                                        <textarea class="descricao" name="" id="" cols="40" rows="5"></textarea>
-
-                                        <div class="inp_valor">
-                                            <div>
-                                                <p>Valor</p>
-                                                <input type="text" class="valor">
-
-                                            </div>
-                                        </div>
-
-                                        <p class="id_manutencao_hidden model"></p>
-
-                                        <div class="inp_datas">
-                                            <div>
-                                                <p>Data de Entrada</p>
-                                                <input type="text" class="data_entrada" disabled="">
-                                            </div>
-
-                                            <div>
-                                                <p>Data Finalizada</p>
-                                                <button class="btn_finalizar_card"
-                                                    onclick="finalizarManutencao()">Finalizar
-                                                    Manutenção</button>
-                                                <input type="text" class="data_fim_inp model" disabled="">
-                                            </div>
-
-
-
-                                        </div>
-
-                                        <div class="cont_button">
-                                            <button onclick="salvarEdicaoCard(this)">Salvar</button>
-                                            <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
-                                        </div>
-
-                                    </div>
-
-                                    <!-- <div class="cont-button-status">
-                                        <div class="cont_button">
-                                            <button onclick="salvar(this)">Salvar</button>
-                                            <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
-                                        </div>
-
-                                        <div class="cont_button_c_manutencao model">
-                                            <button onclick="salvarCManutenção(this)">Salvar</button>
-                                            <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
-                                        </div>
-
-                                    </div> -->
-                                </div>
-
-                                <div class="cont_button">
+                                <!-- <div class="cont_button">
                                     <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
-                                </div>
-
-
+                                </div> -->
 
                             </div>
 
@@ -521,6 +411,88 @@
                 <p>Feche a Vaga para Finalizar o Ticket!</p>
 
                 <button onclick="esconderModalFecharAntes()" class="btn-error">OK</button>
+            </div>
+
+
+            <!-- ÁREA DE CLONES  -->
+            <div class="manutencao model">
+                <div class="cont_information_manutencao">
+                    <div class="cont_icon_manutencao">
+                        <img class="icon_manutencao" src="img/icons/manutencao.png" alt="">
+
+                    </div>
+
+                    <div class="cont_inf_manu">
+                        <div>
+                            <p>Id:</p>
+                            <p class="id_manu"></p>
+                        </div>
+
+                        <div>
+                            <p>Data Entrada:</p>
+                            <p class="date_manu_entrada">23/02/2002</p>
+                        </div>
+                    </div>
+
+                    <div class="cont-icon_edit">
+                        <i class='bx bxs-edit' onclick="HabilitarEdicaoManu(this)"></i>
+                    </div>
+
+                </div>
+
+
+                <div class="inps_descri model">
+
+                    <p>Descrição da Manutenção</p>
+
+                    <textarea class="descricao" name="" id="" cols="40" rows="5"></textarea>
+
+                    <div class="inp_valor">
+                        <div>
+                            <p>Valor</p>
+                            <input type="text" class="valor">
+
+                        </div>
+                    </div>
+
+                    <p class="id_manutencao_hidden model"></p>
+
+                    <div class="inp_datas">
+                        <div>
+                            <p>Data de Entrada</p>
+                            <input type="text" class="data_entrada" disabled="">
+                        </div>
+
+                        <div>
+                            <p>Data Finalizada</p>
+                            <button class="btn_finalizar_card" onclick="finalizarManutencao()">Finalizar
+                                Manutenção</button>
+                            <input type="text" class="data_fim_inp model" disabled="">
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="cont_button">
+                        <button onclick="salvarEdicaoCard(this)">Salvar</button>
+                        <button class="btn-voltar" onclick="fecharModalManutencao()">Fechar</button>
+                    </div>
+
+                </div>
+
+                <!-- <div class="cont-button-status">
+                    <div class="cont_button">
+                        <button onclick="salvar(this)">Salvar</button>
+                        <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
+                    </div>
+
+                    <div class="cont_button_c_manutencao model">
+                        <button onclick="salvarCManutenção(this)">Salvar</button>
+                        <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
+                    </div>
+
+                </div> -->
             </div>
 
         </main>
