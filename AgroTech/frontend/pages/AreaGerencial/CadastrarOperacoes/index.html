@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Nova Operação</title>
+
+    <link rel="stylesheet" href="../../universally.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body onload="carregar()">
+
+    <main>
+        <div class="menu modal-menu">
+            <!-- <p><i onclick="teste()" class='bx bx-menu'></i></p> -->
+
+            <div>
+                <h1>AgroTech</h1>
+
+                <!-- <p>Menu</p> -->
+
+                <ul>
+                    <li><a href="home.html"><i class='bx bx-category'></i></i><span
+                                class="nav-title">Controle</span></a></li>
+                    <li><a href="pages/estacionar/estacionar.html"><i class='bx bxs-parking'></i><span
+                                class="nav-title">Área Gerencial</span></a></li>
+                    <li><a href="pages/clientes/clientes.html"><i class='bx bx-group'></i><span class="nav-title">Área
+                                Comum</span></a></li>
+                    <li><a href="pages/mensalidades/mensalidades.html"><i class='bx bx-money'></i><span
+                                class="nav-title">Motoristas</span></a></li>
+                    <li><a href="pages/mensalidades/mensalidades.html"><i class='bx bx-money'></i><span
+                                class="nav-title">Carros</span></a></li>
+
+
+                </ul>
+            </div>
+
+            <div class="cont-logout">
+                <i class='bx bx-log-out'></i>
+                <span>Sair</span>
+            </div>
+
+            <!-- <p class="section-config">Configurações <i class='bx bx-error-alt'></i></p>                             -->
+
+            <!-- <ul>
+            <li><i class='bx bx-dollar'></i><span class="nav-title">Precificações <i class='bx bx-error-alt'></i></span></li>
+            <li><i class='bx bxs-user-detail'></i><span class="nav-title">Usuarios <i class='bx bx-error-alt'></i></span></li>
+            <li><i class='bx bx-cog'></i><span class="nav-title">Configurações <i class='bx bx-error-alt'></i></span></li>
+        </ul> -->
+        </div>
+
+        <div class="conteudo">
+            <div class="linha-1">
+                <i class='bx bxs-parking'></i>
+
+                <div class="linha-1-sub">
+                    <h5>Cadastrar Veículo</h5>
+                    <p>Cadastre um Novo Veículo!</b></p>
+                </div>
+
+            </div>
+
+            <div class="linha-3">
+                <div class="linha-3-title">
+                    <h5>Cadastrar Nova Operação</h5>
+                    <hr>
+                </div>
+
+                <div class="section-01">
+                    <div>
+                        <p>Motorista </p>
+                        <select class="tipo-Motorista">
+                            <option  value="default" >-------------[Selecione um Motorista]------------</option>
+                            
+                        </select>
+                    </div>
+
+                    <div>
+                        <p>Véiculo </p>
+                        <select class="tipo-Veiculo">
+                            <option value="default_veiculo">-------------[Selecione um Veículo]------------</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <p>Data Saída</p>
+                        <input type="text" name="" class="data_saida" id="" disabled="">
+                    </div>
+
+                    
+                </div>
+
+                <div class="section-01">
+
+                    <div>
+                        <p>Descrição da Operação</p>
+                        <textarea class="descricao" placeholder="Insira a Descrição da Operação. . . ." name="" id="" cols="70" rows="5" style="resize: none; padding: 5px;"></textarea>
+                    </div>
+                </div>
+               
+                <div>
+                    <button onclick="cadastrarOperacoes()">Confimar</button>
+                    <button><a href="../areaGerencial.html">Voltar</a></button>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="modal-certo model">
+
+            <img src="img/2.gif" alt="">
+
+            <p>Ticket Cadastrado Com Sucesso!</p>
+
+            <button onclick="esconderModalCheck()" class="btn-check">OK</button>
+        </div>
+
+        <div class="modal-errado model">
+
+            <img src="img/error01 (1).gif" alt="">
+
+            <p>Erro CPF Não Cadastrado!</p>
+
+            <button onclick="esconderModalErrorCpfs()" class="btn-error">OK</button>
+        </div>
+
+        <div class="modal-errado-vagas model">
+
+            <img src="img/error01 (1).gif" alt="">
+
+            <p>Erro  - Vagas Já Cadastradas</p>
+
+            <button onclick="esconderModalErrorVagas()" class="btn-error">OK</button>
+        </div>
+
+        <div class="modal-errado-nao-existe model">
+
+            <img src="img/error01 (1).gif" alt="">
+
+            <p>Erro  - Vagas Inexistentes</p>
+
+            <button onclick="esconderModalErrorInexistente()" class="btn-error">OK</button>
+        </div>
+
+
+
+    </main>
+
+</body>
+
+<script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+<script src="js/cadastrarOperacao.js "></script>
+
+</html>
