@@ -20,7 +20,7 @@ const read = async (req, res) => {
 const deletar = async (req, res) => {
     let operacao = await prisma.operacao.delete({
         where: {
-            id_operacao: Number(req.params.id_operacao)
+            id_opeacao: Number(req.params.id_opeacao)
         },
     });
 
@@ -30,7 +30,7 @@ const deletar = async (req, res) => {
 const update = async (req ,res) =>{
     const operacao = await prisma.operacao.update({
         where:{
-            id_operacao:Number(req.params.id_operacao)
+            id_opeacao:Number(req.params.id_opeacao)
         },
         data:req.body
     })

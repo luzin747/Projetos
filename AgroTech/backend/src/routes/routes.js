@@ -31,7 +31,7 @@ router.delete('/manutencao/:id_manutencao', Manutencao.deletar);
 
 router.post('/operacao', Operacao.create);
 router.get('/operacao', Operacao.read);
-router.put('/operacao/:id_operacao', Operacao.update);
-router.delete('/operacao/:id_operacao', Operacao.deletar);
+router.put('/operacao/:id_opeacao', Operacao.update);
+router.delete('/operacao/:id_opeacao', Operacao.deletar);
 
 module.exports = router;

@@ -53,7 +53,7 @@ function preencherTabela() {
 
     operacoes.forEach(o => {
 
-        if(o.data_retorno == "") {
+        if (o.data_retorno == "") {
             somaAndamento += 1
         }
 
@@ -76,7 +76,7 @@ function preencherTabela() {
         })
         novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
 
-        if(o.data_retorno == "") {
+        if (o.data_retorno == "") {
             novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = "Em Andamento"
 
         }
@@ -119,49 +119,28 @@ function editarCliente(e) {
 
     mostrarModal.classList.remove('model')
 
-    // veiculos.forEach(v => {
-    //     if (id == v.id_veiculo) {
+    motoristas.forEach(m => {
 
-    //         document.querySelector('.id_veiculo').innerHTML = v.id_veiculo
-    //         document.querySelector('.placa_veiculo').value = v.placa
-    //         document.querySelector('.modelo_veiculo').value = v.modelo
-    //         document.querySelector('.marca_veiculo').value = v.marca
-    //         document.querySelector('.tipo_veiculo').value = v.tipo
+        var optionMotorista = document.createElement('option')
+        optionMotorista.value = m.id_motorista
+        optionMotorista.innerHTML = m.nome
 
-    //         if (v.disponivel == false) {
-    //             document.querySelector('.disponibilidade').value = 'Não'
+        document.querySelector('.tipo-Motorista').appendChild(optionMotorista)
 
-    //         }
+    })
 
-    //         if (v.disponivel == true) {
-    //             document.querySelector('.disponibilidade').value = 'Sim'
+    veiculos.forEach(v => {
 
-    //         }
+        if(v.disponivel == true) {
 
-    //     }
+            var optionVeiculo = document.createElement('option')
+            optionVeiculo.value = v.id_veiculo
+            optionVeiculo.innerHTML = v.modelo
+            
+            document.querySelector('.tipo-Veiculo').appendChild(optionVeiculo)
+        }
 
-    //     manutencao.forEach(m => {
-
-    //         if (v.id_veiculo == m.id_veiculo) {
-
-    //             var data_saida = document.querySelector('.h_saida')
-    //             var btn_manutencao = document.querySelector('.btn_finalizar_manutencao')
-
-    //             data_saida.classList.remove('model')
-    //             btn_manutencao.classList.add('model')
-
-    //             data_saida.style.textAlign = "center"
-
-    //             document.querySelector('.descricao').value = m.descricao
-    //             document.querySelector('.valor').value = m.valor
-    //             document.querySelector('.h_entrada').value = m.data_inicio
-    //             document.querySelector('.h_saida').value = m.data_inicio
-
-
-    //         }
-    //     })
-
-    // })
+    })
 
     operacoes.forEach(o => {
         if (id == o.id_opeacao) {
@@ -183,7 +162,7 @@ function editarCliente(e) {
                 }
             })
             document.querySelector('.ds_editar').value = o.data_saida
-            document.querySelector('.dr_tipo').value = o.data_retorno
+            document.querySelector('.dr_retorno').value = o.data_retorno
             document.querySelector('.descricao_txt_area').innerHTML = o.descricao
         }
 
@@ -195,28 +174,24 @@ var disponivel = true
 
 function salvar(e) {
 
-    var select_status = document.querySelector(".select_status")
-    let seleStatus = select_status.options[select_status.selectedIndex].value;
-    if (seleStatus == 'sim') { var disponivel = true; }
-    if (seleStatus == 'nao') { var disponivel = false; }
-
-    var id_veiculo = document.querySelector('.id_editar').innerHTML
-    var placa = document.querySelector('.pv_editar').value
-    var modelo = document.querySelector('.mv_editar').value
-    var marca = document.querySelector('.m_editar').value
-    var tipo = document.querySelector('.m_tipo').value
+    var id_operacao = document.querySelector('.id_operacao').innerHTML
+    var motorista = document.querySelector('.m_editar').value
+    var veiculo = document.querySelector('.v_editar').value
+    var data_saida = document.querySelector('.ds_editar').value
+    var data_retorno = document.querySelector('.dr_retorno').value
 
     let data = {
-        "placa": placa,
-        "modelo": modelo,
-        "marca": marca,
-        "tipo": tipo,
-        "disponivel": disponivel,
+        "id_opeacao": id_operacao,
+        "id_motorista": Number(motorista),
+        "id_veiculo": Number(veiculo),
+        "data_saida": data_saida,
+        "data_retorno": data_retorno,
+        "descricao": "descrição teste"
     }
 
     console.log(data);
 
-    fetch('http://localhost:3000/veiculos/' + id_veiculo, {
+    fetch('http://localhost:3000/operacao/' + id_operacao, {
         "method": "PUT",
         "headers": {
             "Content-Type": "application/json"
@@ -249,26 +224,26 @@ const TABELA_CLIENTES = document.querySelector('.contOperacao')
 
 search_btn.addEventListener('click', () => {
 
-  let expressao = INPUT_BUSCA.value
+    let expressao = INPUT_BUSCA.value
 
-  let linhas = TABELA_CLIENTES.getElementsByTagName('tr')
+    let linhas = TABELA_CLIENTES.getElementsByTagName('tr')
 
- 
 
-  for (let posicao in linhas) {
-      if (true === isNaN(posicao)) {
-          continue
-      }
 
-      let conteudoDaLinha = linhas[posicao].innerHTML
+    for (let posicao in linhas) {
+        if (true === isNaN(posicao)) {
+            continue
+        }
 
-      if (true === conteudoDaLinha.includes(expressao)) {
-          linhas[posicao].style.display = ''
-      } else {
-          linhas[posicao].style.display = 'none'
+        let conteudoDaLinha = linhas[posicao].innerHTML
 
-      }
+        if (true === conteudoDaLinha.includes(expressao)) {
+            linhas[posicao].style.display = ''
+        } else {
+            linhas[posicao].style.display = 'none'
 
-  }
+        }
+
+    }
 
 })

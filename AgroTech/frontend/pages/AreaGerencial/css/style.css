@@ -2,6 +2,9 @@ main {
     display: flex;
 }
 
+select {
+    margin: 5px;
+}
 
 
 .inps_descri {
@@ -152,7 +155,7 @@ table tr td i:nth-child(2) {
 
 .m-editar {
     position: absolute;
-    top: 15%;
+    top: 10%;
     left: 35%;
     width: 40%;
     box-shadow: 0px 0px 10px rgba(53, 53, 53, 0.403);

@@ -92,10 +92,10 @@
                                         <td class="veiculo">GTX0N3GB</td>
                                         <td class="data_saida">GTX0N3GB</td>
                                         <td class="data_retorno" style="font-weight: 300;">GTX0N3GB</td>
-                                        <td class="" ><i class='bx bx-show ' onclick="editarCliente(this)"></i></td>
+                                        <td class=""><i class='bx bx-show ' onclick="editarCliente(this)"></i></td>
                                         <td class="cont-btns">
                                             <i class='bx bx-edit ' onclick="editarCliente(this)"></i>
-                                             <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i>
+                                            <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i>
                                         </td>
 
                                     </tr>
@@ -126,7 +126,7 @@
                                 <button class="button-new"><a href="CadastrarOperacoes/index.html"><i
                                             class='bx bxs-file-plus'></i> Adicionar +</a></button>
                             </div>
-                            
+
 
                         </div>
 
@@ -150,7 +150,7 @@
                                     <hr>
                                 </div> -->
 
-                                    <!-- <div class="manutencao_section_title" onclick="MudarSection(this)">
+                                <!-- <div class="manutencao_section_title" onclick="MudarSection(this)">
                                         <p class="title">Manutenções</p>
                                         <hr>
                                     </div> -->
@@ -172,13 +172,34 @@
 
                                         <div>
                                             <p>Motorista</p>
-                                            <input type="text" class="placa_veiculo m_editar">
+                                            <input type="text" class="placa_veiculo m_editar" disabled="">
                                         </div>
 
                                         <div>
                                             <p>Veiculo</p>
-                                            <input type="text" class="modelo_veiculo v_editar">
+                                            <input type="text" class="modelo_veiculo v_editar" disabled="">
                                         </div>
+
+                                    </div>
+
+                                    <div class="inps">
+
+                                        <div>
+                                            <p>Trocar Motorista</p>
+
+                                            <select class="tipo-Motorista">
+                                                <option value="default">Selecionar</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <p>Trocar Veiculo</p>
+
+                                            <select class="tipo-Veiculo">
+                                                <option value="default">Selecionar</option>
+                                            </select>
+                                        </div>
+
 
                                     </div>
 
@@ -190,7 +211,7 @@
 
                                         <div>
                                             <p>Data Retorno</p>
-                                            <input type="text" class="tipo_veiculo dr_tipo" disabled="">
+                                            <input type="text" class="tipo_veiculo dr_retorno" disabled="">
 
                                         </div>
 
@@ -204,7 +225,8 @@
 
                                                 <p>Descrição</p>
                                                 <!-- <input type="text" class="disponibilidade" disabled=""> -->
-                                                <textarea class="descricao_txt_area" name="" id="" cols="50" rows="5" disabled="" style="resize: none; padding: 5px;"></textarea>
+                                                <textarea class="descricao_txt_area" name="" id="" cols="50" rows="5"
+                                                    style="resize: none; padding: 5px;"></textarea>
 
                                             </div>
 
@@ -272,7 +294,7 @@
                                 </div>
 
 
-                                
+
 
                                 <div class="cont_button">
                                     <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
@@ -354,7 +376,7 @@
 
                 <button onclick="esconderModalFecharAntes()" class="btn-error">OK</button>
             </div>
-            
+
 
         </main>
     </div>
