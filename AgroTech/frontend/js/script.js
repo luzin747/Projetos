@@ -122,7 +122,6 @@ function preencherTabelas() {
         })
         novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
         novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
-        novaLinhaOperacoes.querySelector('.descricao').innerHTML = o.descricao
 
         document.querySelector('.contOperac').appendChild(novaLinhaOperacoes)
 
@@ -273,4 +272,51 @@ function filtroRelatorios() {
         var valorTotal = 'R$ 20,00'
 
     }
+}
+
+
+function editarCliente(e) {
+
+    var id = e.parentNode.parentNode.querySelector('.id_operacao').innerHTML
+
+    var mostrarModal = document.querySelector('.m-editar')
+
+    soma += 1
+
+    mostrarModal.classList.remove('model')
+
+    operacoes.forEach(o => {
+        if (id == o.id_opeacao) {
+            console.log('indo');
+
+            document.querySelector('.id_editar').innerHTML = o.id_opeacao
+            motoristas.forEach(m => {
+                if (m.id_motorista == o.id_motorista) {
+                    document.querySelector('.m_editar').value = m.nome
+
+                }
+
+            })
+
+            veiculos.forEach(v => {
+                if (v.id_veiculo == o.id_veiculo) {
+
+                    document.querySelector('.v_editar').value = v.modelo
+                }
+            })
+            document.querySelector('.ds_editar').value = o.data_saida
+            document.querySelector('.dr_tipo').value = o.data_retorno
+            document.querySelector('.descricao_txt_area').innerHTML = o.descricao
+        }
+
+    })
+
+}
+
+function fecharEditarCliente() {
+    var mostrarModal = document.querySelector('.m-editar')
+    mostrarModal.classList.toggle('model')
+
+    window.location.reload();
+
 }

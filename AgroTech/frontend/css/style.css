@@ -235,6 +235,7 @@ table tr td i:nth-child(2) {
 
 .cont_talbles {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     margin-top: 1%;
     
@@ -288,4 +289,115 @@ table tbody tr td {
 
 table img {
     width: 10px;
+}
+
+
+.m-editar {
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    width: 40%;
+    box-shadow: 0px 0px 10px rgba(53, 53, 53, 0.403);
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px 0px;
+
+}
+.cont_icon {
+    width: 25%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: -10%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.linha_central {
+    margin-top: -2px;
+}
+
+.cont_sections {
+    display: flex;
+    margin-top: 3%;
+}
+
+.cont_sections div p {
+    font-weight: 500;
+}
+
+.cont_sections div hr {
+    margin-top: 10px;
+}
+
+.m-editar img {
+    width: 100%;
+}
+
+.m-editar .nomeCliente {
+    font-size: 1.8rem;
+    margin-top: 20px;
+    
+    text-align: center;
+}
+
+
+.cont-id_vaga {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+}
+
+.cont-id_vaga span {
+    margin-left: 10px;
+    height: 4vh;
+    width: 2vw;
+    padding-top: 7px;
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    background-color: #3B3B3B;
+    border-radius: 5px;
+}
+.inps {
+    display: flex;
+    justify-content: center;
+    margin: 0px 10px 10px 10px;  
+
+    /* padding: 20px; */
+}
+
+.inps div {
+    /* margin-top: 10px; */
+    margin: 10px;
+    
+}
+.inps p{
+    font-size: 11pt;
+}
+.inps input {
+    height: 28px;
+    text-align: center;
+    font-size: 11pt;
+    border-radius: 20px;
+    margin-top: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.426);
+}
+
+.inps select {
+    height: 27px;
+    width: 9vw;
+}
+
+.status-cont {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 2px;
+    color: white;
+    width: 9vw;
 }

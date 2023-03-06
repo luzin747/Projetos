@@ -62,8 +62,14 @@ function preencherTabela() {
         novaLinhaOperacoes.classList.remove('model')
 
         novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
+        // novaLinhaOperacoes.querySelector('.id_motorista_editar').innerHTML = o.id_motorista
+
+        document.querySelector('.id_m_editar').value = o.id_motorista
+        document.querySelector('.id_v_editar').value = o.id_veiculo
+
         motoristas.forEach(m => {
             if (o.id_motorista == m.id_motorista) {
+
                 novaLinhaOperacoes.querySelector('.motorista').innerHTML = m.nome
 
             }
@@ -71,6 +77,7 @@ function preencherTabela() {
         veiculos.forEach(v => {
             if (o.id_veiculo == v.id_veiculo) {
                 novaLinhaOperacoes.querySelector('.veiculo').innerHTML = v.modelo
+
 
             }
         })
@@ -131,12 +138,12 @@ function editarCliente(e) {
 
     veiculos.forEach(v => {
 
-        if(v.disponivel == true) {
+        if (v.disponivel == true) {
 
             var optionVeiculo = document.createElement('option')
             optionVeiculo.value = v.id_veiculo
             optionVeiculo.innerHTML = v.modelo
-            
+
             document.querySelector('.tipo-Veiculo').appendChild(optionVeiculo)
         }
 
@@ -170,18 +177,35 @@ function editarCliente(e) {
 
 }
 
+
 var disponivel = true
 
 function salvar(e) {
 
-    var id_operacao = document.querySelector('.id_operacao').innerHTML
-    var motorista = document.querySelector('.m_editar').value
-    var veiculo = document.querySelector('.v_editar').value
+    var id_operacao = document.querySelector('.id_editar').innerHTML
+
+    var motorista = document.querySelector('.id_m_editar').value
+    var veiculo = document.querySelector('.id_v_editar').value
+
     var data_saida = document.querySelector('.ds_editar').value
     var data_retorno = document.querySelector('.dr_retorno').value
 
+    var select_status = document.querySelector(".tipo-Motorista")
+    let seleMotorista = select_status.options[select_status.selectedIndex].value;
+
+    if (seleMotorista != 'default') {
+        motorista = seleMotorista;
+    }
+
+    var select_status = document.querySelector(".tipo-Veiculo")
+    let seleVeiculo = select_status.options[select_status.selectedIndex].value;
+
+    if (seleVeiculo != 'default') {
+        veiculo = seleVeiculo
+    }
+
     let data = {
-        "id_opeacao": id_operacao,
+        "id_opeacao": Number(id_operacao),
         "id_motorista": Number(motorista),
         "id_veiculo": Number(veiculo),
         "data_saida": data_saida,
