@@ -16,6 +16,11 @@ function cadastrarVeiculos() {
     if (seleStatus == 'Véiculo-Médio') { var tipo = 'Veículo Médio'; }
     if (seleStatus == 'Véiculo-Grande') { var tipo = 'Veículo Grande'; }
 
+    var select_tipo_veiculo = document.querySelector(".tipo-Veiculo_tipo")
+    let seleTipoVeiculo = select_tipo_veiculo.options[select_tipo_veiculo.selectedIndex].value;
+    if (seleTipoVeiculo == 'default') { erro = true }
+    
+
     // var valor_hora = document.querySelector('.valor-Hora').value
 
     if (modelo == "" || marca == "" || placa == "") {
@@ -24,12 +29,11 @@ function cadastrarVeiculos() {
 
     if (erro == false) {
 
-
         let data = {
             "modelo": modelo,
             "marca": marca,
             "placa": placa,
-            "tipo": tipo,
+            "tipo": seleTipoVeiculo,
             "disponivel": true,
         };
 

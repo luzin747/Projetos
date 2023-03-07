@@ -157,7 +157,6 @@ function editarCliente(e) {
             motoristas.forEach(m => {
                 if (m.id_motorista == o.id_motorista) {
                     document.querySelector('.m_editar').value = m.nome
-
                 }
 
             })

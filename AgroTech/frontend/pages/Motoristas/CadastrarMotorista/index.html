@@ -74,17 +74,30 @@
                 <div class="section-01">
 
                     <div>
-                        <p>Nome</p>
+                        <div style="display: flex;">
+                            <p>Nome*</p>
+                            <p class="erro_nome_vazio model" style="color: red; margin-left: 10px;">[Nome não Pode Ser Vazio*]</p>
+                        </div>
                         <input class="nome" type="text">
                     </div>
 
                     <div>
-                        <p>CPF</p>
+                        <div style="display: flex;">
+                            <p>CPF*</p>
+                            <p class="erro_cpf_ja_vazio model" style="color: red; margin-left: 10px;">[CPF não Pode Ser Vazio*]</p>
+                            <p class="erro_cpf_invalido model" style="color: red; margin-left: 10px;">[CPF Inválido*]</p>
+                            <p class="erro_cpf_ja_cadastrado model" style="color: red; margin-left: 10px;">[CPF Já Cadastrado*]</p>
+                        </div>
                         <input class="cpf">
                     </div>
 
                     <div>
-                        <p>CNH</p>
+                        <div style="display: flex;">
+                            <p>CNH*</p>
+                            <p class="erro_cnh_ja_vazia model" style="color: red; margin-left: 10px;">[CNH não Pode Ser Vazia*]</p>
+                            <p class="erro_cnh_invalida model" style="color: red; margin-left: 10px;">[CNH Inválida*]</p>
+                            <p class="erro_cnh_ja_cadastrada model" style="color: red; margin-left: 10px;">[CNH Já CadastradA*]</p>
+                        </div>
                         <input class="cnh" id="">
                     </div>
 
@@ -97,7 +110,7 @@
                 </div>
                
                 <div>
-                    <button onclick="cadastrarVeiculos()">Confimar</button>
+                    <button onclick="cadastrarMotorista()">Confimar</button>
                     <button><a href="../motoristas.html">Voltar</a></button>
                 </div>
 
@@ -114,11 +127,11 @@
             <button onclick="esconderModalCheck()" class="btn-check">OK</button>
         </div>
 
-        <div class="modal-errado model">
+        <!-- <div class="modal-errado model">
 
             <img src="img/error01 (1).gif" alt="">
 
-            <p>Erro CPF Não Cadastrado!</p>
+            <p>Erro CPF Inválido!</p>
 
             <button onclick="esconderModalErrorCpfs()" class="btn-error">OK</button>
         </div>
@@ -139,7 +152,7 @@
             <p>Erro  - Vagas Inexistentes</p>
 
             <button onclick="esconderModalErrorInexistente()" class="btn-error">OK</button>
-        </div>
+        </div> -->
 
 
 

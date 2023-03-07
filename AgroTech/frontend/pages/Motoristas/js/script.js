@@ -29,6 +29,17 @@ function preencherTabela() {
 
         novoCardMotorista.classList.remove('model')
         novoCardMotorista.querySelector('.id_motorista').innerHTML = m.id_motorista
+        
+        if (m.disponivel == false) {
+            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_off.png'
+            
+        }
+
+        if (m.disponivel == true) {
+            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+            // qtd_disponiveis += 1
+
+        }
         novoCardMotorista.querySelector('.cpf').innerHTML = m.cpf
         novoCardMotorista.querySelector('.cnh').innerHTML = m.cnh
         novoCardMotorista.querySelector('.nome').innerHTML = m.nome
@@ -80,10 +91,10 @@ var disponivel = true
 
 function salvar(e) {
 
-    // var select_status = document.querySelector(".select_status")
-    // let seleStatus = select_status.options[select_status.selectedIndex].value;
-    // if (seleStatus == 'sim') { var disponivel = true; }
-    // if (seleStatus == 'nao') { var disponivel = false; }
+     var select_status = document.querySelector(".select_status")
+     let seleStatus = select_status.options[select_status.selectedIndex].value;
+     if (seleStatus == 'sim') { var disponivel = true; }
+     if (seleStatus == 'nao') { var disponivel = false; }
 
     var id_motorista = document.querySelector('.id_editar').innerHTML
     var nome = document.querySelector('.n_editar').value
@@ -94,6 +105,7 @@ function salvar(e) {
         "nome": nome,
         "cpf": cpf,
         "cnh": cnh,
+        "disponivel": disponivel
     }
 
     console.log(data);

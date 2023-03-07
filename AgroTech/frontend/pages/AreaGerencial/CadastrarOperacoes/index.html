@@ -73,7 +73,10 @@
 
                 <div class="section-01">
                     <div>
-                        <p>Motorista </p>
+                        <div style="display: flex;">
+                            <p>Motorista </p>
+                            <p class="erro_motorista_nao_selecionado model" style="color: red; margin-left: 10px;">[Selecione um Motorista*]</p>
+                        </div>
                         <select class="tipo-Motorista">
                             <option  value="default" >-------------[Selecione um Motorista]------------</option>
                             
@@ -81,7 +84,11 @@
                     </div>
 
                     <div>
-                        <p>Véiculo </p>
+                        <div style="display: flex;">
+                            <p>Veículo </p>
+                            <p class="erro_veiculo_nao_selecionado model" style="color: red; margin-left: 10px;">[Selecione um Veículo*]</p>
+                        </div>
+                        
                         <select class="tipo-Veiculo">
                             <option value="default_veiculo">-------------[Selecione um Veículo]------------</option>
                         </select>
@@ -98,7 +105,10 @@
                 <div class="section-01">
 
                     <div>
-                        <p>Descrição da Operação</p>
+                        <div style="display: flex;">
+                            <p>Descrição da Manutenção </p>
+                            <p class="erro_descricao_vazia model" style="color: red; margin-left: 10px;">[Descrição não Pode Ser Vazia*]</p>
+                        </div>
                         <textarea class="descricao" placeholder="Insira a Descrição da Operação. . . ." name="" id="" cols="70" rows="5" style="resize: none; padding: 5px;"></textarea>
                     </div>
                 </div>

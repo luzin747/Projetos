@@ -82,6 +82,11 @@ table {
 
 }
 
+table img {
+    width: 10px;
+}
+
+
 table tr{
     display: flex;
     
@@ -257,7 +262,6 @@ table tr td i:nth-child(2) {
 
 .inps select {
     height: 27px;
-    width: 9vw;
 }
 
 .status-cont {

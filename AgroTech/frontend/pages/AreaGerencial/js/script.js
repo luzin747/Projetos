@@ -87,6 +87,9 @@ function preencherTabela() {
             novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = "Em Andamento"
 
         }
+        else {
+            novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
+        }
         // novaLinhaOperacoes.querySelector('.descricao').innerHTML = o.descricao
 
         document.querySelector('.contOperacao').appendChild(novaLinhaOperacoes)
@@ -168,15 +171,22 @@ function editarCliente(e) {
                     document.querySelector('.v_editar').value = v.modelo
                 }
             })
+
             document.querySelector('.ds_editar').value = o.data_saida
-            document.querySelector('.dr_retorno').value = o.data_retorno
             document.querySelector('.descricao_txt_area').innerHTML = o.descricao
+
+            if (o.data_retorno != "" || o.data_retorno != null) {
+
+                document.querySelector('.dr_retorno').value = o.data_retorno
+                document.querySelector('.dr_retorno').style.display = "block"
+                document.querySelector('.btn_finalizar_operacao').style.display = "none"
+                
+            }
         }
 
     })
 
 }
-
 
 var disponivel = true
 
@@ -232,13 +242,29 @@ function salvar(e) {
 
         })
 }
-
-
 function fecharEditarCliente() {
     var mostrarModal = document.querySelector('.m-editar')
     mostrarModal.classList.toggle('model')
 
     window.location.reload();
+
+}
+function finarlizarOperacao(e) {
+    var hoje = new Date()
+    var dia = String(hoje.getDate()).padStart(2, '0')
+    var mes = String(hoje.getMonth() + 1).padStart(2, '0')
+    var ano = hoje.getFullYear()
+
+
+    dataAtual = dia + '/' + mes + '/' + ano;
+
+    document.querySelector('.dr_retorno').value = dataAtual;
+    // document.querySelector('.dr-retorno').classList.remove('model')
+    document.querySelector('.dr_retorno').style.display = 'block'
+
+    document.querySelector('.btn_finalizar_operacao').classList.add('model')
+
+
 
 }
 

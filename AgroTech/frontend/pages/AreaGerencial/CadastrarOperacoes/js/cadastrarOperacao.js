@@ -6,7 +6,6 @@ var operacao = []
 var motorista = []
 var veiculo = []
 
-var erro = false
 
 
 var hoje = new Date()
@@ -25,7 +24,7 @@ function carregar() {
     fetch(uriOperacao, options)
         .then(res => res.json())
         .then(res => {
-            uriOperacao = res;
+            operacao = res;
         }
         )
         .catch(err => console.error(err));
@@ -57,21 +56,28 @@ function preencherSelects() {
 
     motorista.forEach(m => {
 
-        var optionMotorista = document.createElement('option')
-        optionMotorista.value = m.id_motorista
-        optionMotorista.innerHTML = m.nome
+        operacao.forEach(o => {
+            if (o.id_motorista == m.id_motorista && o.data_retorno != "") {
+                var optionMotorista = document.createElement('option')
+                optionMotorista.value = m.id_motorista
+                optionMotorista.innerHTML = m.nome
+                document.querySelector('.tipo-Motorista').appendChild(optionMotorista)
 
-        document.querySelector('.tipo-Motorista').appendChild(optionMotorista)
+            }
+        })
 
     })
 
     veiculo.forEach(v => {
 
-        var optionVeiculo = document.createElement('option')
-        optionVeiculo.value = v.id_veiculo
-        optionVeiculo.innerHTML = v.modelo
+        if (v.disponivel == true) {
 
-        document.querySelector('.tipo-Veiculo').appendChild(optionVeiculo)
+            var optionVeiculo = document.createElement('option')
+            optionVeiculo.value = v.id_veiculo
+            optionVeiculo.innerHTML = v.modelo
+
+            document.querySelector('.tipo-Veiculo').appendChild(optionVeiculo)
+        }
 
     })
 
@@ -82,6 +88,13 @@ function preencherSelects() {
 
 
 function cadastrarOperacoes() {
+
+    var erro = false
+
+    document.querySelector('.erro_descricao_vazia').classList.add('model')
+    document.querySelector('.erro_veiculo_nao_selecionado').classList.add('model')
+    document.querySelector('.erro_motorista_nao_selecionado').classList.add('model')
+
 
     var data_saida = document.querySelector('.data_saida').value
     var descricao = document.querySelector('.descricao').value
@@ -97,11 +110,22 @@ function cadastrarOperacoes() {
     // var valor_hora = document.querySelector('.valor-Hora').value
 
     var erro = false;
-    
 
-    if(descricao.trim() == "" || descricao.trim() == " ") {alert('Insira uma Descrição Antes de Cadastrar'); erro = true}
-    if (erroVeiculo == true) { alert('Selecione um Veículo Para o Cadastrar');  erro = true }
-    if (erroMotorista == true) { alert('Selecione um Motorista Para o Cadastrar'); erro = true }
+
+    if (descricao.trim() == "" || descricao.trim() == " ") {
+        document.querySelector('.erro_descricao_vazia').classList.remove('model')
+        erro = true
+    }
+
+    if (erroVeiculo == true) {
+        document.querySelector('.erro_veiculo_nao_selecionado').classList.remove('model')
+        erro = true
+    }
+    if (erroMotorista == true) {
+        document.querySelector('.erro_motorista_nao_selecionado').classList.remove('model')
+        erro = true
+    }
+
 
     if (erro == false) {
 
