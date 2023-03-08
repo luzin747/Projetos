@@ -1,7 +1,11 @@
 var uriVeiculos = 'http://localhost:3000/veiculo'
 var uriEditar = 'http://localhost:3000/veiculo'
 var uriManutencao = 'http://localhost:3000/manutencao'
+var uriCard_Usuarios = 'http://localhost:3000/usuarios'
+var uriCard_Usuarios = 'http://localhost:3000/usuarios'
 
+var usuarios = []
+var usuarios = []
 var veiculos = []
 var manutencao = []
 
@@ -12,6 +16,7 @@ var cardManutencoes = document.querySelector('.manutencao')
 function carregar() {
 
     const options = { method: 'GET' };
+
 
     fetch(uriVeiculos, options)
         .then(res => res.json())
@@ -30,7 +35,48 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
+        fetch(uriCard_Usuarios, options)
+        .then(res => res.json())
+        .then(res => {
+            usuarios = res;
+            VerificarAcesso()
+        }
+        )
+        .catch(err => console.error(err));
+
 }
+
+function VerificarAcesso() {
+
+    var userinfo = JSON.parse(localStorage.getItem("info"));
+
+    if (userinfo == null) {
+        window.location.href = '../login/login.html '
+    }
+    else {
+
+        usuarios.forEach(u => {
+            if (u.id == userinfo.id_user) {
+
+                if (u.tipo == "usuario") {
+
+                    document.querySelector('.link_painel_controle').style.display = "none"
+                    document.querySelector('.link_area_gerencial').style.display = "none"
+                    document.querySelector('.link_motoristas').style.display = "none"
+                    document.querySelector('.link_veiculos').style.display = "none"
+                }
+            }
+        })
+
+    }
+}
+
+function logout() {
+
+    window.localStorage.removeItem("info")
+    window.location.href = "../login/login.html"
+}
+
 var qtd_disponiveis = 0;
 function preencherTabela() {
 

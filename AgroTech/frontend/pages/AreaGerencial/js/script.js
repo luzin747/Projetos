@@ -3,7 +3,9 @@ var uriEditar = 'http://localhost:3000/operacao'
 
 var uriMotoristas = 'http://localhost:3000/motorista'
 var uriVeiculos = 'http://localhost:3000/veiculo'
+var uriCard_Usuarios = 'http://localhost:3000/usuarios'
 
+var usuarios = []
 var operacoes = []
 var motoristas = []
 var veiculos = []
@@ -42,9 +44,48 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
-
+        fetch(uriCard_Usuarios, options)
+        .then(res => res.json())
+        .then(res => {
+            usuarios = res;
+            VerificarAcesso()
+        }
+        )
+        .catch(err => console.error(err));
 
 }
+
+function VerificarAcesso() {
+
+    var userinfo = JSON.parse(localStorage.getItem("info"));
+
+    if (userinfo == null) {
+        window.location.href = '../login/login.html '
+    }
+    else {
+
+        usuarios.forEach(u => {
+            if (u.id == userinfo.id_user) {
+
+                if (u.tipo == "usuario") {
+
+                    document.querySelector('.link_painel_controle').style.display = "none"
+                    document.querySelector('.link_area_gerencial').style.display = "none"
+                    document.querySelector('.link_motoristas').style.display = "none"
+                    document.querySelector('.link_veiculos').style.display = "none"
+                }
+            }
+        })
+
+    }
+}
+
+function logout() {
+
+    window.localStorage.removeItem("info")
+    window.location.href = "../login/login.html"
+}
+
 var somaAndamento = 0
 function preencherTabela() {
     var linhaOperacoes = document.querySelector('.operacoes')

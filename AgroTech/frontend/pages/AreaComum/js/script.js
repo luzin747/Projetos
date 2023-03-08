@@ -3,7 +3,9 @@ var uriEditar = 'http://localhost:3000/operacao'
 
 var uriMotoristas = 'http://localhost:3000/motorista'
 var uriVeiculos = 'http://localhost:3000/veiculo'
+var uriCard_Usuarios = 'http://localhost:3000/usuarios'
 
+var usuarios = []
 var operacoes = []
 var motoristas = []
 var veiculos = []
@@ -33,6 +35,15 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
+    fetch(uriCard_Usuarios, options)
+        .then(res => res.json())
+        .then(res => {
+            usuarios = res;
+            VerificarAcesso()
+        }
+        )
+        .catch(err => console.error(err));
+
     fetch(uriOperacao, options)
         .then(res => res.json())
         .then(res => {
@@ -44,6 +55,37 @@ function carregar() {
 
 
 
+}
+
+function VerificarAcesso() {
+
+    var userinfo = JSON.parse(localStorage.getItem("info"));
+
+    if (userinfo == null) {
+        window.location.href = '../login/login.html '
+    }
+    else {
+
+        usuarios.forEach(u => {
+            if (u.id == userinfo.id_user) {
+
+                if (u.tipo == "usuario") {
+
+                    document.querySelector('.link_painel_controle').style.display = "none"
+                    document.querySelector('.link_area_gerencial').style.display = "none"
+                    document.querySelector('.link_motoristas').style.display = "none"
+                    document.querySelector('.link_veiculos').style.display = "none"
+                }
+            }
+        })
+
+    }
+}
+
+function logout() {
+
+    window.localStorage.removeItem("info")
+    window.location.href = "../login/login.html"
 }
 
 function preencherTabela() {
@@ -228,30 +270,32 @@ function fecharEditarCliente() {
 
 }
 
+
+
 var search_btn = document.querySelector('.btn-filter')
 const INPUT_BUSCA = document.querySelector('.search')
 const TABELA_CLIENTES = document.querySelector('.contOperacao')
 
 search_btn.addEventListener('click', () => {
 
-  let expressao = INPUT_BUSCA.value
+    let expressao = INPUT_BUSCA.value
 
-  let linhas = TABELA_CLIENTES.getElementsByTagName('tr')
+    let linhas = TABELA_CLIENTES.getElementsByTagName('tr')
 
-  for (let posicao in linhas) {
-      if (true === isNaN(posicao)) {
-          continue
-      }
+    for (let posicao in linhas) {
+        if (true === isNaN(posicao)) {
+            continue
+        }
 
-      let conteudoDaLinha = linhas[posicao].innerHTML
+        let conteudoDaLinha = linhas[posicao].innerHTML
 
-      if (true === conteudoDaLinha.includes(expressao)) {
-          linhas[posicao].style.display = ''
-      } else {
-          linhas[posicao].style.display = 'none'
+        if (true === conteudoDaLinha.includes(expressao)) {
+            linhas[posicao].style.display = ''
+        } else {
+            linhas[posicao].style.display = 'none'
 
-      }
+        }
 
-  }
+    }
 
 })

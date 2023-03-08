@@ -27,22 +27,23 @@
                     <!-- <p>Menu</p> -->
 
                     <ul>
-                        <li><a href="../../home.html"><i class='bx bx-category'></i></i><span class="nav-title">Painel
-                                    de Controle</span></a></li>
-                        <li><a href="../AreaGerencial/AreaGerencial.html"><i class='bx bxs-parking'></i><span
-                                    class="nav-title">Área Gerencial</span></a></li>
-                        <li><a href="../AreaComum/areaComum.html"><i class='bx bx-group'></i><span
+                        <li class="link_painel_controle"><a href="../../home.html"><i class='bx bx-category'></i></i><span
+                                    class="nav-title">Painel de Controle</span></a></li>
+                        <li class="link_area_gerencial"> <a href="../AreaGerencial/areaGerencial.html"><i
+                                    class='bx bxs-parking'></i><span class="nav-title">Área Gerencial</span></a></li>
+                        <li><a href="#"><i class='bx bx-group'></i><span
                                     class="nav-title">Área
                                     Comum</span></a></li>
-                        <li><a href="../Motoristas/motoristas.html"><i class='bx bx-money'></i><span
-                                    class="nav-title">Motoristas</span></a></li>
-                        <li><a href="#"><i class='bx bx-money'></i><span class="nav-title">Veículos</span></a></li>
+                        <li class="link_motoristas"><a href="../Motoristas/motoristas.html"><i
+                                    class='bx bx-money'></i><span class="nav-title">Motoristas</span></a></li>
+                        <li class="link_veiculos"><a href="../veiculos/veiculos.html"><i
+                                    class='bx bx-money'></i><span class="nav-title">Veículos</span></a></li>
 
 
                     </ul>
                 </div>
 
-                <div class="cont-logout">
+                <div class="cont-logout" onclick="logout()">
                     <i class='bx bx-log-out'></i>
                     <span>Sair</span>
                 </div>
@@ -126,7 +127,7 @@
                                 <input placeholder="Pesquisar Operação" class="search" type="text">
                                 <i class='bx bx-search-alt-2 btn-filter'></i>
                             </div>
-                            
+
 
                         </div>
 
@@ -151,7 +152,7 @@
                                     <hr>
                                 </div> -->
 
-                                    <!-- <div class="manutencao_section_title" onclick="MudarSection(this)">
+                                <!-- <div class="manutencao_section_title" onclick="MudarSection(this)">
                                         <p class="title">Manutenções</p>
                                         <hr>
                                     </div> -->
@@ -205,7 +206,8 @@
 
                                                 <p>Descrição</p>
                                                 <!-- <input type="text" class="disponibilidade" disabled=""> -->
-                                                <textarea class="descricao_txt_area" name="" id="" cols="50" rows="5" disabled="" style="resize: none; padding: 5px;"></textarea>
+                                                <textarea class="descricao_txt_area" name="" id="" cols="50" rows="5"
+                                                    disabled="" style="resize: none; padding: 5px;"></textarea>
 
                                             </div>
 
@@ -313,7 +315,7 @@
                                 </div>
 
 
-                                
+
 
                                 <div class="cont_button">
                                     <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
@@ -395,7 +397,7 @@
 
                 <button onclick="esconderModalFecharAntes()" class="btn-error">OK</button>
             </div>
-            
+
 
         </main>
     </div>

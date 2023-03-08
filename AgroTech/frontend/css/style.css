@@ -238,7 +238,7 @@ table tr td i:nth-child(2) {
     flex-direction: column;
     justify-content: space-around;
     margin-top: 1%;
-    
+
 }
 
 .cont_talbles div {
@@ -253,7 +253,6 @@ table tr td i:nth-child(2) {
     font-size: 15pt;
     margin: 10px;
     font-weight: bold;
-    text-align: end;
 }
 
 .div_cont_table {
@@ -265,7 +264,7 @@ table tr td i:nth-child(2) {
 
 table {
     width: 100%;
-    
+
 }
 
 table thead tr {
@@ -303,6 +302,7 @@ table img {
     border-radius: 20px 0px;
 
 }
+
 .cont_icon {
     width: 25%;
     margin: 0 auto;
@@ -338,7 +338,7 @@ table img {
 .m-editar .nomeCliente {
     font-size: 1.8rem;
     margin-top: 20px;
-    
+
     text-align: center;
 }
 
@@ -362,10 +362,11 @@ table img {
     background-color: #3B3B3B;
     border-radius: 5px;
 }
+
 .inps {
     display: flex;
     justify-content: center;
-    margin: 0px 10px 10px 10px;  
+    margin: 0px 10px 10px 10px;
 
     /* padding: 20px; */
 }
@@ -373,11 +374,13 @@ table img {
 .inps div {
     /* margin-top: 10px; */
     margin: 10px;
-    
+
 }
-.inps p{
+
+.inps p {
     font-size: 11pt;
 }
+
 .inps input {
     height: 28px;
     text-align: center;
@@ -400,4 +403,13 @@ table img {
     border-radius: 2px;
     color: white;
     width: 9vw;
+}
+
+.cont_select {
+    margin-top: 2%;
+    margin-bottom: -20px;
+}
+
+.cont_select select {
+    width: 10%;
 }

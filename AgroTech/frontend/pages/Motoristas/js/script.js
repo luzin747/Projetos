@@ -1,6 +1,8 @@
 var uriMotorista = 'http://localhost:3000/motorista'
 var uriEditar = 'http://localhost:3000/motorista'
+var uriCard_Usuarios = 'http://localhost:3000/usuarios'
 
+var usuarios = []
 var motorista = []
 
 var cardMotorista = document.querySelector('.tickets')
@@ -19,7 +21,48 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
+    fetch(uriCard_Usuarios, options)
+        .then(res => res.json())
+        .then(res => {
+            usuarios = res;
+            VerificarAcesso()
+        }
+        )
+        .catch(err => console.error(err));
+
 }
+
+function VerificarAcesso() {
+
+    var userinfo = JSON.parse(localStorage.getItem("info"));
+
+    if (userinfo == null) {
+        window.location.href = '../login/login.html '
+    }
+    else {
+
+        usuarios.forEach(u => {
+            if (u.id == userinfo.id_user) {
+
+                if (u.tipo == "usuario") {
+
+                    document.querySelector('.link_painel_controle').style.display = "none"
+                    document.querySelector('.link_area_gerencial').style.display = "none"
+                    document.querySelector('.link_motoristas').style.display = "none"
+                    document.querySelector('.link_veiculos').style.display = "none"
+                }
+            }
+        })
+
+    }
+}
+
+function logout() {
+
+    window.localStorage.removeItem("info")
+    window.location.href = "../login/login.html"
+}
+
 
 function preencherTabela() {
 
@@ -29,10 +72,10 @@ function preencherTabela() {
 
         novoCardMotorista.classList.remove('model')
         novoCardMotorista.querySelector('.id_motorista').innerHTML = m.id_motorista
-        
+
         if (m.disponivel == false) {
             novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_off.png'
-            
+
         }
 
         if (m.disponivel == true) {
@@ -91,10 +134,10 @@ var disponivel = true
 
 function salvar(e) {
 
-     var select_status = document.querySelector(".select_status")
-     let seleStatus = select_status.options[select_status.selectedIndex].value;
-     if (seleStatus == 'sim') { var disponivel = true; }
-     if (seleStatus == 'nao') { var disponivel = false; }
+    var select_status = document.querySelector(".select_status")
+    let seleStatus = select_status.options[select_status.selectedIndex].value;
+    if (seleStatus == 'sim') { var disponivel = true; }
+    if (seleStatus == 'nao') { var disponivel = false; }
 
     var id_motorista = document.querySelector('.id_editar').innerHTML
     var nome = document.querySelector('.n_editar').value
@@ -129,11 +172,13 @@ function salvar(e) {
 }
 
 
+
+
 function fecharEditarCliente() {
     var mostrarModal = document.querySelector('.m-editar')
     mostrarModal.classList.toggle('model')
-  
+
     window.location.reload();
-  
-  }
+
+}
 

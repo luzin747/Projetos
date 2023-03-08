@@ -1,9 +1,10 @@
 var uriCard_Veículos = 'http://localhost:3000/veiculo'
 var uriCard_Operacoes = 'http://localhost:3000/operacao'
 var uriCard_Motoristas = 'http://localhost:3000/motorista'
-var uriCard_Usuarios = 'http://localhost:3000/usuarios'
 var uriCard_Manutencoes = 'http://localhost:3000/manutencao'
+var uriCard_Usuarios = 'http://localhost:3000/usuarios'
 
+var usuarios = []
 var veiculos = []
 var operacoes = []
 var motoristas = []
@@ -12,7 +13,13 @@ var manutencao = []
 // var td_operacoes = document.querySelector('.operacoes')
 // var td_veiculos = document.querySelector('.veiculos')
 
+
+
+
+
 function carregar() {
+
+    trocarTables()
 
     const options = { method: 'GET' };
 
@@ -38,6 +45,16 @@ function carregar() {
         .then(res => res.json())
         .then(res => {
             veiculos = res;
+        }
+        )
+        .catch(err => console.error(err));
+
+
+    fetch(uriCard_Usuarios, options)
+        .then(res => res.json())
+        .then(res => {
+            usuarios = res;
+            VerificarAcesso()
         }
         )
         .catch(err => console.error(err));
@@ -78,17 +95,44 @@ function carregar() {
     //     )
     //     .catch(err => console.error(err));
 
-    //     fetch(uriCard_Motoristas, options)
-    //     .then(res => res.json())
-    //     .then(res => {
-    //         usuarios = res;
-    //         cardDetailsUsuarios();
-    //     }
-    //     )
-    //     .catch(err => console.error(err));
 
 
 }
+
+function VerificarAcesso() {
+    var userinfo = JSON.parse(localStorage.getItem("info"));
+
+    if (userinfo == null) {
+        window.location.href = 'pages/login/login.html '
+    }
+    else {
+
+        usuarios.forEach(u => {
+            if (u.id == userinfo.id_user) {
+
+                if (u.tipo == "usuario") {
+
+                    document.querySelector('.link_painel_controle').style.display = "none"
+                    document.querySelector('.link_area_gerencial').style.display = "none"
+                    document.querySelector('.link_motoristas').style.display = "none"
+                    document.querySelector('.link_veiculos').style.display = "none"
+                }
+            }
+        })
+
+    }
+
+}
+
+function logout() {
+
+    window.localStorage.removeItem("info")
+    window.location.href = "pages/login/login.html"
+}
+
+
+
+
 
 var qtd_Veiculos_Livres = 0
 var qtd_Veiculos_Manutencao = 0
@@ -115,7 +159,7 @@ function preencherTabelas() {
             }
         })
         veiculos.forEach(v => {
-            if(o.id_veiculo == v.id_veiculo) {
+            if (o.id_veiculo == v.id_veiculo) {
                 novaLinhaOperacoes.querySelector('.veiculo').innerHTML = v.modelo
 
             }
@@ -274,7 +318,6 @@ function filtroRelatorios() {
     }
 }
 
-
 function editarCliente(e) {
 
     var id = e.parentNode.parentNode.querySelector('.id_operacao').innerHTML
@@ -320,3 +363,24 @@ function fecharEditarCliente() {
     window.location.reload();
 
 }
+
+function trocarTables() {
+
+    console.log('indo');
+
+    var select_status = document.querySelector(".select_status")
+    let seleMotorista = select_status.options[select_status.selectedIndex].value;
+
+    console.log(seleMotorista);
+    if (seleMotorista == 'operacao_table') {
+        document.querySelector('.table_operacao').style.display = "block"
+        document.querySelector('.table_veiculo').style.display = "none"
+
+    }
+
+    if (seleMotorista == 'veiculos_table') {
+        document.querySelector('.table_operacao').style.display = "none"
+        document.querySelector('.table_veiculo').style.display = "block"
+
+    }
+}   

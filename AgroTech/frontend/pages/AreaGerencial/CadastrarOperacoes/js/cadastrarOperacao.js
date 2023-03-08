@@ -56,15 +56,13 @@ function preencherSelects() {
 
     motorista.forEach(m => {
 
-        operacao.forEach(o => {
-            if (o.id_motorista == m.id_motorista && o.data_retorno != "") {
+            if (m.id_motorista == true) {
                 var optionMotorista = document.createElement('option')
                 optionMotorista.value = m.id_motorista
                 optionMotorista.innerHTML = m.nome
                 document.querySelector('.tipo-Motorista').appendChild(optionMotorista)
 
             }
-        })
 
     })
 
