@@ -75,7 +75,7 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th class="model">#</th>
                                         <th>Motorista</th>
                                         <th>Veiculo</th>
                                         <th>Data Saída</th>
@@ -87,7 +87,7 @@
 
                                 <tbody class="contOperacao">
                                     <tr class="operacoes model">
-                                        <td class="id_operacao">RTX3090TI</td>
+                                        <td class="id_operacao model">RTX3090TI</td>
                                         <td class="motorista">GTX0N3GB</td>
                                         <td class="veiculo">GTX0N3GB</td>
                                         <td class="data_saida">GTX0N3GB</td>
@@ -95,7 +95,6 @@
                                         <td class=""><i class='bx bx-show ' onclick="editarCliente(this)"></i></td>
                                         <td class="cont-btns">
                                             <i class='bx bx-edit ' onclick="editarCliente(this)"></i>
-                                            <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i>
                                         </td>
                                     </tr>
 
@@ -174,7 +173,6 @@
                                             <input type="text" class="placa_veiculo m_editar" disabled="">
                                         </div>
 
-                                        
                                         <div>
                                             <p>Veiculo</p>
                                             <input type="text" class="modelo_veiculo v_editar" disabled="">
@@ -182,7 +180,7 @@
 
                                     </div>
 
-                                    <div class="inps">
+                                    <!-- <div class="inps">
 
                                         <div>
                                             <p>Trocar Motorista</p>
@@ -201,7 +199,7 @@
                                         </div>
 
 
-                                    </div>
+                                    </div> -->
 
                                     <div class="inps" style="display:  none;">
                                         <div>
@@ -237,7 +235,7 @@
 
                                                 <p>Descrição</p>
                                                 <!-- <input type="text" class="disponibilidade" disabled=""> -->
-                                                <textarea class="descricao_txt_area" name="" id="" cols="50" rows="5"
+                                                <textarea class="descricao_txt_area" name=""  id="" cols="50" rows="5"
                                                     style="resize: none; padding: 5px;"></textarea>
 
                                             </div>
@@ -256,6 +254,10 @@
                                         <div class="cont_button_c_manutencao model">
                                             <button onclick="salvarCManutenção(this)">Salvar</button>
                                             <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
+                                        </div>
+
+                                        <div class="cont_trash" >
+                                            <i class='bx bxs-trash-alt' onclick="inativarFunction()"></i>
                                         </div>
 
 

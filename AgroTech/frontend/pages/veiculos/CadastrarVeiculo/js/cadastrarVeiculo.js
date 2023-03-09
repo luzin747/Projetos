@@ -82,7 +82,7 @@ function cadastrarVeiculos() {
             "marca": marca,
             "placa": placa,
             "tipo": seleTipoVeiculo,
-            "disponivel": true,
+            "disponivel": "Ativo",
         };
 
         fetch(uriVeiculos, {

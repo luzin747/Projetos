@@ -15,7 +15,7 @@ CREATE TABLE `Motorista` (
     `cpf` VARCHAR(191) NOT NULL,
     `cnh` VARCHAR(191) NOT NULL,
     `nome` VARCHAR(191) NOT NULL,
-    `disponivel` BOOLEAN NOT NULL,
+    `disponivel` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `Motorista_cpf_key`(`cpf`),
     UNIQUE INDEX `Motorista_cnh_key`(`cnh`),
@@ -29,7 +29,7 @@ CREATE TABLE `Veiculos` (
     `modelo` VARCHAR(191) NOT NULL,
     `marca` VARCHAR(191) NOT NULL,
     `tipo` VARCHAR(191) NOT NULL,
-    `disponivel` BOOLEAN NOT NULL DEFAULT true,
+    `disponivel` VARCHAR(191) NOT NULL,
 
     UNIQUE INDEX `Veiculos_placa_key`(`placa`),
     PRIMARY KEY (`id_veiculo`)
@@ -55,15 +55,16 @@ CREATE TABLE `Operacao` (
     `data_saida` VARCHAR(191) NOT NULL,
     `data_retorno` VARCHAR(191) NOT NULL,
     `descricao` VARCHAR(191) NOT NULL,
+    `status` BOOLEAN NOT NULL,
 
     PRIMARY KEY (`id_opeacao`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Manutencao` ADD CONSTRAINT `Manutencao_id_veiculo_fkey` FOREIGN KEY (`id_veiculo`) REFERENCES `Veiculos`(`id_veiculo`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Manutencao` ADD CONSTRAINT `Manutencao_id_veiculo_fkey` FOREIGN KEY (`id_veiculo`) REFERENCES `Veiculos`(`id_veiculo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Operacao` ADD CONSTRAINT `Operacao_id_motorista_fkey` FOREIGN KEY (`id_motorista`) REFERENCES `Motorista`(`id_motorista`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Operacao` ADD CONSTRAINT `Operacao_id_motorista_fkey` FOREIGN KEY (`id_motorista`) REFERENCES `Motorista`(`id_motorista`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Operacao` ADD CONSTRAINT `Operacao_id_veiculo_fkey` FOREIGN KEY (`id_veiculo`) REFERENCES `Veiculos`(`id_veiculo`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Operacao` ADD CONSTRAINT `Operacao_id_veiculo_fkey` FOREIGN KEY (`id_veiculo`) REFERENCES `Veiculos`(`id_veiculo`) ON DELETE CASCADE ON UPDATE CASCADE;

@@ -73,16 +73,25 @@ function preencherTabela() {
         novoCardMotorista.classList.remove('model')
         novoCardMotorista.querySelector('.id_motorista').innerHTML = m.id_motorista
 
-        if (m.disponivel == false) {
-            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_off.png'
+        if (m.disponivel == "Ativo") {
+            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
 
         }
 
-        if (m.disponivel == true) {
-            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+        if (m.disponivel == "Em Operação") {
+
+            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_in_operacao.png'
             // qtd_disponiveis += 1
 
         }
+
+        if (m.disponivel == "Inativo") {
+            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_inactive.png'
+            // qtd_disponiveis += 1
+
+        }
+
+
         novoCardMotorista.querySelector('.cpf').innerHTML = m.cpf
         novoCardMotorista.querySelector('.cnh').innerHTML = m.cnh
         novoCardMotorista.querySelector('.nome').innerHTML = m.nome
@@ -170,9 +179,6 @@ function salvar(e) {
 
         })
 }
-
-
-
 
 function fecharEditarCliente() {
     var mostrarModal = document.querySelector('.m-editar')

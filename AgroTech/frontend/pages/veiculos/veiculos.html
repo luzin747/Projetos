@@ -75,7 +75,7 @@
                                 <thead>
                                     <tr>
                                         <th>Situação</th>
-                                        <th>#</th>
+                                        <th class="model">#</th>
                                         <th>Modelo</th>
                                         <th>Placa</th>
                                         <th>Marca</th>
@@ -88,29 +88,30 @@
                                 <tbody class="contTickets">
 
                                     <tr class="tickets model">
-                                        <td class=""><img class="img_situation" src="img/icons/cicle_on.png" alt="">
+                                        <td class=""><img class="img_situation" src="" alt="">
                                         </td>
-                                        <td class="id_veiculos">1</td>
+                                        <td class="id_veiculos model">1</td>
                                         <td class="modelo">1</td>
                                         <td class="placas">5</td>
                                         <td class="marca">Veiculo Pequeno</td>
                                         <td class="tipo">R$ 10,00</td>
                                         <td class="cont-btns">
-                                            <i class='bx bx-show btn_show_modal_manu' onclick="editarCliente(this)"></i>
-                                            <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i>
+                                            <i class='bx bx-edit btn_show_modal_manu' onclick="editarCliente(this)"></i>
                                         </td>
                                     </tr>
 
                                 </tbody>
 
                             </table>
-                            
+
                         </div>
                         <div class="tools_pesquisa">
 
                             <div class="cont-qtd">
                                 <i class='bx bxs-quote-single-right user'></i>
-                                <p>Quantidade: <p class="qtd-veiculos-tool"></p></p>
+                                <p>Quantidade:
+                                <p class="qtd-veiculos-tool"></p>
+                                </p>
                             </div>
 
 
@@ -212,9 +213,7 @@
                                                 <p>Trocar Disponibilidade</p>
 
                                                 <select class="select_status" onclick="selecionarDisponibilidade()">
-                                                    <option value="sim">Default</option>
-                                                    <option value="sim">Disponivel</option>
-                                                    <option value="nao">Na Manutenção</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -259,10 +258,10 @@
                                             <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                         </div>
 
-                                        <div class="cont_button_c_manutencao model">
+                                        <!-- <div class="cont_button_c_manutencao model">
                                             <button onclick="salvarCManutenção(this)">Salvar</button>
                                             <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
-                                        </div>
+                                        </div> -->
 
 
 
@@ -273,14 +272,19 @@
 
                             <div class="cont_manutencao model">
 
-                                <Button class="btn_add_manutencao" onclick="mostrarModalManutencao()">Adicionar
-                                    Manutenção</Button>
+                                <div class="cont_btn_add_manutencao">
+
+                                    <Button class="btn_add_manutencao" onclick="mostrarModalManutencao()">Adicionar
+                                        Manutenção</Button>
+                                </div>
 
                                 <div class="inps_descri_section_create_manu model">
 
+                                    <h2>Adicionar Manutenção</h2>
+
                                     <p>Descrição da Manutenção</p>
 
-                                    <textarea class="descricao_man" name="" id="" cols="40" rows="5"></textarea>
+                                    <textarea class="descricao_man" name="" id="" cols="40" rows="5" style="resize: none; padding: 5px;"></textarea>
 
                                     <div class="inp_valor">
 

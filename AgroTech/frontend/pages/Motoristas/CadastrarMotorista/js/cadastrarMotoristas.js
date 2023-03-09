@@ -13,11 +13,12 @@ function carregar() {
         )
         .catch(err => console.error(err));
 }
-var erro = false
 
 function cadastrarMotorista() {
 
     var erroCpf = false;
+    var erro = false
+
 
 
     document.querySelector('.erro_nome_vazio').classList.add('model')
@@ -145,8 +146,10 @@ function cadastrarMotorista() {
             "nome": nome,
             "cpf": cpf,
             "cnh": cnh,
-            "disponivel": true
+            "disponivel": "Ativo"
         };
+
+        console.log(data);
 
         fetch(uriMotorista, {
             "method": "POST",

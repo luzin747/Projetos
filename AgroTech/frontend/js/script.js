@@ -14,9 +14,6 @@ var manutencao = []
 // var td_veiculos = document.querySelector('.veiculos')
 
 
-
-
-
 function carregar() {
 
     trocarTables()
@@ -131,9 +128,6 @@ function logout() {
 }
 
 
-
-
-
 var qtd_Veiculos_Livres = 0
 var qtd_Veiculos_Manutencao = 0
 
@@ -147,27 +141,30 @@ function preencherTabelas() {
 
     operacoes.forEach(o => {
 
-        var novaLinhaOperacoes = linhaOperacoes.cloneNode(true)
+        if (o.status == true) {
 
-        novaLinhaOperacoes.classList.remove('model')
+            var novaLinhaOperacoes = linhaOperacoes.cloneNode(true)
 
-        novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
-        motoristas.forEach(m => {
-            if (o.id_motorista == m.id_motorista) {
-                novaLinhaOperacoes.querySelector('.motorista').innerHTML = m.nome
+            novaLinhaOperacoes.classList.remove('model')
 
-            }
-        })
-        veiculos.forEach(v => {
-            if (o.id_veiculo == v.id_veiculo) {
-                novaLinhaOperacoes.querySelector('.veiculo').innerHTML = v.modelo
+            novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
+            motoristas.forEach(m => {
+                if (o.id_motorista == m.id_motorista) {
+                    novaLinhaOperacoes.querySelector('.motorista').innerHTML = m.nome
 
-            }
-        })
-        novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
-        novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
+                }
+            })
+            veiculos.forEach(v => {
+                if (o.id_veiculo == v.id_veiculo) {
+                    novaLinhaOperacoes.querySelector('.veiculo').innerHTML = v.modelo
 
-        document.querySelector('.contOperac').appendChild(novaLinhaOperacoes)
+                }
+            })
+            novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
+            novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
+
+            document.querySelector('.contOperac').appendChild(novaLinhaOperacoes)
+        }
 
     })
 
@@ -183,13 +180,19 @@ function preencherTabelas() {
         novaLinhaVeiculos.querySelector('.placa').innerHTML = v.placa
         novaLinhaVeiculos.querySelector('.modelo').innerHTML = v.modelo
         novaLinhaVeiculos.querySelector('.marca').innerHTML = v.marca
-        if (v.disponivel == true) {
+
+
+        if (v.disponivel == "Ativo") {
             novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+        }
+
+        if (v.disponivel == "Em Operacao") {
+            novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_in_operacao.png'
 
         }
-        else {
-            novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_off.png'
-
+        if (v.disponivel == "Em Manutencao") {
+            novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_manutencao.png'
+            console.log('asadad');
         }
 
         // novaLinhaVeiculos.querySelector('.situacao').innerHTML = v.disponivel

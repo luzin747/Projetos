@@ -7,9 +7,7 @@
     font-family: 'Poppins';
 }
 
-body {
-    background-color: #f0f0f0f1;
-}
+
 .cont-cadastra {
     display: flex;
     justify-content: space-around;

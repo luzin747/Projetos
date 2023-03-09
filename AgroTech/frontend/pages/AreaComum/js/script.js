@@ -93,28 +93,32 @@ function preencherTabela() {
 
     operacoes.forEach(o => {
 
-        var novaLinhaOperacoes = linhaOperacoes.cloneNode(true)
+        if (o.status == true) {
 
-        novaLinhaOperacoes.classList.remove('model')
 
-        novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
-        motoristas.forEach(m => {
-            if (o.id_motorista == m.id_motorista) {
-                novaLinhaOperacoes.querySelector('.motorista').innerHTML = m.nome
+            var novaLinhaOperacoes = linhaOperacoes.cloneNode(true)
 
-            }
-        })
-        veiculos.forEach(v => {
-            if (o.id_veiculo == v.id_veiculo) {
-                novaLinhaOperacoes.querySelector('.veiculo').innerHTML = v.modelo
+            novaLinhaOperacoes.classList.remove('model')
 
-            }
-        })
-        novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
-        novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
-        novaLinhaOperacoes.querySelector('.descricao').innerHTML = o.descricao
+            novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
+            motoristas.forEach(m => {
+                if (o.id_motorista == m.id_motorista) {
+                    novaLinhaOperacoes.querySelector('.motorista').innerHTML = m.nome
 
-        document.querySelector('.contOperacao').appendChild(novaLinhaOperacoes)
+                }
+            })
+            veiculos.forEach(v => {
+                if (o.id_veiculo == v.id_veiculo) {
+                    novaLinhaOperacoes.querySelector('.veiculo').innerHTML = v.modelo
+
+                }
+            })
+            novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
+            novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
+            novaLinhaOperacoes.querySelector('.descricao').innerHTML = o.descricao
+
+            document.querySelector('.contOperacao').appendChild(novaLinhaOperacoes)
+        }
 
     })
 

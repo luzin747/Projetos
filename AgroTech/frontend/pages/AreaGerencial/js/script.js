@@ -44,7 +44,7 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
-        fetch(uriCard_Usuarios, options)
+    fetch(uriCard_Usuarios, options)
         .then(res => res.json())
         .then(res => {
             usuarios = res;
@@ -94,46 +94,50 @@ function preencherTabela() {
 
     operacoes.forEach(o => {
 
-        if (o.data_retorno == "") {
-            somaAndamento += 1
-        }
+        if (o.status == true) {
 
-        var novaLinhaOperacoes = linhaOperacoes.cloneNode(true)
+            if (o.data_retorno == "") {
+                somaAndamento += 1
+            }
 
-        novaLinhaOperacoes.classList.remove('model')
+            var novaLinhaOperacoes = linhaOperacoes.cloneNode(true)
 
-        novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
-        // novaLinhaOperacoes.querySelector('.id_motorista_editar').innerHTML = o.id_motorista
+            novaLinhaOperacoes.classList.remove('model')
 
-        document.querySelector('.id_m_editar').value = o.id_motorista
-        document.querySelector('.id_v_editar').value = o.id_veiculo
+            novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
+            // novaLinhaOperacoes.querySelector('.id_motorista_editar').innerHTML = o.id_motorista
 
-        motoristas.forEach(m => {
-            if (o.id_motorista == m.id_motorista) {
+            document.querySelector('.id_m_editar').value = o.id_motorista
+            document.querySelector('.id_v_editar').value = o.id_veiculo
 
-                novaLinhaOperacoes.querySelector('.motorista').innerHTML = m.nome
+            motoristas.forEach(m => {
+                if (o.id_motorista == m.id_motorista) {
+
+                    novaLinhaOperacoes.querySelector('.motorista').innerHTML = m.nome
+
+                }
+            })
+            veiculos.forEach(v => {
+                if (o.id_veiculo == v.id_veiculo) {
+                    novaLinhaOperacoes.querySelector('.veiculo').innerHTML = v.modelo
+
+
+                }
+            })
+            novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
+
+            if (o.data_retorno == "") {
+                novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = "Em Andamento"
 
             }
-        })
-        veiculos.forEach(v => {
-            if (o.id_veiculo == v.id_veiculo) {
-                novaLinhaOperacoes.querySelector('.veiculo').innerHTML = v.modelo
-
-
+            else {
+                novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
             }
-        })
-        novaLinhaOperacoes.querySelector('.data_saida').innerHTML = o.data_saida
+            // novaLinhaOperacoes.querySelector('.descricao').innerHTML = o.descricao
 
-        if (o.data_retorno == "") {
-            novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = "Em Andamento"
-
+            document.querySelector('.contOperacao').appendChild(novaLinhaOperacoes)
         }
-        else {
-            novaLinhaOperacoes.querySelector('.data_retorno').innerHTML = o.data_retorno
-        }
-        // novaLinhaOperacoes.querySelector('.descricao').innerHTML = o.descricao
 
-        document.querySelector('.contOperacao').appendChild(novaLinhaOperacoes)
 
     })
 
@@ -170,28 +174,28 @@ function editarCliente(e) {
 
     mostrarModal.classList.remove('model')
 
-    motoristas.forEach(m => {
+    // motoristas.forEach(m => {
 
-        var optionMotorista = document.createElement('option')
-        optionMotorista.value = m.id_motorista
-        optionMotorista.innerHTML = m.nome
+    //     var optionMotorista = document.createElement('option')
+    //     optionMotorista.value = m.id_motorista
+    //     optionMotorista.innerHTML = m.nome
 
-        document.querySelector('.tipo-Motorista').appendChild(optionMotorista)
+    //     document.querySelector('.tipo-Motorista').appendChild(optionMotorista)
 
-    })
+    // })
 
-    veiculos.forEach(v => {
+    // veiculos.forEach(v => {
 
-        if (v.disponivel == true) {
+    //     if (v.disponivel == true) {
 
-            var optionVeiculo = document.createElement('option')
-            optionVeiculo.value = v.id_veiculo
-            optionVeiculo.innerHTML = v.modelo
+    //         var optionVeiculo = document.createElement('option')
+    //         optionVeiculo.value = v.id_veiculo
+    //         optionVeiculo.innerHTML = v.modelo
 
-            document.querySelector('.tipo-Veiculo').appendChild(optionVeiculo)
-        }
+    //         document.querySelector('.tipo-Veiculo').appendChild(optionVeiculo)
+    //     }
 
-    })
+    // })
 
     operacoes.forEach(o => {
         if (id == o.id_opeacao) {
@@ -216,12 +220,12 @@ function editarCliente(e) {
             document.querySelector('.ds_editar').value = o.data_saida
             document.querySelector('.descricao_txt_area').innerHTML = o.descricao
 
-            if (o.data_retorno != "" || o.data_retorno != null) {
+            if (o.data_retorno != "") {
 
                 document.querySelector('.dr_retorno').value = o.data_retorno
                 document.querySelector('.dr_retorno').style.display = "block"
                 document.querySelector('.btn_finalizar_operacao').style.display = "none"
-                
+
             }
         }
 
@@ -241,19 +245,21 @@ function salvar(e) {
     var data_saida = document.querySelector('.ds_editar').value
     var data_retorno = document.querySelector('.dr_retorno').value
 
-    var select_status = document.querySelector(".tipo-Motorista")
-    let seleMotorista = select_status.options[select_status.selectedIndex].value;
+    var descricao = document.querySelector('.descricao_txt_area').value
 
-    if (seleMotorista != 'default') {
-        motorista = seleMotorista;
-    }
+    // var select_status = document.querySelector(".tipo-Motorista")
+    // let seleMotorista = select_status.options[select_status.selectedIndex].value;
 
-    var select_status = document.querySelector(".tipo-Veiculo")
-    let seleVeiculo = select_status.options[select_status.selectedIndex].value;
+    // if (seleMotorista != 'default') {
+    //     motorista = seleMotorista;
+    // }
 
-    if (seleVeiculo != 'default') {
-        veiculo = seleVeiculo
-    }
+    // var select_status = document.querySelector(".tipo-Veiculo")
+    // let seleVeiculo = select_status.options[select_status.selec  tedIndex].value;
+
+    // if (seleVeiculo != 'default') {
+    //     veiculo = seleVeiculo
+    // }
 
     let data = {
         "id_opeacao": Number(id_operacao),
@@ -261,7 +267,9 @@ function salvar(e) {
         "id_veiculo": Number(veiculo),
         "data_saida": data_saida,
         "data_retorno": data_retorno,
-        "descricao": "descrição teste"
+        "descricao": descricao,
+        "status": true
+
     }
 
     console.log(data);
@@ -304,6 +312,111 @@ function finarlizarOperacao(e) {
     document.querySelector('.dr_retorno').style.display = 'block'
 
     document.querySelector('.btn_finalizar_operacao').classList.add('model')
+
+
+
+}
+
+function inativarFunction() {
+
+    finarlizarOperacao();
+
+    var id_operacao = document.querySelector('.id_editar').innerHTML
+
+    var motorista = document.querySelector('.id_m_editar').value
+    var veiculo = document.querySelector('.id_v_editar').value
+
+    var data_saida = document.querySelector('.ds_editar').value
+    var data_retorno = document.querySelector('.dr_retorno').value
+
+    var descricao = document.querySelector('.descricao_txt_area').value
+
+    // var select_status = document.querySelector(".tipo-Motorista")
+    // let seleMotorista = select_status.options[select_status.selectedIndex].value;
+
+    // if (seleMotorista != 'default') {
+    //     motorista = seleMotorista;
+    // }
+
+    // var select_status = document.querySelector(".tipo-Veiculo")
+    // let seleVeiculo = select_status.options[select_status.selec  tedIndex].value;
+
+    // if (seleVeiculo != 'default') {
+    //     veiculo = seleVeiculo
+    // }
+
+    let data = {
+        "id_opeacao": Number(id_operacao),
+        "id_motorista": Number(motorista),
+        "id_veiculo": Number(veiculo),
+        "data_saida": data_saida,
+        "data_retorno": data_retorno,
+        "descricao": descricao,
+        "status": false
+    }
+
+    console.log(data);
+
+    trocarStatusMotorista(motorista)
+
+    fetch('http://localhost:3000/operacao/' + id_operacao, {
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+            if (resp == 200) {
+                trocarStatusMotorista(motorista)
+                window.location.reload()
+            }
+
+        })
+
+}
+
+
+function trocarStatusMotorista(id) {
+
+    var nome
+    var cpf
+    var cnh
+
+    motoristas.forEach(m => {
+
+
+        if (m.id_motorista == id) {
+
+            nome = m.nome
+            cpf = m.cpf
+            cnh = m.cnh
+        }
+    })
+
+
+    let data = {
+        "nome": nome,
+        "cpf": cpf,
+        "cnh": cnh,
+        "disponivel": "Ativo"
+    }
+
+    console.log(data);
+
+    fetch('http://localhost:3000/motorista/' + id, {
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+
+            alert('Operacão Excluida')
+        })
 
 
 

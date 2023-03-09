@@ -427,3 +427,34 @@ main {
     border-radius: 10px;
     border: none;
 }
+
+.modal_excluir {
+    background-color: white;
+    padding: 15px;
+    position: absolute  ;
+    top: 15%;
+    left: 40%;
+    width: 30%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.336);
+    text-align: center;
+}
+
+.modal_excluir h2 {
+    margin-bottom: 10px;
+}
+
+.title_modal_excluir {
+    margin: 0 auto;
+    margin-bottom: 5%;
+}
+
+.cont_trash {
+    display: flex;
+    justify-content: end;
+}
+
+.cont_trash i {
+    font-size: 30pt;
+    margin-right: 5%;
+    margin-top: -8%;
+}

@@ -35,7 +35,7 @@ function carregar() {
         )
         .catch(err => console.error(err));
 
-        fetch(uriCard_Usuarios, options)
+    fetch(uriCard_Usuarios, options)
         .then(res => res.json())
         .then(res => {
             usuarios = res;
@@ -84,28 +84,38 @@ function preencherTabela() {
 
     veiculos.forEach(v => {
 
-        var novoCardVeiculos = cardVeiculos.cloneNode(true)
+        if (v.disponivel != "Inativo") {
 
-        novoCardVeiculos.classList.remove('model')
 
-        novoCardVeiculos.querySelector('.id_veiculos').innerHTML = v.id_veiculo
-        novoCardVeiculos.querySelector('.placas').innerHTML = v.placa
-        novoCardVeiculos.querySelector('.modelo').innerHTML = v.modelo
-        novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
-        novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
+            var novoCardVeiculos = cardVeiculos.cloneNode(true)
 
-        if (v.disponivel == false) {
-            novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_oFF.png'
-            
+            novoCardVeiculos.classList.remove('model')
+
+            novoCardVeiculos.querySelector('.id_veiculos').innerHTML = v.id_veiculo
+            novoCardVeiculos.querySelector('.placas').innerHTML = v.placa
+            novoCardVeiculos.querySelector('.modelo').innerHTML = v.modelo
+            novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
+            novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
+
+
+            if (v.disponivel == "Ativo") {
+                novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+                qtd_disponiveis += 1
+
+            }
+
+            if (v.disponivel == "Em Operacao") {
+                novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_in_operacao.png'
+
+            }
+            if (v.disponivel == "Em Manutencao") {
+                novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_manutencao.png'
+                console.log('asadad');
+            }
+
+            document.querySelector('.contTickets').appendChild(novoCardVeiculos)
         }
 
-        if (v.disponivel == true) {
-            novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
-            qtd_disponiveis += 1
-
-        }
-
-        document.querySelector('.contTickets').appendChild(novoCardVeiculos)
     })
 
     console.log(document.querySelector('.qtd_veiculos'));
@@ -113,7 +123,7 @@ function preencherTabela() {
     document.querySelector('.qtd-disponiveis').innerHTML = qtd_disponiveis
 
 
-    
+
 }
 
 var soma = 0
@@ -129,6 +139,15 @@ function editarCliente(e) {
     mostrarModal.classList.remove('model')
 
 
+    var optionDisponivel = document.createElement('option')
+    optionDisponivel.value = "Ativo"
+    optionDisponivel.innerHTML = "Disponivel"
+
+    var optionManutencao = document.createElement('option')
+    optionManutencao.value = "Em Manutencao"
+    optionManutencao.innerHTML = "Em Manutencao"
+
+
     if (soma == 1) {
         carregarManutencoes(id)
     }
@@ -136,21 +155,24 @@ function editarCliente(e) {
     veiculos.forEach(v => {
         if (id == v.id_veiculo) {
 
+            if(v.disponivel == "Em Manutencao") {
+                document.querySelector('.select_status').appendChild(optionManutencao)
+                document.querySelector('.select_status').appendChild(optionDisponivel)
+
+            }
+
+            if(v.disponivel == "Ativo") {
+                document.querySelector('.select_status').appendChild(optionDisponivel)
+                document.querySelector('.select_status').appendChild(optionManutencao)
+
+            }
+
             document.querySelector('.id_veiculo').innerHTML = v.id_veiculo
             document.querySelector('.placa_veiculo').value = v.placa
             document.querySelector('.modelo_veiculo').value = v.modelo
             document.querySelector('.marca_veiculo').value = v.marca
             document.querySelector('.tipo_veiculo').value = v.tipo
-
-            if (v.disponivel == false) {
-                document.querySelector('.disponibilidade').value = 'Não'
-
-            }
-
-            if (v.disponivel == true) {
-                document.querySelector('.disponibilidade').value = 'Sim'
-
-            }
+            document.querySelector('.disponibilidade').value = v.disponivel
 
         }
 
@@ -183,8 +205,8 @@ function editarCliente(e) {
 
 //     var select_status = document.querySelector(".select_status")
 //     let seleStatus = select_status.options[select_status.selectedIndex].value;
-//     if (seleStatus == 'sim') { var disponivel = true; }
-//     if (seleStatus == 'nao') { var disponivel = false; }
+//     if (seleStatus == 'sim') { var disponivel = "Disponivel"; }
+//     if (seleStatus == 'nao') { var disponivel = "Na Manutenção";; }
 
 
 //     var inpDataEntrada = document.querySelector('.data_entrada')
@@ -261,8 +283,6 @@ function salvar(e) {
 
     var select_status = document.querySelector(".select_status")
     let seleStatus = select_status.options[select_status.selectedIndex].value;
-    if (seleStatus == 'sim') { var disponivel = true; }
-    if (seleStatus == 'nao') { var disponivel = false; }
 
     var id_veiculo = document.querySelector('.id_editar').innerHTML
     var placa = document.querySelector('.pv_editar').value
@@ -275,7 +295,7 @@ function salvar(e) {
         "modelo": modelo,
         "marca": marca,
         "tipo": tipo,
-        "disponivel": disponivel,
+        "disponivel": seleStatus    
     }
 
     console.log(data);
@@ -377,7 +397,7 @@ function funcaoCadManutencao(e) {
 
                 var menutencao_descri = document.querySelector('.inps_descri_section_create_manu')
                 var menutencao_btns = document.querySelector('.cont_button_c_manutencao')
-            
+
                 menutencao_descri.classList.add('model')
                 menutencao_btns.classList.add('model')
 
@@ -438,18 +458,18 @@ function carregarManutencoes(e) {
     var cardManutencao = document.querySelector('.manutencao')
     var btn_add_manutencao = document.querySelector('.btn_add_manutencao')
     var inps_descri_section_create_manu = document.querySelector('.inps_descri_section_create_manu')
-                
+
     var novoCardManutencaoTeste = cardManutencao.cloneNode(true)
     var novo_btn_add_manutencao = btn_add_manutencao.cloneNode(true)
     var novo_inps_descri_section_create_manu = inps_descri_section_create_manu.cloneNode(true)
-    
+
     document.querySelector('.cont_manutencao').innerHTML = ""
 
     document.querySelector('.cont_manutencao').appendChild(novo_btn_add_manutencao)
 
     document.querySelector('.cont_manutencao').appendChild(novo_inps_descri_section_create_manu)
 
-    console.log( document.querySelector('.cont_manutencao'));
+    console.log(document.querySelector('.cont_manutencao'));
 
 
     manutencao.forEach(m => {

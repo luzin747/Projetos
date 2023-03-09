@@ -24,7 +24,7 @@ model Motorista {
   cpf String @unique
   cnh String @unique
   nome String
-  disponivel Boolean
+  disponivel String
   operacao Operacao []
 }
 
@@ -34,7 +34,7 @@ model Veiculos {
   modelo String
   marca String
   tipo String
-  disponivel Boolean @default(true)
+  disponivel String
   operacao Operacao []
   manutencao Manutencao []
 
@@ -47,8 +47,7 @@ model Manutencao {
   data_fim String
   valor Float
   descricao String
-  veiculos Veiculos @relation(fields: [id_veiculo], references: [id_veiculo])
-
+  veiculos Veiculos @relation(fields: [id_veiculo], references: [id_veiculo], onDelete: Cascade)
 
 }
 
@@ -59,7 +58,8 @@ model Operacao {
   data_saida String
   data_retorno String
   descricao String
-  motorista Motorista @relation(fields: [id_motorista], references: [id_motorista])
-  veiculos Veiculos @relation(fields: [id_veiculo], references: [id_veiculo])
+  status Boolean
+  motorista Motorista @relation(fields: [id_motorista], references: [id_motorista], onDelete: Cascade)
+  veiculos Veiculos @relation(fields: [id_veiculo], references: [id_veiculo], onDelete: Cascade)
 
-}
+} 

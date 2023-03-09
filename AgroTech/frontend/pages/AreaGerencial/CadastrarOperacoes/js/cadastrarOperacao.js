@@ -56,13 +56,14 @@ function preencherSelects() {
 
     motorista.forEach(m => {
 
-            if (m.id_motorista == true) {
-                var optionMotorista = document.createElement('option')
-                optionMotorista.value = m.id_motorista
-                optionMotorista.innerHTML = m.nome
-                document.querySelector('.tipo-Motorista').appendChild(optionMotorista)
 
-            }
+        if (m.disponivel == "Ativo") {
+            var optionMotorista = document.createElement('option')
+            optionMotorista.value = m.id_motorista
+            optionMotorista.innerHTML = m.nome
+            document.querySelector('.tipo-Motorista').appendChild(optionMotorista)
+
+        }
 
     })
 
@@ -133,9 +134,11 @@ function cadastrarOperacoes() {
             "data_saida": data_saida,
             "data_retorno": "",
             "descricao": descricao,
+            "status": true
         };
 
         console.log(data);
+
 
         fetch('http://localhost:3000/operacao', {
             "method": "POST",
@@ -150,7 +153,8 @@ function cadastrarOperacoes() {
                 console.log(resp);
                 if (resp == 200) {
 
-                    alert('Veículo Cadastrado')
+                    alert('Operação Cadastrada')
+                    trocarStatusMotorista(seleMotorista)
                     window.location.href = '../areaGerencial.html'
                 }
                 else {
@@ -162,5 +166,49 @@ function cadastrarOperacoes() {
                 }
             })
     }
+
+
+
+}
+
+function trocarStatusMotorista(id) {
+
+    var nome
+    var cpf
+    var cnh
+
+    motorista.forEach(m => {
+
+
+        if (m.id_motorista == id) {
+
+            nome = m.nome
+            cpf = m.cpf
+            cnh = m.cnh
+        }
+    })
+
+    let data = {
+        "nome": nome,
+        "cpf": cpf,
+        "cnh": cnh,
+        "disponivel": "Em Operação"
+    }
+
+    console.log(data);
+
+    fetch('http://localhost:3000/motorista/' + id, {
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+
+        })
+
+
 
 }
