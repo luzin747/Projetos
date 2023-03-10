@@ -4,11 +4,13 @@ var uriEditar = 'http://localhost:3000/operacao'
 var uriMotoristas = 'http://localhost:3000/motorista'
 var uriVeiculos = 'http://localhost:3000/veiculo'
 var uriCard_Usuarios = 'http://localhost:3000/usuarios'
+var uriManutencoes = 'http://localhost:3000/manutencao'
 
 var usuarios = []
 var operacoes = []
 var motoristas = []
 var veiculos = []
+var manutencoes = []
 
 var cardMotorista = document.querySelector('.tickets')
 
@@ -16,6 +18,15 @@ var cardMotorista = document.querySelector('.tickets')
 function carregar() {
 
     const options = { method: 'GET' };
+
+    fetch(uriManutencoes, options)
+        .then(res => res.json())
+        .then(res => {
+            manutencoes = res;
+
+        }
+        )
+        .catch(err => console.error(err));
 
     fetch(uriMotoristas, options)
         .then(res => res.json())

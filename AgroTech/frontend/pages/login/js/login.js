@@ -36,6 +36,7 @@ function logar() {
                 console.log(data)
                 localStorage.setItem("info", JSON.stringify({ "id_user": data.uid, "nome": data.uname, "token": data.token }));
 
+
                 usuarios.forEach(u => {
                     if(u.id == data.uid) {
 

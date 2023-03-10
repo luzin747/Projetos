@@ -69,7 +69,7 @@ function preencherSelects() {
 
     veiculo.forEach(v => {
 
-        if (v.disponivel == true) {
+        if (v.disponivel == "Ativo") {
 
             var optionVeiculo = document.createElement('option')
             optionVeiculo.value = v.id_veiculo
@@ -155,6 +155,7 @@ function cadastrarOperacoes() {
 
                     alert('Operação Cadastrada')
                     trocarStatusMotorista(seleMotorista)
+                    trocarStatusVeiculo(seleVeiculo)
                     window.location.href = '../areaGerencial.html'
                 }
                 else {
@@ -198,6 +199,51 @@ function trocarStatusMotorista(id) {
     console.log(data);
 
     fetch('http://localhost:3000/motorista/' + id, {
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+
+        })
+
+
+
+}
+
+function trocarStatusVeiculo(id_veiculo) {
+
+    var placa
+    var modelo
+    var marca
+    var tipo
+
+    veiculo.forEach(v => {
+
+
+        if (v.id_veiculo == id_veiculo) {
+
+            placa = v.placa
+            modelo = v.placa
+            marca = v.marca
+            tipo = v.tipo
+        }
+    })
+
+    let data = {
+        "placa": placa,
+        "modelo": modelo,
+        "marca": marca,
+        "tipo": tipo,
+        "disponivel": "Em Operação"
+    }
+
+    console.log(data);
+
+    fetch('http://localhost:3000/veiculo' + id_veiculo, {
         "method": "PUT",
         "headers": {
             "Content-Type": "application/json"

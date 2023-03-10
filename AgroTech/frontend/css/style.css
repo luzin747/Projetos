@@ -412,4 +412,23 @@ table img {
 
 .cont_select select {
     width: 10%;
+
+}
+
+.graficos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.graphics_donout {
+    width: 15%;
+}
+
+.graphics_donout div {
+    margin-top: 10%;
+}
+
+.graphics_line {
+    width: 60%;
 }

@@ -464,3 +464,34 @@ table tr td i:nth-child(2) {
     border-radius: 100%;
 }
 
+.cont_infos {
+    margin-top: 2%;
+    display: flex;
+}
+
+.cont_infos div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 15%;
+    padding: 10px 0px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.316);
+    border-radius: 10px;
+    margin: 0px 15px;
+}
+
+.cont_infos div:nth-child(1) {
+    color: #12D76E;
+}
+
+.cont_infos div:nth-child(2) {
+    color: #009CE6;
+}
+
+.cont_infos div:nth-child(3) {
+    color: #009CE6;
+}
+
+.cont_infos img {
+    width: 5%;
+}

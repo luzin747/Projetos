@@ -13,6 +13,7 @@ var cardVeiculos = document.querySelector('.tickets')
 var cardManutencoes = document.querySelector('.manutencao')
 
 
+
 function carregar() {
 
     const options = { method: 'GET' };
@@ -104,7 +105,7 @@ function preencherTabela() {
 
             }
 
-            if (v.disponivel == "Em Operacao") {
+            if (v.disponivel == "Em Operação") {
                 novoCardVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_in_operacao.png'
 
             }
@@ -138,7 +139,6 @@ function editarCliente(e) {
 
     mostrarModal.classList.remove('model')
 
-
     var optionDisponivel = document.createElement('option')
     optionDisponivel.value = "Ativo"
     optionDisponivel.innerHTML = "Disponivel"
@@ -155,13 +155,21 @@ function editarCliente(e) {
     veiculos.forEach(v => {
         if (id == v.id_veiculo) {
 
-            if(v.disponivel == "Em Manutencao") {
+            if (v.disponivel == "Em Operação") {
+                document.querySelector('.cont_trash').classList.add('model')
+                document.querySelector('.selects_inps_disp').classList.add('model')
+
+
+            }
+
+            if (v.disponivel == "Em Manutencao") {
+                document.querySelector('.cont_trash').classList.add('model')
                 document.querySelector('.select_status').appendChild(optionManutencao)
                 document.querySelector('.select_status').appendChild(optionDisponivel)
 
             }
 
-            if(v.disponivel == "Ativo") {
+            if (v.disponivel == "Ativo") {
                 document.querySelector('.select_status').appendChild(optionDisponivel)
                 document.querySelector('.select_status').appendChild(optionManutencao)
 
@@ -281,6 +289,17 @@ function MudarSection(e) {
 
 function salvar(e) {
 
+    var erro = false
+    var erroPlaca = true;
+    var erroPlacaVazia = false;
+
+
+
+    e.parentNode.parentNode.parentNode.querySelector('.erro_placa_vazio').classList.add('model')
+    e.parentNode.parentNode.parentNode.querySelector('.erro_placa_invalida').classList.add('model')
+    e.parentNode.parentNode.parentNode.querySelector('.erro_modelo_vazio').classList.add('model')
+    e.parentNode.parentNode.parentNode.querySelector('.erro_marca_vazio').classList.add('model')
+
     var select_status = document.querySelector(".select_status")
     let seleStatus = select_status.options[select_status.selectedIndex].value;
 
@@ -290,31 +309,89 @@ function salvar(e) {
     var marca = document.querySelector('.m_editar').value
     var tipo = document.querySelector('.m_tipo').value
 
-    let data = {
-        "placa": placa,
-        "modelo": modelo,
-        "marca": marca,
-        "tipo": tipo,
-        "disponivel": seleStatus    
+    if (placa.trim().length == "") {
+        document.querySelector('.erro_placa_vazio').classList.remove('model')
+        erro = true
+        erroPlacaVazia = true;
     }
 
-    console.log(data);
+    if (modelo.trim().length == "") {
+        document.querySelector('.erro_modelo_vazio').classList.remove('model')
+        erro = true
+    }
 
-    fetch('http://localhost:3000/veiculos/' + id_veiculo, {
-        "method": "PUT",
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "body": JSON.stringify(data)
-    })
-        .then(resp => resp.status)
-        .then(resp => {
-            if (resp == 200) {
-                alert('Editar com Suesso')
-                window.location.reload()
-            }
+    if (marca.trim().length == "") {
+        document.querySelector('.erro_marca_vazio').classList.remove('model')
+        erro = true
+    }
 
+
+
+    //Validando a Placa
+
+    if (erroPlacaVazia == false) {
+
+        var resposta = "placa inválida";
+        const regexPlaca = /^[a-zA-Z]{3}[0-9]{4}$/;
+        const regexPlacaMercosulCarro = /^[a-zA-Z]{3}[0-9]{1}[a-zA-Z]{1}[0-9]{2}$/;
+        const regexPlacaMercosulMoto = /^[a-zA-Z]{3}[0-9]{2}[a-zA-Z]{1}[0-9]{1}$/;
+
+
+        if (regexPlaca.test(placa)) {
+            resposta = "Placa válida no formato atual";
+
+            erroPlaca = false;
+        }
+        if (regexPlacaMercosulCarro.test(placa)) {
+            resposta = "Placa válida (padrão Mercosul - carro)";
+            erroPlaca = false;
+
+        }
+        if (regexPlacaMercosulMoto.test(placa)) {
+            resposta = "Placa válida (padrão Mercosul - moto)";
+            erroPlaca = false;
+
+        }
+
+        if (erroPlaca == true) {
+            document.querySelector('.erro_placa_invalida').classList.remove('model')
+
+        }
+
+    }
+
+
+
+    if (erro == false && erroPlaca == false) {
+
+        let data = {
+            "placa": placa,
+            "modelo": modelo,
+            "marca": marca,
+            "tipo": tipo,
+            "disponivel": seleStatus
+        }
+
+        console.log(data);
+
+        fetch('http://localhost:3000/veiculos/' + id_veiculo, {
+            "method": "PUT",
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": JSON.stringify(data)
         })
+            .then(resp => resp.status)
+            .then(resp => {
+                if (resp == 200) {
+                    alert('Editar com Suesso')
+                    window.location.reload()
+                }
+
+            })
+
+    }
+
 }
 
 function salvarCManutenção(e) {
@@ -444,6 +521,31 @@ function finalizarManutencao() {
     data_saida.style.textAlign = "center"
 
 }
+function finalizarManutencaoCard(e) {
+    var hoje = new Date()
+    var dia = String(hoje.getDate()).padStart(2, '0')
+    var mes = String(hoje.getMonth() + 1).padStart(2, '0')
+    var ano = hoje.getFullYear()
+
+    var hora = hoje.getHours()
+    var minutos = hoje.getMinutes()
+    var segundos = hoje.getSeconds()
+
+    dataAtual = dia + '/' + mes + '/' + ano;
+
+    var data_saida = e.parentNode.querySelector('.data_fim_inp')
+    var btn_manutencao = e.parentNode.querySelector('.btn_finalizar_card')
+
+    console.log(data_saida);
+    console.log(btn_manutencao);
+
+
+    data_saida.classList.remove('model')
+    btn_manutencao.classList.add('model')
+
+    data_saida.value = dataAtual
+    data_saida.style.textAlign = "center"
+}
 
 function fecharEditarCliente() {
     var mostrarModal = document.querySelector('.m-editar')
@@ -451,6 +553,14 @@ function fecharEditarCliente() {
 
     window.location.reload();
 
+}
+
+function fecharModaisDaManutencao(e) {
+    var teste = e.parentNode.parentNode.parentNode.parentNode.querySelector('.inps_descri_section_create_manu')
+    var cardManutencao = e.parentNode.parentNode.parentNode.querySelector('.inps_descri')
+
+    teste.classList.add('model')
+    cardManutencao.classList.add('model')
 }
 
 function carregarManutencoes(e) {
@@ -587,3 +697,38 @@ function salvarEdicaoCard(e) {
         })
 }
 
+function inativarFunction() {
+
+    var id_veiculo = document.querySelector('.id_editar').innerHTML
+    var placa = document.querySelector('.pv_editar').value
+    var modelo = document.querySelector('.mv_editar').value
+    var marca = document.querySelector('.m_editar').value
+    var tipo = document.querySelector('.m_tipo').value
+
+    let data = {
+        "placa": placa,
+        "modelo": modelo,
+        "marca": marca,
+        "tipo": tipo,
+        "disponivel": "Inativo"
+    }
+
+    console.log(data);
+
+    fetch('http://localhost:3000/veiculos/' + id_veiculo, {
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+            if (resp == 200) {
+                alert('Editar com Suesso')
+                window.location.reload()
+            }
+
+        })
+
+}

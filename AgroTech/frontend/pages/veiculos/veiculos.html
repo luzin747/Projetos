@@ -165,7 +165,6 @@
                                 <div class="cont-id_vaga">
                                     <p>Veículo Id :</p>
                                     <span class="id_veiculo id_editar"></span>
-
                                 </div>
 
                                 <div class="cont-div-inps">
@@ -173,12 +172,19 @@
                                     <div class="inps">
 
                                         <div>
-                                            <p>Placa</p>
+                                            <div style="display: flex;">
+                                                <p>Placa</p>
+                                                <p class="erro_placa_vazio model" style="color: red; margin-left: 10px;">[Placa Vazia*]</p>
+                                                <p class="erro_placa_invalida model" style="color: red; margin-left: 10px;">[Placa Inválida*]</p>
+                                            </div>
                                             <input type="text" class="placa_veiculo pv_editar">
                                         </div>
 
                                         <div>
-                                            <p>Modelo</p>
+                                            <div style="display: flex;">
+                                                <p>Modelo</p>
+                                                <p class="erro_modelo_vazio model" style="color: red; margin-left: 10px;">[Modelo Vazio*]</p>
+                                            </div>
                                             <input type="text" class="modelo_veiculo mv_editar">
                                         </div>
 
@@ -186,12 +192,18 @@
 
                                     <div class="inps">
                                         <div>
-                                            <p>Marca</p>
+                                            <div style="display: flex;">
+                                                <p>Marca</p>
+                                                <p class="erro_marca_vazio model" style="color: red; margin-left: 10px;">[Marca Vazia*]</p>
+                                            </div>
                                             <input type="text" class="marca_veiculo m_editar">
                                         </div>
 
                                         <div>
-                                            <p>Tipo</p>
+                                            <div style="display: flex;">
+                                                <p>Tipo</p>
+                                                <p class="model">[Marca não Pode Ser Vazia*]</p>
+                                            </div>
                                             <input type="text" class="tipo_veiculo m_tipo" disabled="">
 
                                         </div>
@@ -267,6 +279,10 @@
 
                                     </div>
 
+                                    <div class="cont_trash" >
+                                        <i class='bx bxs-trash-alt' onclick="inativarFunction()"></i>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -312,12 +328,10 @@
 
                                     <div class="cont_button_c_manutencao">
                                         <button onclick="funcaoCadManutencao(this)">Salvar</button>
-                                        <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
+                                        <button class="btn-voltar" onclick="fecharModaisDaManutencao(this)">Fechar</button>
                                     </div>
 
                                 </div>
-
-
 
                                 <!-- <div class="cont_button">
                                     <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
@@ -387,7 +401,6 @@
             </div>
 
             <div class="modal-excluir model">
-
                 <img src="img/excluir.gif" alt="">
 
                 <p>Ticket Excluido com Sucesso !</p>
@@ -427,7 +440,7 @@
                     </div>
 
                     <div class="cont_inf_manu">
-                        <div>
+                        <div class="model">
                             <p>Id:</p>
                             <p class="id_manu"></p>
                         </div>
@@ -469,7 +482,7 @@
 
                         <div>
                             <p>Data Finalizada</p>
-                            <button class="btn_finalizar_card" onclick="finalizarManutencao()">Finalizar
+                            <button class="btn_finalizar_card" onclick="finalizarManutencaoCard(this)">Finalizar
                                 Manutenção</button>
                             <input type="text" class="data_fim_inp model" disabled="">
                         </div>
@@ -480,7 +493,7 @@
 
                     <div class="cont_button">
                         <button onclick="salvarEdicaoCard(this)">Salvar</button>
-                        <button class="btn-voltar" onclick="fecharModalManutencao()">Fechar</button>
+                        <button class="btn-voltar" onclick="fecharModaisDaManutencao(this)">Fechar</button>
                     </div>
 
                 </div>

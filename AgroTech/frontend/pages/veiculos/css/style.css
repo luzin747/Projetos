@@ -250,6 +250,7 @@ table tr td i:nth-child(2) {
 }
 .inps p{
     font-size: 11pt;
+    text-align: center;
 }
 .inps input {
     height: 28px;
@@ -409,10 +410,8 @@ table tr td i:nth-child(2) {
 
 .cont_inf_manu {
     display: flex;
-    justify-content: space-around;
     align-items: center;
     width: 80%;
-    margin-left: 3%
 }
 
 .cont_inf_manu div {

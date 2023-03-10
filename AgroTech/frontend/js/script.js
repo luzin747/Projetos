@@ -10,11 +10,8 @@ var operacoes = []
 var motoristas = []
 var manutencao = []
 
-// var td_operacoes = document.querySelector('.operacoes')
-// var td_veiculos = document.querySelector('.veiculos')
-
-
 function carregar() {
+
 
     trocarTables()
 
@@ -73,27 +70,6 @@ function carregar() {
         }
         )
         .catch(err => console.error(err));
-
-    // fetch(uriCard_Operacoes, options)
-    //     .then(res => res.json())
-    //     .then(res => {
-    //         operacoes = res;
-    //         cardDetaisOperacoes();
-    //     }
-    //     )
-    //     .catch(err => console.error(err));
-
-    //     fetch(uriCard_Motoristas, options)
-    //     .then(res => res.json())
-    //     .then(res => {
-    //         motoristas = res;
-    //         cardDetailsMotoristas();
-    //     }
-    //     )
-    //     .catch(err => console.error(err));
-
-
-
 }
 
 function VerificarAcesso() {
@@ -127,7 +103,6 @@ function logout() {
     window.location.href = "pages/login/login.html"
 }
 
-
 var qtd_Veiculos_Livres = 0
 var qtd_Veiculos_Manutencao = 0
 
@@ -135,6 +110,10 @@ var qtd_Operacoes_Andamento = 0
 var qtd_Veiculos_Terminadas = 0
 
 var soma = 0
+
+var disponivel = [0, 0]
+var disponivelMotorista = [0, 0]
+
 function preencherTabelas() {
 
     var linhaOperacoes = document.querySelector('.operacoes')
@@ -148,7 +127,28 @@ function preencherTabelas() {
             novaLinhaOperacoes.classList.remove('model')
 
             novaLinhaOperacoes.querySelector('.id_operacao').innerHTML = o.id_opeacao
+
+
+            if (o.data_retorno != "") {
+                disponivel[1]++
+            }
+
+            if (o.data_retorno == "") {
+                disponivel[0]++
+            }
+
+
             motoristas.forEach(m => {
+
+                if(m.disponivel == "Ativo") {
+                    disponivelMotorista[0]++
+                }
+
+                if(m.disponivel == "Em Operacao") {
+                    disponivelMotorista[0]++
+                }
+
+
                 if (o.id_motorista == m.id_motorista) {
                     novaLinhaOperacoes.querySelector('.motorista').innerHTML = m.nome
 
@@ -200,8 +200,81 @@ function preencherTabelas() {
         document.querySelector('.contVeiculos').appendChild(novaLinhaVeiculos)
     })
 
+    Graficos(disponivel)
+    GraficoDeLinha()
+}
+
+function Graficos(disponivel) {
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Operações em Andamento - ' + 'Qtd:' + disponivel[0], 'Operações Finalizadas - ' + 'Qtd:' + disponivel[1]],
+            datasets: [{
+                data: disponivel,
+                backgroundColor: [
+                    // 'rgb(54, 162, 235)',
+                    '#90ee90',
+                    '#212124'
+                ]
+            }]
+        },
+        options: {
+            cutoutPercentage: 50
+        }
+    });
+
+    var ctx = document.getElementById('myChartMotorista').getContext('2d');
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Motoristas Em Operação- ' + 'Qtd:' + disponivel[0], 'Motoristas Disponiveis - ' + 'Qtd:' + disponivel[1]],
+            datasets: [{
+                data: disponivel,
+                backgroundColor: [
+                    // 'rgb(54, 162, 235)',
+                    '#009CE6',
+                    '#212124'
+                ]
+            }]
+        },
+        options: {
+            cutoutPercentage: 50
+        }
+    });
 
 }
+
+function GraficoDeLinha() {
+
+    const manutencoesPorMes = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+    manutencao.forEach(m => {
+        const dataDaManutencao = new Date(m.data_inicio)
+        const mesDaManutencao = dataDaManutencao.getMonth()
+        
+        manutencoesPorMes[mesDaManutencao]++
+    })
+
+    
+    var ctx = document.getElementById('meuGrafico').getContext('2d');
+    var meuGrafico = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun','Jul','Ago','Set','Out','Nov','Dez'],
+            datasets: [{
+                label: 'Manutenções',
+                data: manutencoesPorMes,
+                backgroundColor: 'Yellow',
+                borderColor: '#212124',
+                borderWidth: 1
+            }]
+        },
+        options: {}
+    });
+}
+
 
 function cardDetails() {
 
