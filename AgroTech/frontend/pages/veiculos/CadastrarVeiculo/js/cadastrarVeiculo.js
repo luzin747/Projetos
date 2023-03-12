@@ -58,12 +58,6 @@ function cadastrarVeiculos() {
     var marca = document.querySelector('.marca').value
     var placa = document.querySelector('.placa-veiculo').value
 
-    var select_status = document.querySelector(".tipo-Veiculo")
-    let seleStatus = select_status.options[select_status.selectedIndex].value;
-    if (seleStatus == 'Véiculo-Pequeno') { var tipo = 'Veículo Pequeno'; }
-    if (seleStatus == 'Véiculo-Médio') { var tipo = 'Veículo Médio'; }
-    if (seleStatus == 'Véiculo-Grande') { var tipo = 'Veículo Grande'; }
-
     var select_tipo_veiculo = document.querySelector(".tipo-Veiculo_tipo")
     let seleTipoVeiculo = select_tipo_veiculo.options[select_tipo_veiculo.selectedIndex].value;
     if (seleTipoVeiculo == 'default') { erro = true }

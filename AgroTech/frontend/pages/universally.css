@@ -26,6 +26,28 @@ main {
     visibility: hidden;
 }
 
+table tbody tr td {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+tbody tr:last-child {
+    background-color: #eeeeee;
+    position: relative;
+}
+
+tbody tr:last-child::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    /* altura do espaço vazio */
+    transform: translateY(-100%);
+}
+
 
 .nav-head {
     display: flex;

@@ -216,6 +216,9 @@ function trocarStatusMotorista(id) {
 
 function trocarStatusVeiculo(id_veiculo) {
 
+
+    console.log(`asdadadada`);
+
     var placa
     var modelo
     var marca
@@ -243,7 +246,7 @@ function trocarStatusVeiculo(id_veiculo) {
 
     console.log(data);
 
-    fetch('http://localhost:3000/veiculo' + id_veiculo, {
+    fetch('http://localhost:3000/veiculos/' + id_veiculo, {
         "method": "PUT",
         "headers": {
             "Content-Type": "application/json"

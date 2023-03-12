@@ -29,14 +29,15 @@
                     <ul>
                         <li><a href="../../home.html"><i class='bx bx-category'></i></i><span class="nav-title">Painel
                                     de Controle</span></a></li>
-                        <li><a href="#"><i class='bx bxs-parking'></i><span
-                                    class="nav-title">Área Gerencial</span></a></li>
+                        <li><a href="#"><i class='bx bxs-parking'></i><span class="nav-title">Área Gerencial</span></a>
+                        </li>
                         <li><a href="../AreaComum/areaComum.html"><i class='bx bx-group'></i><span
                                     class="nav-title">Área
                                     Comum</span></a></li>
                         <li><a href="../Motoristas/motoristas.html"><i class='bx bx-money'></i><span
                                     class="nav-title">Motoristas</span></a></li>
-                        <li><a href="../veiculos/veiculos.html"><i class='bx bx-money'></i><span class="nav-title">Veículos</span></a></li>
+                        <li><a href="../veiculos/veiculos.html"><i class='bx bx-money'></i><span
+                                    class="nav-title">Veículos</span></a></li>
 
 
                     </ul>
@@ -70,9 +71,11 @@
                 <div class="table_and_edit">
                     <div class="cont_tables_tools">
 
-                        <div style="height: 60vh; overflow-y: scroll;">
+                        <div>
+
 
                             <table>
+
                                 <thead>
                                     <tr>
                                         <th class="model">#</th>
@@ -84,8 +87,11 @@
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
+                            </table>
 
-                                <tbody class="contOperacao">
+
+                            <table class="table_body" style="height: 60vh;">
+                                <tbody class="contOperacao" style=" height: 100%;overflow-y: scroll;">
                                     <tr class="operacoes model">
                                         <td class="id_operacao model">RTX3090TI</td>
                                         <td class="motorista">GTX0N3GB</td>
@@ -221,7 +227,8 @@
 
                                         <div>
                                             <p>Data Retorno</p>
-                                            <Button class="btn_finalizar_operacao" onclick="finarlizarOperacao(this)">Finalizar Operação</Button>
+                                            <Button class="btn_finalizar_operacao"
+                                                onclick="finarlizarOperacao(this)">Finalizar Operação</Button>
                                             <input type="text" class="dr_retorno" style="display: none;" disabled="">
                                         </div>
 
@@ -235,7 +242,7 @@
 
                                                 <p>Descrição</p>
                                                 <!-- <input type="text" class="disponibilidade" disabled=""> -->
-                                                <textarea class="descricao_txt_area" name=""  id="" cols="50" rows="5"
+                                                <textarea class="descricao_txt_area" name="" id="" cols="50" rows="5"
                                                     style="resize: none; padding: 5px;"></textarea>
 
                                             </div>
@@ -256,7 +263,7 @@
                                             <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                         </div>
 
-                                        <div class="cont_trash" >
+                                        <div class="cont_trash" style="background-color: red;">
                                             <i class='bx bxs-trash-alt' onclick="inativarFunction()"></i>
                                         </div>
 

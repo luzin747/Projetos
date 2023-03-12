@@ -66,7 +66,7 @@ function carregar() {
         .then(res => res.json())
         .then(res => {
             veiculos = res;
-            cardDetails();
+            // cardDetails();
         }
         )
         .catch(err => console.error(err));
@@ -114,6 +114,9 @@ var soma = 0
 var disponivel = [0, 0]
 var disponivelMotorista = [0, 0]
 
+var disponivelVeiculos = [0,0,0]
+
+
 function preencherTabelas() {
 
     var linhaOperacoes = document.querySelector('.operacoes')
@@ -140,13 +143,7 @@ function preencherTabelas() {
 
             motoristas.forEach(m => {
 
-                if(m.disponivel == "Ativo") {
-                    disponivelMotorista[0]++
-                }
-
-                if(m.disponivel == "Em Operacao") {
-                    disponivelMotorista[0]++
-                }
+                
 
 
                 if (o.id_motorista == m.id_motorista) {
@@ -170,6 +167,18 @@ function preencherTabelas() {
 
     var linhaVeiculos = document.querySelector('.veiculos')
 
+
+    motoristas.forEach(m => {
+
+        if(m.disponivel == "Ativo") {
+            disponivelMotorista[0]++
+        }
+
+        if(m.disponivel == "Em Operação") {
+            disponivelMotorista[1]++
+        }
+    })
+
     veiculos.forEach(v => {
 
         var novaLinhaVeiculos = linhaVeiculos.cloneNode(true)
@@ -184,15 +193,17 @@ function preencherTabelas() {
 
         if (v.disponivel == "Ativo") {
             novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+            disponivelVeiculos[0]++
         }
 
-        if (v.disponivel == "Em Operacao") {
+        if (v.disponivel == "Em Operação") {
             novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_in_operacao.png'
-
+            disponivelVeiculos[1]++
         }
         if (v.disponivel == "Em Manutencao") {
             novaLinhaVeiculos.querySelector('.img_situation').src = 'img/icons/cicle_manutencao.png'
-            console.log('asadad');
+            disponivelVeiculos[2]++
+
         }
 
         // novaLinhaVeiculos.querySelector('.situacao').innerHTML = v.disponivel
@@ -200,36 +211,18 @@ function preencherTabelas() {
         document.querySelector('.contVeiculos').appendChild(novaLinhaVeiculos)
     })
 
-    Graficos(disponivel)
+    console.log(disponivelVeiculos);
+    Graficos(disponivel,disponivelVeiculos,disponivelMotorista)
     GraficoDeLinha()
 }
 
-function Graficos(disponivel) {
+function Graficos(disponivel,disponivelVeiculos) {
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var myDoughnutChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Operações em Andamento - ' + 'Qtd:' + disponivel[0], 'Operações Finalizadas - ' + 'Qtd:' + disponivel[1]],
-            datasets: [{
-                data: disponivel,
-                backgroundColor: [
-                    // 'rgb(54, 162, 235)',
-                    '#90ee90',
-                    '#212124'
-                ]
-            }]
-        },
-        options: {
-            cutoutPercentage: 50
-        }
-    });
-
-    var ctx = document.getElementById('myChartMotorista').getContext('2d');
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Motoristas Em Operação- ' + 'Qtd:' + disponivel[0], 'Motoristas Disponiveis - ' + 'Qtd:' + disponivel[1]],
+            labels: ['Operações em Andamento ' , 'Operações Finalizadas'],
             datasets: [{
                 data: disponivel,
                 backgroundColor: [
@@ -244,28 +237,123 @@ function Graficos(disponivel) {
         }
     });
 
+    var ctx = document.getElementById('myChartMotorista').getContext('2d');
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Motoristas Em Operação ', 'Motoristas Disponiveis '],
+            datasets: [{
+                data: disponivelMotorista,
+                backgroundColor: [
+                    // 'rgb(54, 162, 235)',
+                    '#009CE6',
+                    '#90ee90'
+                ]
+            }]
+        },
+        options: {
+            cutoutPercentage: 50
+        }
+    });
+
+
+    var ctx = document.getElementById('myDonultVeiculo').getContext('2d');
+    var myDoughnutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Veiculos Disponiveis ' , 'Veiculos Em Operação', 'Veiculos Na Manutenção'],
+            datasets: [{
+                data: disponivelVeiculos,
+                backgroundColor: [
+                    // 'rgb(54, 162, 235)',
+                    '#90ee90',
+                    '#009CE6',
+                    'Yellow'
+                ]
+            }]
+        },
+        options: {
+            cutoutPercentage: 50
+        }
+    });
+
+    
+
 }
 
 function GraficoDeLinha() {
 
+
+
+
+    
+
+
+
     const manutencoesPorMes = [0,0,0,0,0,0,0,0,0,0,0,0]
+    const manutencoesValorPorMes = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+    const operacoesPorMes = [0,0,0,0,0,0,0,0,0,0,0,0]
 
     manutencao.forEach(m => {
         const dataDaManutencao = new Date(m.data_inicio)
         const mesDaManutencao = dataDaManutencao.getMonth()
-        
         manutencoesPorMes[mesDaManutencao]++
+
+        manutencoesValorPorMes[mesDaManutencao] += m.valor
+        console.log(m.valor);
+        console.log(manutencoesValorPorMes);
     })
 
-    
+    operacoes.forEach(o => {
+
+        const dataDaOperacao = new Date(o.data_saida)
+        const mesDaOperacao = dataDaOperacao.getMonth()
+        
+        operacoesPorMes[mesDaOperacao]++
+      
+
+        
+    })
+
+
     var ctx = document.getElementById('meuGrafico').getContext('2d');
     var meuGrafico = new Chart(ctx, {
         type: 'line',
         data: {
             labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun','Jul','Ago','Set','Out','Nov','Dez'],
             datasets: [{
-                label: 'Manutenções',
+                label: 'Manutenções', 
                 data: manutencoesPorMes,
+                backgroundColor: 'Yellow',
+                borderColor: '#212124',
+                borderWidth: 1
+            },
+
+            {
+                label: 'Valor Manutenções', 
+                data: manutencoesValorPorMes,
+                backgroundColor: 'Yellow',
+                borderColor: '#212124',
+                borderWidth: 1
+            },
+        
+        
+        ],
+            
+        },
+        
+        options: {}
+    });
+
+    var ctx = document.getElementById('graficoLineOperacao').getContext('2d');
+    var meuGrafico = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun','Jul','Ago','Set','Out','Nov','Dez'],
+            datasets: [{
+                label: 'Operações', 
+                data: operacoesPorMes,
                 backgroundColor: 'Yellow',
                 borderColor: '#212124',
                 borderWidth: 1
@@ -273,57 +361,62 @@ function GraficoDeLinha() {
         },
         options: {}
     });
-}
 
 
-function cardDetails() {
-
-    soma += 1
-    var valor_total = 0
-
-    // document.querySelector('.qtd_veiculos').innerHTML = veiculos.length
-
-    // console.log(veiculos);
-
-    // veiculos.forEach(v => {
 
 
-    //     if (v.disponivel == true) {
-
-    //         qtd_Veiculos_Livres += 1
-
-
-    //     }
-
-    //     if (v.disponivel == false) {
-    //         qtd_Veiculos_Manutencao += 1
-
-    //     }
-
-    //     var novoCardVeiculos = td_veiculos.cloneNode(true)
-
-    //     novoCardVeiculos.classList.remove('model')
-
-    //     novoCardVeiculos.querySelector('.placa').innerHTML = v.placa
-    //     novoCardVeiculos.querySelector('.modelo').innerHTML = v.modelo
-    //     novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
-    //     novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
-    //     novoCardVeiculos.querySelector('.disponivel').innerHTML = v.disponivel
-
-    //     document.querySelector('.contVeiculos').appendChild(novoCardVeiculos)
-
-    // })
-    manutencao.forEach(m => { valor_total += m.valor })
-
-    document.querySelector('.qtd_veiculo').innerHTML = veiculos.length
-    document.querySelector('.qtd_manutencao').innerHTML = manutencao.length
-    document.querySelector('.total_manutencao').innerHTML = 'R$' + valor_total + ',00'
-    document.querySelector('.qtd_motoristas').innerHTML = motoristas.length
-
-    // document.querySelector('.qtd_veiculos_livres').innerHTML = qtd_Veiculos_Livres
-    // document.querySelector('.qtd_veiculos_manutencao').innerHTML = qtd_Veiculos_Manutencao
 
 }
+
+
+// function cardDetails() {
+
+//     soma += 1
+//     var valor_total = 0
+
+//     // document.querySelector('.qtd_veiculos').innerHTML = veiculos.length
+
+//     // console.log(veiculos);
+
+//     // veiculos.forEach(v => {
+
+
+//     //     if (v.disponivel == true) {
+
+//     //         qtd_Veiculos_Livres += 1
+
+
+//     //     }
+
+//     //     if (v.disponivel == false) {
+//     //         qtd_Veiculos_Manutencao += 1
+
+//     //     }
+
+//     //     var novoCardVeiculos = td_veiculos.cloneNode(true)
+
+//     //     novoCardVeiculos.classList.remove('model')
+
+//     //     novoCardVeiculos.querySelector('.placa').innerHTML = v.placa
+//     //     novoCardVeiculos.querySelector('.modelo').innerHTML = v.modelo
+//     //     novoCardVeiculos.querySelector('.marca').innerHTML = v.marca
+//     //     novoCardVeiculos.querySelector('.tipo').innerHTML = v.tipo
+//     //     novoCardVeiculos.querySelector('.disponivel').innerHTML = v.disponivel
+
+//     //     document.querySelector('.contVeiculos').appendChild(novoCardVeiculos)
+
+//     // })
+//     manutencao.forEach(m => { valor_total += m.valor })
+
+//     document.querySelector('.qtd_veiculo').innerHTML = veiculos.length
+//     document.querySelector('.qtd_manutencao').innerHTML = manutencao.length
+//     document.querySelector('.total_manutencao').innerHTML = 'R$' + valor_total + ',00'
+//     document.querySelector('.qtd_motoristas').innerHTML = motoristas.length
+
+//     // document.querySelector('.qtd_veiculos_livres').innerHTML = qtd_Veiculos_Livres
+//     // document.querySelector('.qtd_veiculos_manutencao').innerHTML = qtd_Veiculos_Manutencao
+
+// }
 
 function cardDetaisOperacoes() {
 
@@ -460,3 +553,83 @@ function trocarTables() {
 
     }
 }   
+
+// function movalVeiculo(e) {
+
+//     var id = e.parentNode.parentNode.querySelector('.id_veiculos').innerHTML
+
+//     var mostrarModal = document.querySelector('.m-editar')
+
+//     soma += 1
+
+//     mostrarModal.classList.remove('model')
+
+//     var optionDisponivel = document.createElement('option')
+//     optionDisponivel.value = "Ativo"
+//     optionDisponivel.innerHTML = "Disponivel"
+
+//     var optionManutencao = document.createElement('option')
+//     optionManutencao.value = "Em Manutencao"
+//     optionManutencao.innerHTML = "Em Manutencao"
+
+
+//     if (soma == 1) {
+//         carregarManutencoes(id)
+//     }
+
+//     veiculos.forEach(v => {
+//         if (id == v.id_veiculo) {
+
+//             if (v.disponivel == "Em Operação") {
+//                 document.querySelector('.cont_trash').classList.add('model')
+//                 document.querySelector('.selects_inps_disp').classList.add('model')
+
+
+//             }
+
+//             if (v.disponivel == "Em Manutencao") {
+//                 document.querySelector('.cont_trash').classList.add('model')
+//                 document.querySelector('.select_status').appendChild(optionManutencao)
+//                 document.querySelector('.select_status').appendChild(optionDisponivel)
+
+//             }
+
+//             if (v.disponivel == "Ativo") {
+//                 document.querySelector('.select_status').appendChild(optionDisponivel)
+//                 document.querySelector('.select_status').appendChild(optionManutencao)
+
+//             }
+
+//             document.querySelector('.id_veiculo').innerHTML = v.id_veiculo
+//             document.querySelector('.placa_veiculo').value = v.placa
+//             document.querySelector('.modelo_veiculo').value = v.modelo
+//             document.querySelector('.marca_veiculo').value = v.marca
+//             document.querySelector('.tipo_veiculo').value = v.tipo
+//             document.querySelector('.disponibilidade').value = v.disponivel
+
+//         }
+
+//         manutencao.forEach(m => {
+
+//             if (v.id_veiculo == m.id_veiculo) {
+
+//                 var data_saida = document.querySelector('.h_saida')
+//                 var btn_manutencao = document.querySelector('.btn_finalizar_manutencao')
+
+//                 data_saida.classList.remove('model')
+//                 btn_manutencao.classList.add('model')
+
+//                 data_saida.style.textAlign = "center"
+
+//                 document.querySelector('.descricao').value = m.descricao
+//                 document.querySelector('.valor').value = m.valor
+//                 document.querySelector('.h_entrada').value = m.data_inicio
+//                 document.querySelector('.h_saida').value = m.data_inicio
+
+
+//             }
+//         })
+
+//     })
+
+// }

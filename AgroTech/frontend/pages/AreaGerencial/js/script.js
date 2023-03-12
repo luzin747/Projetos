@@ -297,7 +297,15 @@ function salvar(e) {
             if (resp == 200) {
                 alert('Editar com Suesso')
 
-                window.location.reload()
+                fecharEditarCliente()
+
+                if(data_retorno != "") {
+                    trocarStatusMotorista(motorista)
+                    trocarStatusVeiculo(veiculo)
+
+                }
+
+                // window.location.reload()
             }
 
         })
@@ -324,13 +332,13 @@ function finarlizarOperacao(e) {
 
     document.querySelector('.btn_finalizar_operacao').classList.add('model')
 
-
-
 }
 
 function inativarFunction() {
 
     finarlizarOperacao();
+
+
 
     var id_operacao = document.querySelector('.id_editar').innerHTML
 
@@ -366,7 +374,6 @@ function inativarFunction() {
         "status": false
     }
 
-    console.log(data);
 
     trocarStatusMotorista(motorista)
 
@@ -426,13 +433,59 @@ function trocarStatusMotorista(id) {
         .then(resp => resp.status)
         .then(resp => {
 
-            alert('Operacão Excluida')
         })
 
 
 
 }
 
+function trocarStatusVeiculo(id_veiculo) {
+
+
+    console.log(`asdadadada`);
+
+    var placa
+    var modelo
+    var marca
+    var tipo
+
+    veiculos.forEach(v => {
+
+
+        if (v.id_veiculo == id_veiculo) {
+
+            placa = v.placa
+            modelo = v.placa
+            marca = v.marca
+            tipo = v.tipo
+        }
+    })
+
+    let data = {
+        "placa": placa,
+        "modelo": modelo,
+        "marca": marca,
+        "tipo": tipo,
+        "disponivel": "Ativo"
+    }
+
+    console.log(data);
+
+    fetch('http://localhost:3000/veiculos/' + id_veiculo, {
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+
+        })
+
+
+
+}
 var search_btn = document.querySelector('.btn-filter')
 const INPUT_BUSCA = document.querySelector('.search')
 const TABELA_CLIENTES = document.querySelector('.contOperacao')

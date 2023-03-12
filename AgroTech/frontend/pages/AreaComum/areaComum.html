@@ -27,17 +27,17 @@
                     <!-- <p>Menu</p> -->
 
                     <ul>
-                        <li class="link_painel_controle"><a href="../../home.html"><i class='bx bx-category'></i></i><span
-                                    class="nav-title">Painel de Controle</span></a></li>
-                        <li class="link_area_gerencial"> <a href="../AreaGerencial/areaGerencial.html"><i
-                                    class='bx bxs-parking'></i><span class="nav-title">Área Gerencial</span></a></li>
-                        <li><a href="#"><i class='bx bx-group'></i><span
+                        <li><a href="../../home.html"><i class='bx bx-category'></i></i><span class="nav-title">Painel
+                                    de Controle</span></a></li>
+                        <li><a href="#"><i class='bx bxs-parking'></i><span class="nav-title">Área Gerencial</span></a>
+                        </li>
+                        <li><a href="../AreaComum/areaComum.html"><i class='bx bx-group'></i><span
                                     class="nav-title">Área
                                     Comum</span></a></li>
-                        <li class="link_motoristas"><a href="../Motoristas/motoristas.html"><i
-                                    class='bx bx-money'></i><span class="nav-title">Motoristas</span></a></li>
-                        <li class="link_veiculos"><a href="../veiculos/veiculos.html"><i
-                                    class='bx bx-money'></i><span class="nav-title">Veículos</span></a></li>
+                        <li><a href="../Motoristas/motoristas.html"><i class='bx bx-money'></i><span
+                                    class="nav-title">Motoristas</span></a></li>
+                        <li><a href="../veiculos/veiculos.html"><i class='bx bx-money'></i><span
+                                    class="nav-title">Veículos</span></a></li>
 
 
                     </ul>
@@ -71,9 +71,11 @@
                 <div class="table_and_edit">
                     <div class="cont_tables_tools">
 
-                        <div style="height: 60vh; overflow-y: scroll;">
+                        <div >
+
 
                             <table>
+
                                 <thead>
                                     <tr>
                                         <th class="model">#</th>
@@ -82,24 +84,20 @@
                                         <th>Data Saída</th>
                                         <th>Data Retorno</th>
                                         <th>Descrição</th>
-                                        <th>Ações</th>
                                     </tr>
                                 </thead>
+                            </table>
 
 
-                                <tbody class="contOperacao">
+                            <table class="table_body" style="height: 65vh;">
+                                <tbody class="contOperacao" style=" height: 100%;overflow-y: scroll;" >
                                     <tr class="operacoes model">
                                         <td class="id_operacao model">RTX3090TI</td>
                                         <td class="motorista">GTX0N3GB</td>
                                         <td class="veiculo">GTX0N3GB</td>
                                         <td class="data_saida">GTX0N3GB</td>
-                                        <td class="data_retorno">GTX0N3GB</td>
-                                        <td class="descricao">GTX0N3GB</td>
-                                        <td class="cont-btns">
-                                            <i class='bx bx-show ' onclick="editarCliente(this)"></i>
-                                            <!-- <i class='bx bxs-trash-alt' onclick="deletarPlaca(this)"></i> -->
-                                        </td>
-
+                                        <td class="data_retorno" style="font-weight: 300;">GTX0N3GB</td>
+                                        <td class=""><i class='bx bx-show ' onclick="editarCliente(this)"></i></td>
                                     </tr>
 
                                 </tbody>
@@ -110,24 +108,19 @@
 
                             <div class="cont-qtd">
                                 <i class='bx bxs-quote-single-right user'></i>
-                                <p>Quantidade: <b class="qtd-tickets">10</b></p>
+                                <p>Quantidade Total: <b class="qtd-operacoes">10</b></p>
                             </div>
 
 
                             <div class="cont-qtd">
                                 <i class='bx bx-lock-open open'></i>
-                                <p>Em Andamento: <b class="abertos">2</b></p>
-                            </div>
-                            <div class="cont-qtd">
-                                <i class='bx bx-lock-open open'></i>
-                                <p>Finalizadas: <b class="abertos">2</b></p>
+                                <p>Em Andamento: <b class="qtd-andamento">2</b></p>
                             </div>
 
                             <div class="filtro">
                                 <input placeholder="Pesquisar Operação" class="search" type="text">
                                 <i class='bx bx-search-alt-2 btn-filter'></i>
                             </div>
-
 
                         </div>
 
@@ -143,7 +136,6 @@
                                 <h2>Operações</h2>
                             </div>
                             <!-- <p class="nomeCliente"><b class="cliName">Editar Veículo</b> </p> -->
-
 
                             <div class="cont_sections">
 
@@ -164,7 +156,7 @@
                             <div class="information">
                                 <div class="cont-id_vaga">
                                     <p>Operação Id :</p>
-                                    <span class="id_veiculo id_editar"></span>
+                                    <span class="id_operacao id_editar"></span>
 
                                 </div>
 
@@ -184,6 +176,39 @@
 
                                     </div>
 
+                                    <!-- <div class="inps">
+
+                                        <div>
+                                            <p>Trocar Motorista</p>
+
+                                            <select class="tipo-Motorista">
+                                                <option value="default">Selecionar</option>
+                                            </select>
+                                        </div>
+
+                                        <div>
+                                            <p>Trocar Veiculo</p>
+
+                                            <select class="tipo-Veiculo">
+                                                <option value="default">Selecionar</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div> -->
+
+                                    <div class="inps" style="display:  none;">
+                                        <div>
+                                            <input type="text" class="id_m_editar" disabled="">
+
+                                        </div>
+
+                                        <div>
+                                            <input type="text" class="id_v_editar" disabled="">
+                                        </div>
+
+                                    </div>
+
                                     <div class="inps">
                                         <div>
                                             <p>Data Saída</p>
@@ -192,8 +217,9 @@
 
                                         <div>
                                             <p>Data Retorno</p>
-                                            <input type="text" class="tipo_veiculo dr_tipo" disabled="">
-
+                                            <Button class="btn_finalizar_operacao"
+                                                onclick="finarlizarOperacao(this)">Finalizar Operação</Button>
+                                            <input type="text" class="dr_retorno" style="display: none;" disabled="">
                                         </div>
 
                                     </div>
@@ -206,68 +232,24 @@
 
                                                 <p>Descrição</p>
                                                 <!-- <input type="text" class="disponibilidade" disabled=""> -->
-                                                <textarea class="descricao_txt_area" name="" id="" cols="50" rows="5"
-                                                    disabled="" style="resize: none; padding: 5px;"></textarea>
+                                                <textarea disabled="" class="descricao_txt_area" name="" id="" cols="50" rows="5"
+                                                    style="resize: none; padding: 5px;"></textarea>
 
                                             </div>
 
-                                            <!-- <div class="selects_inps_disp">
-                                                <p>Trocar Disponibilidade</p>
-
-                                                <select class="select_status" onclick="selecionarDisponibilidade()">
-                                                    <option value="sim">Default</option>
-                                                    <option value="sim">Disponivel</option>
-                                                    <option value="nao">Na Manutenção</option>
-                                                </select>
-                                            </div> -->
                                         </div>
 
-
-                                    </div>
-
-                                    <div class="inps_descri model">
-
-                                        <p>Descrição da Manutenção</p>
-
-                                        <textarea class="descricao" name="" id="" cols="40" rows="5"></textarea>
-
-                                        <div class="inp_valor">
-                                            <div>
-                                                <p>Valor</p>
-                                                <input type="text" class="valor">
-
-                                            </div>
-                                        </div>
-
-                                        <div class="inp_datas">
-                                            <div>
-                                                <p>Data de Entrada</p>
-                                                <input type="text" class="h_entrada" disabled="">
-                                            </div>
-
-                                            <div>
-                                                <p>Data Finalizada</p>
-                                                <button class="btn_finalizar_manutencao"
-                                                    onclick="finalizarManutencao()">Finalizar
-                                                    Manutenção</button>
-                                                <input type="text" class="h_saida model" disabled="">
-                                            </div>
-                                        </div>
 
                                     </div>
 
                                     <div class="cont-button-status">
                                         <div class="cont_button">
-                                            <!-- <button onclick="salvar(this)">Salvar</button> -->
                                             <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                         </div>
 
                                         <div class="cont_button_c_manutencao model">
-                                            <button onclick="salvarCManutenção(this)">Salvar</button>
                                             <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                         </div>
-
-
 
                                     </div>
 
@@ -308,7 +290,6 @@
                                     </div>
 
                                     <div class="cont_button_c_manutencao">
-                                        <button onclick="funcaoCadManutencao(this)">Salvar</button>
                                         <button class="btn-voltar" onclick="fecharEditarCliente()">Fechar</button>
                                     </div>
 

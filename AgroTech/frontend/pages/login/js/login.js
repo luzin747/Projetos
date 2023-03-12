@@ -40,12 +40,16 @@ function logar() {
                 usuarios.forEach(u => {
                     if(u.id == data.uid) {
 
+
                         if(u.tipo == "usuario") {
                             window.location.href = '../AreaComum/areaComum.html'
+                            console.log('useres');
 
                         }
 
                         if(u.tipo == "gerente") {
+                        console.log('geres');
+
                              window.location.href = '../../home.html'
 
                         }

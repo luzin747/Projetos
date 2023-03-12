@@ -55,7 +55,7 @@
         </div>
 
         <div class="conteudo">
-            <!-- 
+            <!--
 
             <div class="div_master_conteudo">
 
@@ -168,7 +168,7 @@
                                 <option value="default">Padrão</option>
                                 <option value="r_veiculos">Relatórios de Veículos</option>
                                 <option value="r_operacoes">Operações em Andamento</option>
-    
+
                             </select>
                         </div>
 
@@ -242,7 +242,7 @@
                                         <td class="descricao">GTX0N3GB</td>
                                         <td>
                                             <a href="">Detalhes</a>
-                                            
+
                                         </td>
                                     </tr>
 
@@ -276,7 +276,7 @@
                 <i class='bx bx-search-alt-2'></i>
             </div> -->
 
-            <div class="cont_cards">
+            <!-- <div class="cont_cards">
 
                 <div class="cards">
                     <i class='bx bx-car'></i>
@@ -314,24 +314,55 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
 
             <div class="graficos">
 
-                <div class="graphics_line">
-                    <canvas id="meuGrafico"></canvas>
+                <h2>Operações</h2>
 
-                </div>
+                <div class="cont_graficos">
 
-                <div class="graphics_donout">
 
-                    <canvas id="myChart"></canvas>
-                    
-                    <div>
-                        <canvas id="myChartMotorista"></canvas>
+                    <div class="graphics_line">
+                        <canvas id="graficoLineOperacao"></canvas>
 
                     </div>
+
+                    <div class="graphics_donout">
+
+                        <canvas id="myChart"></canvas>
+
+                        <div>
+                            <canvas id="myChartMotorista"></canvas>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="graficos">
+
+                <h2>Manutenções</h2>
+
+                <div class="cont_graficos">
+
+
+                    <div class="graphics_line">
+                        <canvas id="meuGrafico"></canvas>
+
+                    </div>
+
+                    <div class="graphics_donout">
+
+                        <canvas id="myDonultVeiculo"></canvas>
+
+
+                    </div>
+                </div>
+
+                <div class="cont_cards">
+
                 </div>
             </div>
 
@@ -346,11 +377,13 @@
 
                 <div class="table_operacao">
                     <p>Operações</p>
-                    <div class="div_cont_table">
+
+                    <div>
+
                         <table>
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th class="model">#</th>
                                     <th>Motorista</th>
                                     <th>Véiculo</th>
                                     <th>Data Saída</th>
@@ -358,19 +391,18 @@
                                     <th>Descricao</th>
                                 </tr>
                             </thead>
+                        </table>
 
-                            <tbody class="contOperac">
+                        <table style="height: 60vh; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.185);">
+                            <tbody class="contOperac" style=" height: 100%; overflow-y: scroll;">
                                 <tr class="operacoes model">
-                                    <td class="id_operacao">RTX3090TI</td>
-                                    <td class="motorista">GTX0N3GB</td>
+                                    <td class="id_operacao model">RTX3090TI</td>
+                                    <td class="motorista id_moto">GTX0N3GB</td>
                                     <td class="veiculo">GTX0N3GB</td>
                                     <td class="data_saida">GTX0N3GB</td>
                                     <td class="data_retorno">GTX0N3GB</td>
-                                    <td class=""><i class='bx bx-show ' onclick="editarCliente(this)"></i></td>
+                                    <td class=""><i class='bx bx-show ' onclick="movalVeiculo(this)"></i></td>
                                 </tr>
-
-
-
                             </tbody>
                         </table>
                     </div>
@@ -380,34 +412,42 @@
                 <div class="table_veiculo">
                     <p>Véiculos</p>
 
-                    <div class="div_cont_table">
+                    <div>
 
-                        <table class="table_veiculos">
+
+                        <table>
+
                             <thead>
                                 <tr>
                                     <th>Situação</th>
-                                    <th>#</th>
-                                    <th>Placa</th>
+                                    <th class="model">#</th>
                                     <th>Modelo</th>
+                                    <th>Placa</th>
                                     <th>Marca</th>
                                     <th>Tipo</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
+                        </table>
 
-                            <tbody class="contVeiculos">
+
+                        <table style="height: 60vh; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.185);">
+                            <tbody class="contVeiculos" style=" height: 100%; overflow-y: scroll;">
                                 <tr class="veiculos model">
-                                    <td class=""><img class="img_situation" src="img/icons/cicle_on.png" alt=""> </td>
-                                    <td class="id_veiculo">RTX3090TI</td>
-                                    <td class="placa">GTX0N3GB</td>
-                                    <td class="modelo">GTX0N3GB</td>
-                                    <td class="marca">GTX0N3GB</td>
-                                    <td class="tipo">GTX0N3GB</td>
+                                    <td class=""><img class="img_situation" src="" alt="">
+                                    </td>
+                                    <td class="id_veiculo model">1</td>
+                                    <td class="modelo">1</td>
+                                    <td class="placa">5</td>
+                                    <td class="marca">Veiculo Pequeno</td>
+                                    <td class="tipo">R$ 10,00</td>
+                                    <td class="cont-btns">
+                                        <i class='bx bx-edit btn_show_modal_manu' onclick="editarCliente(this)"></i>
+                                    </td>
                                 </tr>
 
                             </tbody>
-
                         </table>
-
                     </div>
 
                 </div>
