@@ -73,12 +73,14 @@ function VerificarAcesso() {
     if (userinfo == null) {
         window.location.href = '../login/login.html '
     }
+
     else {
 
         usuarios.forEach(u => {
             if (u.id == userinfo.id_user) {
 
                 if (u.tipo == "usuario") {
+                    window.location.href = '../AreaComum/areaComum.html'
 
                     document.querySelector('.link_painel_controle').style.display = "none"
                     document.querySelector('.link_area_gerencial').style.display = "none"
@@ -248,6 +250,12 @@ var disponivel = true
 
 function salvar(e) {
 
+    var erro = false;
+    
+
+    document.querySelector('.erro_dec_vazio').classList.add('model')
+
+
     var id_operacao = document.querySelector('.id_editar').innerHTML
 
     var motorista = document.querySelector('.id_m_editar').value
@@ -258,6 +266,19 @@ function salvar(e) {
 
     var descricao = document.querySelector('.descricao_txt_area').value
 
+
+
+
+    if(descricao.trim() == "") {
+        document.querySelector('.erro_dec_vazio').classList.remove('model')
+
+        erro = true;
+
+    }
+
+    if(erro == true) {
+        return;
+    }
     // var select_status = document.querySelector(".tipo-Motorista")
     // let seleMotorista = select_status.options[select_status.selectedIndex].value;
 

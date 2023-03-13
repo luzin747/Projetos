@@ -73,17 +73,20 @@ function carregar() {
 }
 
 function VerificarAcesso() {
+
     var userinfo = JSON.parse(localStorage.getItem("info"));
 
     if (userinfo == null) {
-        window.location.href = 'pages/login/login.html '
+        window.location.href = '../login/login.html '
     }
+
     else {
 
         usuarios.forEach(u => {
             if (u.id == userinfo.id_user) {
 
                 if (u.tipo == "usuario") {
+                    window.location.href = '../AreaComum/areaComum.html'
 
                     document.querySelector('.link_painel_controle').style.display = "none"
                     document.querySelector('.link_area_gerencial').style.display = "none"
@@ -94,7 +97,6 @@ function VerificarAcesso() {
         })
 
     }
-
 }
 
 function logout() {
@@ -114,12 +116,14 @@ var soma = 0
 var disponivel = [0, 0]
 var disponivelMotorista = [0, 0]
 
-var disponivelVeiculos = [0,0,0]
+var disponivelVeiculos = [0, 0, 0]
 
 
 function preencherTabelas() {
 
     var linhaOperacoes = document.querySelector('.operacoes')
+
+    
 
     operacoes.forEach(o => {
 
@@ -143,7 +147,7 @@ function preencherTabelas() {
 
             motoristas.forEach(m => {
 
-                
+
 
 
                 if (o.id_motorista == m.id_motorista) {
@@ -167,20 +171,9 @@ function preencherTabelas() {
 
     var linhaVeiculos = document.querySelector('.veiculos')
 
-
-    motoristas.forEach(m => {
-
-        if(m.disponivel == "Ativo") {
-            disponivelMotorista[0]++
-        }
-
-        if(m.disponivel == "Em Operação") {
-            disponivelMotorista[1]++
-        }
-    })
-
     veiculos.forEach(v => {
 
+        console.log(veiculos);
         var novaLinhaVeiculos = linhaVeiculos.cloneNode(true)
 
         novaLinhaVeiculos.classList.remove('model')
@@ -211,18 +204,32 @@ function preencherTabelas() {
         document.querySelector('.contVeiculos').appendChild(novaLinhaVeiculos)
     })
 
+
+
+    motoristas.forEach(m => {
+
+        if (m.disponivel == "Ativo") {
+            disponivelMotorista[0]++
+        }
+
+        if (m.disponivel == "Em Operação") {
+            disponivelMotorista[1]++
+        }
+    })
+
+   
     console.log(disponivelVeiculos);
-    Graficos(disponivel,disponivelVeiculos,disponivelMotorista)
+    Graficos(disponivel, disponivelVeiculos, disponivelMotorista)
     GraficoDeLinha()
 }
 
-function Graficos(disponivel,disponivelVeiculos) {
+function Graficos(disponivel, disponivelVeiculos) {
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var myDoughnutChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Operações em Andamento ' , 'Operações Finalizadas'],
+            labels: ['Operações em Andamento ', 'Operações Finalizadas'],
             datasets: [{
                 data: disponivel,
                 backgroundColor: [
@@ -261,7 +268,7 @@ function Graficos(disponivel,disponivelVeiculos) {
     var myDoughnutChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Veiculos Disponiveis ' , 'Veiculos Em Operação', 'Veiculos Na Manutenção'],
+            labels: ['Veiculos Disponiveis ', 'Veiculos Em Operação', 'Veiculos Na Manutenção'],
             datasets: [{
                 data: disponivelVeiculos,
                 backgroundColor: [
@@ -277,23 +284,16 @@ function Graficos(disponivel,disponivelVeiculos) {
         }
     });
 
-    
+
 
 }
 
 function GraficoDeLinha() {
 
+    const manutencoesPorMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    const manutencoesValorPorMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-
-
-    
-
-
-
-    const manutencoesPorMes = [0,0,0,0,0,0,0,0,0,0,0,0]
-    const manutencoesValorPorMes = [0,0,0,0,0,0,0,0,0,0,0,0]
-
-    const operacoesPorMes = [0,0,0,0,0,0,0,0,0,0,0,0]
+    const operacoesPorMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     manutencao.forEach(m => {
         const dataDaManutencao = new Date(m.data_inicio)
@@ -309,11 +309,11 @@ function GraficoDeLinha() {
 
         const dataDaOperacao = new Date(o.data_saida)
         const mesDaOperacao = dataDaOperacao.getMonth()
-        
-        operacoesPorMes[mesDaOperacao]++
-      
 
-        
+        operacoesPorMes[mesDaOperacao]++
+
+
+
     })
 
 
@@ -321,9 +321,9 @@ function GraficoDeLinha() {
     var meuGrafico = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun','Jul','Ago','Set','Out','Nov','Dez'],
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
             datasets: [{
-                label: 'Manutenções', 
+                label: 'Manutenções',
                 data: manutencoesPorMes,
                 backgroundColor: 'Yellow',
                 borderColor: '#212124',
@@ -331,18 +331,18 @@ function GraficoDeLinha() {
             },
 
             {
-                label: 'Valor Manutenções', 
+                label: 'Valor Manutenções',
                 data: manutencoesValorPorMes,
                 backgroundColor: 'Yellow',
                 borderColor: '#212124',
                 borderWidth: 1
             },
-        
-        
-        ],
-            
+
+
+            ],
+
         },
-        
+
         options: {}
     });
 
@@ -350,9 +350,9 @@ function GraficoDeLinha() {
     var meuGrafico = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun','Jul','Ago','Set','Out','Nov','Dez'],
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
             datasets: [{
-                label: 'Operações', 
+                label: 'Operações',
                 data: operacoesPorMes,
                 backgroundColor: 'Yellow',
                 borderColor: '#212124',
@@ -527,9 +527,10 @@ function editarCliente(e) {
 
 function fecharEditarCliente() {
     var mostrarModal = document.querySelector('.m-editar')
-    mostrarModal.classList.toggle('model')
+    var modalVeiculo = document.querySelector('.m-editar-veiculo')
+    mostrarModal.classList.add('model')
+    modalVeiculo.classList.add('model')
 
-    window.location.reload();
 
 }
 
@@ -552,84 +553,54 @@ function trocarTables() {
         document.querySelector('.table_veiculo').style.display = "block"
 
     }
-}   
+}
 
-// function movalVeiculo(e) {
+function modalCliente(e) {
 
-//     var id = e.parentNode.parentNode.querySelector('.id_veiculos').innerHTML
+    var id = e.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
 
-//     var mostrarModal = document.querySelector('.m-editar')
+    var mostrarModal = document.querySelector('.m-editar-veiculo')
 
-//     soma += 1
+    soma += 1
 
-//     mostrarModal.classList.remove('model')
+    console.log(id);
 
-//     var optionDisponivel = document.createElement('option')
-//     optionDisponivel.value = "Ativo"
-//     optionDisponivel.innerHTML = "Disponivel"
-
-//     var optionManutencao = document.createElement('option')
-//     optionManutencao.value = "Em Manutencao"
-//     optionManutencao.innerHTML = "Em Manutencao"
+    mostrarModal.classList.remove('model')
 
 
-//     if (soma == 1) {
-//         carregarManutencoes(id)
-//     }
+    veiculos.forEach(v => {
+        if (id == v.id_veiculo) {
 
-//     veiculos.forEach(v => {
-//         if (id == v.id_veiculo) {
+            document.querySelector('.id_editar_veiculo').innerHTML = v.id_veiculo
+            document.querySelector('.pv_editar').value = v.placa
+            document.querySelector('.mv_editar').value = v.modelo
+            document.querySelector('.marca_editar').value = v.marca
+            document.querySelector('.m_tipo').value = v.tipo
+            document.querySelector('.disponibilidade').value = v.disponivel
 
-//             if (v.disponivel == "Em Operação") {
-//                 document.querySelector('.cont_trash').classList.add('model')
-//                 document.querySelector('.selects_inps_disp').classList.add('model')
+        }
 
+        manutencao.forEach(m => {
 
-//             }
+            if (v.id_veiculo == m.id_veiculo) {
 
-//             if (v.disponivel == "Em Manutencao") {
-//                 document.querySelector('.cont_trash').classList.add('model')
-//                 document.querySelector('.select_status').appendChild(optionManutencao)
-//                 document.querySelector('.select_status').appendChild(optionDisponivel)
+                var data_saida = document.querySelector('.h_saida')
+                var btn_manutencao = document.querySelector('.btn_finalizar_manutencao')
 
-//             }
+                data_saida.classList.remove('model')
+                btn_manutencao.classList.add('model')
 
-//             if (v.disponivel == "Ativo") {
-//                 document.querySelector('.select_status').appendChild(optionDisponivel)
-//                 document.querySelector('.select_status').appendChild(optionManutencao)
+                data_saida.style.textAlign = "center"
 
-//             }
-
-//             document.querySelector('.id_veiculo').innerHTML = v.id_veiculo
-//             document.querySelector('.placa_veiculo').value = v.placa
-//             document.querySelector('.modelo_veiculo').value = v.modelo
-//             document.querySelector('.marca_veiculo').value = v.marca
-//             document.querySelector('.tipo_veiculo').value = v.tipo
-//             document.querySelector('.disponibilidade').value = v.disponivel
-
-//         }
-
-//         manutencao.forEach(m => {
-
-//             if (v.id_veiculo == m.id_veiculo) {
-
-//                 var data_saida = document.querySelector('.h_saida')
-//                 var btn_manutencao = document.querySelector('.btn_finalizar_manutencao')
-
-//                 data_saida.classList.remove('model')
-//                 btn_manutencao.classList.add('model')
-
-//                 data_saida.style.textAlign = "center"
-
-//                 document.querySelector('.descricao').value = m.descricao
-//                 document.querySelector('.valor').value = m.valor
-//                 document.querySelector('.h_entrada').value = m.data_inicio
-//                 document.querySelector('.h_saida').value = m.data_inicio
+                document.querySelector('.descricao').value = m.descricao
+                document.querySelector('.valor').value = m.valor
+                document.querySelector('.h_entrada').value = m.data_inicio          
+                 document.querySelector('.h_saida').value = m.data_inicio
 
 
-//             }
-//         })
+            }
+        })
 
-//     })
+    })
 
-// }
+}

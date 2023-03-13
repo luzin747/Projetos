@@ -47,6 +47,7 @@ function carregar() {
 
 }
 
+
 function VerificarAcesso() {
 
     var userinfo = JSON.parse(localStorage.getItem("info"));
@@ -54,12 +55,14 @@ function VerificarAcesso() {
     if (userinfo == null) {
         window.location.href = '../login/login.html '
     }
+
     else {
 
         usuarios.forEach(u => {
             if (u.id == userinfo.id_user) {
 
                 if (u.tipo == "usuario") {
+                    window.location.href = '../AreaComum/areaComum.html'
 
                     document.querySelector('.link_painel_controle').style.display = "none"
                     document.querySelector('.link_area_gerencial').style.display = "none"
@@ -337,17 +340,17 @@ function salvar(e) {
         const regexPlacaMercosulMoto = /^[a-zA-Z]{3}[0-9]{2}[a-zA-Z]{1}[0-9]{1}$/;
 
 
-        if (regexPlaca.test(placa)) {
+        if (regexPlaca.test(placa.trim())) {
             resposta = "Placa válida no formato atual";
 
             erroPlaca = false;
         }
-        if (regexPlacaMercosulCarro.test(placa)) {
+        if (regexPlacaMercosulCarro.test(placa.trim())) {
             resposta = "Placa válida (padrão Mercosul - carro)";
             erroPlaca = false;
 
         }
-        if (regexPlacaMercosulMoto.test(placa)) {
+        if (regexPlacaMercosulMoto.test(placa.trim())) {
             resposta = "Placa válida (padrão Mercosul - moto)";
             erroPlaca = false;
 
@@ -365,10 +368,10 @@ function salvar(e) {
     if (erro == false && erroPlaca == false) {
 
         let data = {
-            "placa": placa,
-            "modelo": modelo,
-            "marca": marca,
-            "tipo": tipo,
+            "placa": placa.trim(),
+            "modelo": modelo.trim(),
+            "marca": marca.trim(),
+            "tipo": tipo.trim(),
             "disponivel": seleStatus
         }
 
@@ -437,11 +440,26 @@ function salvarCManutenção(e) {
 
 function funcaoCadManutencao(e) {
 
+    var erro = 0
+
+    document.querySelector('.erro_dec_vazio').classList.add('model')
+    document.querySelector('.erro_valor_vazio').classList.add('model')
+
     var id_veiculo = e.parentNode.parentNode.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
     var descricao_manutencao = document.querySelector('.descricao_man').value
     var valor = document.querySelector('.valor_man').value
     var data_entrada = document.querySelector('.h_entrada_inp').value
     var data_saida = document.querySelector('.h_saida_inp').value
+
+    if (descricao_manutencao.trim() == "") {
+        document.querySelector('.erro_dec_vazio').classList.remove('model')
+        erro = true;
+    }
+
+    if (valor.trim() == "") {
+        document.querySelector('.erro_valor_vazio').classList.remove('model')
+        erro = true;
+    }
 
     if (data_saida == "") {
         var data_finalizada = "---"
@@ -451,6 +469,11 @@ function funcaoCadManutencao(e) {
         data_finalizada = data_saida
     }
 
+    if (erro == true) {
+
+        return;
+    }
+
     let data = {
         "id_veiculo": Number(id_veiculo),
         "data_inicio": data_entrada,
@@ -458,6 +481,7 @@ function funcaoCadManutencao(e) {
         "valor": Number(valor),
         "descricao": descricao_manutencao,
     }
+
 
     fetch('http://localhost:3000/manutencao', {
         "method": "POST",
@@ -469,6 +493,12 @@ function funcaoCadManutencao(e) {
         .then(resp => resp.status)
         .then(resp => {
             if (resp == 200) {
+
+
+                document.querySelector('.descricao_man').value = ""
+                document.querySelector('.valor_man').value = ""
+                document.querySelector('.h_saida_inp').value = ""
+
 
                 alert('inserido com Sucesso')
 
@@ -485,6 +515,10 @@ function funcaoCadManutencao(e) {
                     .then(res => {
                         manutencao = res;
                         carregarManutencoes(id_veiculo);
+
+
+
+
 
                     }
                     )
@@ -556,6 +590,7 @@ function fecharEditarCliente() {
 }
 
 function fecharModaisDaManutencao(e) {
+
     var teste = e.parentNode.parentNode.parentNode.parentNode.querySelector('.inps_descri_section_create_manu')
     var cardManutencao = e.parentNode.parentNode.parentNode.querySelector('.inps_descri')
 
@@ -691,7 +726,15 @@ function salvarEdicaoCard(e) {
             if (resp == 200) {
 
                 alert('Atualizado com Sucesso')
-                window.location.reload()
+
+                console.log(e.parentNode.parentNode.parentNode.parentNode);
+
+                var cardManutencao = e.parentNode.parentNode.parentNode.querySelector('.inps_descri')
+
+                cardManutencao.classList.add('model')
+
+
+
             }
 
         })

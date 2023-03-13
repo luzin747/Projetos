@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="css/cadastra.css">
 </head>
 
+<script>
+    window.localStorage.removeItem("info")
+</script>
+
 <body>
 
     <div id="container">
@@ -26,16 +30,16 @@
                 <hr>
 
                 <div class="cont-inps">
-
+                    
                     <div class="inps">
                         <div class="single-input">
-                            <input type="text" class="input" id="nome">
-                            <label>Nome*</label>
+                            <input type="text" class="input" placeholder="Insira o Nome..." id="nome">
+                            <!-- <label>Nome*</label> -->
                         </div>
 
                         <div class="single-input">
-                            <input class="input" type="text" id="email">
-                            <label>Email</label>
+                            <input class="input" type="text" placeholder="Insira o Email..." id="email">
+                            <!-- <label>Email</label> -->
                         </div>
                     </div>
 
@@ -43,17 +47,24 @@
                     <div class="inps">
 
                         <div class="single-input">
-                            <input class="input" type="password" id="senha">
-                            <label>Senha*</label>
+                            <input class="input" type="password" placeholder="Insira a Senha..." id="senha">
+                            <!-- <label>Senha*</label> -->
                         </div>
 
                         <div class="single-input">
-                            <input class="input" type="password" id="confirmar_senha">
-                            <label>Confirmar Senha*</label>
+                            <input class="input" type="password" placeholder="Confirmar Senha..." id="confirmar_senha">
+                            <!-- <label>Confirmar Senha*</label> -->
                         </div>
 
                     </div>
 
+                    <div>
+                        <p class="erro_Vazio model" style=" text-align: center ;font-size: 12pt; color: red;">Algum dado não Preenchido</p>
+                        <p class="erro_Email_Invalido model" style=" text-align: center ;font-size: 12pt; color: red;">Email Inválido</p>
+                        <p class="erro_Senha_Invalido model" style=" text-align: center ;font-size: 12pt; color: red;">Senhas Não Coincidem</p>
+                   
+                   
+                    </div>
                     <div class="btn-cadastrar " onClick="cad()">
                         <button class="btn-cadastrar">
                             <img class="img-btn" src="" alt="">
@@ -65,20 +76,20 @@
                     </div> 
 
                 </div class="input">
-                <a href="../../Login/index.html"><p class="link-login">Já Possui Cadastro? <span>Entrar!</span></p></a>
+                <a href="../login/login.html"><p class="link-login">Já Possui Cadastro? <span>Entrar!</span></p></a>
 
             </div>
 
         </div>
     </div>
-    <div class="modal-certo model">
+    <!-- <div class="modal-certo model">
 
         <img src="./img/IMAGES/2.gif" alt="">
 
         <p>Ticket Cadastrado Com Sucesso!</p>
 
         <button onclick="esconderModalCheck()" class="btn-check">OK</button>
-    </div>
+    </div> -->
 
 </body>
 

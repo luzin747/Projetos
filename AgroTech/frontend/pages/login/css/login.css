@@ -182,9 +182,11 @@ a:hover {
 
 form > p{
     color: red;
+    font-size: 11pt;
     text-align: center;
+    margin-top: 10px;
 }
-.modal, .tela{
+.model, .tela{
     display: none;
     visibility: hidden;
 }

@@ -20,6 +20,13 @@ main {
     display: flex;
 }
 
+.cont-logout:hover {
+    background-color: lightgray;
+}
+
+.cont-logout {
+    cursor: pointer;
+}
 
 .model {
     display: none;

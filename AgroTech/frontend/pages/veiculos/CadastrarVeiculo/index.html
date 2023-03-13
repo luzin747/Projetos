@@ -25,17 +25,16 @@
                 <!-- <p>Menu</p> -->
 
                 <ul>
-                    <li><a href="home.html"><i class='bx bx-category'></i></i><span
-                                class="nav-title">Controle</span></a></li>
-                    <li><a href="pages/estacionar/estacionar.html"><i class='bx bxs-parking'></i><span
-                                class="nav-title">Área Gerencial</span></a></li>
-                    <li><a href="pages/clientes/clientes.html"><i class='bx bx-group'></i><span class="nav-title">Área
+                    <li class="link_painel_controle"><a href="../../../home.html"><i class='bx bx-category'></i></i><span
+                                class="nav-title">Painel de Controle</span></a></li>
+                    <li class="link_area_gerencial"> <a href="../../AreaGerencial/areaGerencial.html"><i
+                                class='bx bxs-parking'></i><span class="nav-title">Área Gerencial</span></a></li>
+                    <li><a href="../../AreaComum/areaComum.html"><i class='bx bx-group'></i><span class="nav-title">Área
                                 Comum</span></a></li>
-                    <li><a href="pages/mensalidades/mensalidades.html"><i class='bx bx-money'></i><span
+                    <li class="link_motoristas"><a href="../../Motoristas/motoristas.html"><i class='bx bx-money'></i><span
                                 class="nav-title">Motoristas</span></a></li>
-                    <li><a href="pages/mensalidades/mensalidades.html"><i class='bx bx-money'></i><span
+                    <li class="link_veiculos"><a href="../../veiculos/veiculos.html"><i class='bx bx-money'></i><span
                                 class="nav-title">Veículos</span></a></li>
-
 
                 </ul>
             </div>
@@ -73,9 +72,12 @@
 
                 <div class="section-01">
                     <div>
-                        <p>Tipo Veiculo</p>
+                        <div style="display: flex;">
+                            <p>Tipo Veículo*</p>
+                            <p class="erro_tipo_vazio model" style="color: red; margin-left: 10px;">[Selecione o Tipo do Veículo*]</p>
+                        </div>
                         <select class="tipo-Veiculo_tipo">
-                            <option value="Carga">************ [Selecione o Tipo do Veiculo] ************</option>
+                            <option value="default">************ [Selecione o Tipo do Veiculo] ************</option>
                             <option value="Carga">Carga</option>
                             <option value="Visita">Visita</option>
                             <option value="Venda">Venda</option>
@@ -83,28 +85,39 @@
                     </div>
 
                     <div>
-                        <p>Modelo</p>
+                        <div style="display: flex;">
+                            <p>Modelo*</p>
+                            <p class="erro_modelo_vazio model" style="color: red; margin-left: 10px;">[Insira o Modelo do Veículo*]</p>
+                        </div>
                         <input class="modelo" type="text">
                     </div>
 
-                    
+
                 </div>
 
                 <div class="section-01">
 
                     <div>
-                        <p>Marca</p>
+                        <div style="display: flex;">
+                            <p>Marca*</p>
+                            <p class="erro_marca_vazio model" style="color: red; margin-left: 10px;">[Insira a Marca do Veículo*]</p>
+                        </div>
                         <input type="text" class="marca">
                     </div>
 
                     <div>
-                        <p>Placa Veículo</p>
+                        <div style="display: flex;">
+                            <p>Placa*</p>
+                            <p class="erro_placa_vazio model" style="color: red; margin-left: 10px;">[Insira a Placa do Veículo*]</p>
+                            <p class="erro_placa_existe model" style="color: red; margin-left: 10px;">[Placa Já Existente*]</p>
+                            <p class="erro_placa_invalida model" style="color: red; margin-left: 10px;">[Insira a Placa Válida*]</p>
+                        </div>
                         <input type="text" class="placa-veiculo" id="">
                     </div>
 
-                    
+
                 </div>
-               
+
                 <div>
                     <button onclick="cadastrarVeiculos()">Confimar</button>
                     <button><a href="../estacionar.html">Voltar</a></button>
@@ -136,7 +149,7 @@
 
             <img src="img/error01 (1).gif" alt="">
 
-            <p>Erro  - Vagas Já Cadastradas</p>
+            <p>Erro - Vagas Já Cadastradas</p>
 
             <button onclick="esconderModalErrorVagas()" class="btn-error">OK</button>
         </div>
@@ -145,7 +158,7 @@
 
             <img src="img/error01 (1).gif" alt="">
 
-            <p>Erro  - Vagas Inexistentes</p>
+            <p>Erro - Vagas Inexistentes</p>
 
             <button onclick="esconderModalErrorInexistente()" class="btn-error">OK</button>
         </div>

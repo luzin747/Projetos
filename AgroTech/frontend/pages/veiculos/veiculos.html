@@ -299,15 +299,22 @@
 
                                     <h2>Adicionar Manutenção</h2>
 
-                                    <p>Descrição da Manutenção</p>
+                                    <div style="display: flex; justify-content: center; margin-bottom: 5px;">
+                                        <p>Descrição*</p>
+                                        <p class="erro_dec_vazio model" style="color: red; margin-left: 10px;">[Descrição não Pode Ser Vazia*]</p>
+                                    </div>
 
                                     <textarea class="descricao_man" name="" id="" cols="40" rows="5" style="resize: none; padding: 5px;"></textarea>
 
                                     <div class="inp_valor">
 
                                         <div>
-                                            <p>Valor</p>
-                                            <input type="text" class="valor_man">
+                                            <div style="display: flex; justify-content: center; margin-bottom: 5px;">
+                                                <p>Valor*</p>
+                                                <p  class="erro_valor_vazio model" style="color: red; margin-left: 10px;">[Valor não Pode Ser Vazio*]</p>
+                                            </div>
+        
+                                            <input type="number" class="valor_man">
                                         </div>
 
                                     </div>

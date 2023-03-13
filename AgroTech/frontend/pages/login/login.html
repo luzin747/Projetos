@@ -7,6 +7,10 @@
     <title>AgroTech - Login</title>
     <link rel="stylesheet" href="css/login.css">
 </head>
+
+<script>
+    window.localStorage.removeItem("info")
+</script>
 <body>
 
     <div id="container">
@@ -28,14 +32,18 @@
 
                     <div class="single-input">
                         <input type="text" class="input" id="user" required>
-                        <label for="user">Email</label>
+                        <label for="email">Email</label>
+
                     </div>
                     <div class="single-input">
                         <input type="password" class="input" id="senha" required>
                         <label for="senha">Senha</label>
                     </div>
                     <p class="id"></p>
-                    <p class="erros modal">Credenciais inválidas</p>
+                    <p class="e1 model">Dado Não Preenchido</p>
+                    <p class="e2 model">Email inválida</p>
+                    <p class="e3 model">Senha inválida</p>
+                    
                 </form>
 
                 
@@ -48,7 +56,9 @@
                     <button class="button-login" onclick="logar()">Entrar 
                     </button>
                 </div>
-                     
+
+                
+                
                 <div class="outros-meios-cadastros">
 
                     <div>

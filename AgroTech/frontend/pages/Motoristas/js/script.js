@@ -32,6 +32,7 @@ function carregar() {
 
 }
 
+
 function VerificarAcesso() {
 
     var userinfo = JSON.parse(localStorage.getItem("info"));
@@ -39,12 +40,14 @@ function VerificarAcesso() {
     if (userinfo == null) {
         window.location.href = '../login/login.html '
     }
+
     else {
 
         usuarios.forEach(u => {
             if (u.id == userinfo.id_user) {
 
                 if (u.tipo == "usuario") {
+                    window.location.href = '../AreaComum/areaComum.html'
 
                     document.querySelector('.link_painel_controle').style.display = "none"
                     document.querySelector('.link_area_gerencial').style.display = "none"
@@ -56,7 +59,6 @@ function VerificarAcesso() {
 
     }
 }
-
 function logout() {
 
     window.localStorage.removeItem("info")

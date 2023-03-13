@@ -133,13 +133,18 @@ a {
     transition: 0.5s ease-in-out;
 }
 
+.model {
+    display: none;
+    visibility: hidden;
+}
+
 .input:focus,
 .input:valid{
     border-bottom: 1px solid #2C1C36;
 }
 .input:focus ~ label,
 .input:valid ~ label{
-    transform: translateY(-14px);
+    transform: translateY(-17px);
     font-size: 15px;
     color: #2C1C36;
 }
