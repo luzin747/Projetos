@@ -125,19 +125,23 @@ function cadastrarOperacoes() {
         erro = true
     }
 
+    const [day, month, year] = data_saida.split('/')
+
+    var data_final = year + '-' + month + '-' + day
+
+    var data_formatada_entrada = data_final
+
 
     if (erro == false) {
 
         let data = {
             "id_motorista": Number(seleMotorista),
             "id_veiculo": Number(seleVeiculo),
-            "data_saida": data_saida,
+            "data_saida": data_formatada_entrada,
             "data_retorno": "",
             "descricao": descricao,
             "status": true
         };
-
-        console.log(data);
 
 
         fetch('http://localhost:3000/operacao', {

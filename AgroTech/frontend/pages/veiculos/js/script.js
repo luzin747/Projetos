@@ -202,7 +202,14 @@ function editarCliente(e) {
                 document.querySelector('.descricao').value = m.descricao
                 document.querySelector('.valor').value = m.valor
                 document.querySelector('.h_entrada').value = m.data_inicio
-                document.querySelector('.h_saida').value = m.data_inicio
+
+                var data_saida = m.data_inicio
+
+                const [day, month, year] = data_saida.split('/')
+
+                var data_final = day + '-' + month + '-' + year
+
+                document.querySelector('.h_saida').value = data_final
 
 
             }
@@ -295,8 +302,6 @@ function salvar(e) {
     var erro = false
     var erroPlaca = true;
     var erroPlacaVazia = false;
-
-
 
     e.parentNode.parentNode.parentNode.querySelector('.erro_placa_vazio').classList.add('model')
     e.parentNode.parentNode.parentNode.querySelector('.erro_placa_invalida').classList.add('model')
@@ -461,27 +466,43 @@ function funcaoCadManutencao(e) {
         erro = true;
     }
 
-    if (data_saida == "") {
+    if (data_saida.trim() == "") {
         var data_finalizada = "---"
     }
-
     else {
-        data_finalizada = data_saida
+
+        const [day, month, year] = data_saida.split('/')
+
+        var data_final = year + '-' + month + '-' + day
+
+        data_finalizada = data_final
+
+        console.log(data_finalizada);
     }
+
+
+    const [day, month, year] = data_entrada.split('/')
+
+    var data_final = year + '-' + month + '-' + day
+
+    var data_formatada_entrada = data_final
+
 
     if (erro == true) {
 
         return;
     }
 
+
     let data = {
         "id_veiculo": Number(id_veiculo),
-        "data_inicio": data_entrada,
+        "data_inicio": data_formatada_entrada,
         "data_fim": data_finalizada,
         "valor": Number(valor),
         "descricao": descricao_manutencao,
     }
 
+    console.log(data);
 
     fetch('http://localhost:3000/manutencao', {
         "method": "POST",
@@ -498,7 +519,8 @@ function funcaoCadManutencao(e) {
                 document.querySelector('.descricao_man').value = ""
                 document.querySelector('.valor_man').value = ""
                 document.querySelector('.h_saida_inp').value = ""
-
+                document.querySelector('.btn_finalizar_manutencao_inp').classList.remove('model')
+                document.querySelector('.h_saida_inp').classList.add('model')
 
                 alert('inserido com Sucesso')
 
@@ -516,15 +538,9 @@ function funcaoCadManutencao(e) {
                         manutencao = res;
                         carregarManutencoes(id_veiculo);
 
-
-
-
-
                     }
                     )
                     .catch(err => console.error(err));
-
-
 
             }
 
@@ -596,6 +612,27 @@ function fecharModaisDaManutencao(e) {
 
     teste.classList.add('model')
     cardManutencao.classList.add('model')
+
+
+    document.querySelector('.descricao_man').value = ""
+    document.querySelector('.valor_man').value = ""
+    document.querySelector('.h_saida_inp').value = ""
+    document.querySelector('.btn_finalizar_manutencao_inp').classList.remove('model')
+    document.querySelector('.h_saida_inp').classList.add('model')
+
+
+
+}
+
+function fecharModaisCardDaManutencao(e) {
+
+    var teste = e.parentNode.parentNode.parentNode.parentNode.querySelector('.inps_descri_section_create_manu')
+    var cardManutencao = e.parentNode.parentNode.parentNode.querySelector('.inps_descri')
+
+    teste.classList.add('model')
+    cardManutencao.classList.add('model')
+    e.parentNode.parentNode.querySelector('.btn_finalizar_card').classList.remove('model')
+    e.parentNode.parentNode.querySelector('.data_fim_inp').classList.add('model')
 }
 
 function carregarManutencoes(e) {
@@ -632,10 +669,31 @@ function carregarManutencoes(e) {
 
             novoCardManutencao.querySelector('.descricao').value = m.descricao
             novoCardManutencao.querySelector('.valor').value = m.valor
-            novoCardManutencao.querySelector('.data_entrada').value = m.data_inicio
+
+            var data = m.data_inicio
+
+            const [year, month, day] = data.split('-')
+
+            var data_final = day + '/' + month + '/' + year
+
+            var data_entrada_formatada = data_final
+
+            console.log(data);
+
+
+            novoCardManutencao.querySelector('.data_entrada').value = data_entrada_formatada
 
             if (m.data_fim != '---') {
-                novoCardManutencao.querySelector('.data_fim_inp').value = m.data_fim
+
+                var data = m.data_fim
+
+                const [year, month, day] = data.split('-')
+
+                var data_final = day + '/' + month + '/' + year
+
+                var data_fim_formatada = data_final
+
+                novoCardManutencao.querySelector('.data_fim_inp').value = data_fim_formatada
                 novoCardManutencao.querySelector('.btn_finalizar_card').classList.add('model')
                 novoCardManutencao.querySelector('.data_fim_inp').classList.remove('model')
             }
@@ -686,9 +744,14 @@ function mostrarModalManutencao() {
 
 function salvarEdicaoCard(e) {
 
+    var erro = false;
+
+    document.querySelector('.erro_descricao_vazia').classList.add('model')
+    document.querySelector('.erro_valores_vazia').classList.add('model')
+
+
     var id_manutencao = e.parentNode.parentNode.querySelector('.id_manutencao_hidden').innerHTML
     var id_veiculo = e.parentNode.parentNode.parentNode.parentNode.parentNode.querySelector('.id_veiculo').innerHTML
-
 
     console.log(id_manutencao);
     var descricao_manutencao = e.parentNode.parentNode.querySelector('.descricao').value
@@ -696,18 +759,49 @@ function salvarEdicaoCard(e) {
     var data_entrada = e.parentNode.parentNode.querySelector('.data_entrada').value
     var data_saida = e.parentNode.parentNode.querySelector('.data_fim_inp').value
 
+
+
+    if (descricao_manutencao.trim() == "") {
+        e.parentNode.parentNode.querySelector('.erro_descricao_vazia').classList.remove('model')
+        erro = true;
+    }
+
+    if (valor.trim() == "") {
+        e.parentNode.parentNode.querySelector('.erro_valores_vazia').classList.remove('model')
+        erro = true;
+    }
+
     if (data_saida == "") {
-        var data_finalizada = "---"
+        var data_finalizada_fim = "---"
     }
 
     else {
-        data_finalizada = data_saida
+        const [day, month, year] = data_saida.split('/')
+
+        var data_final = year + '-' + month + '-' + day
+
+        data_finalizada_fim = data_final
+
+        console.log(data_finalizada_fim);
+
+    }
+
+    const [day, month, year] = data_entrada.split('/')
+
+    var data_final = year + '-' + month + '-' + day
+
+    var data_formatada_entrada = data_final
+
+
+    console.log(erro);
+    if (erro == true) {
+        return;
     }
 
     let data = {
         "id_veiculo": Number(id_veiculo),
-        "data_inicio": data_entrada,
-        "data_fim": data_finalizada,
+        "data_inicio": data_formatada_entrada,
+        "data_fim": data_finalizada_fim,
         "valor": Number(valor),
         "descricao": descricao_manutencao,
     }

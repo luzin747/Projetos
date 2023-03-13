@@ -408,37 +408,6 @@
 
             </div>
 
-            <div class="modal-excluir model">
-                <img src="img/excluir.gif" alt="">
-
-                <p>Ticket Excluido com Sucesso !</p>
-
-                <div class="cont-btn">
-                    <!-- <button onclick="deletarRegistro(this)" class="btn-excluir-sim">SIM</button> -->
-                    <!-- <button onclick="esconderModalExcluir()" class="btn-excluir-nao">NÃO</button> -->
-                    <button onclick="esconderModalExcluir()" class="btn-excluir-nao">OK</button>
-                </div>
-            </div>
-
-            <div class="modal-certo model">
-
-                <img src="img/2.gif" alt="">
-
-                <p>Ticket Finalizado Com Sucesso!</p>
-
-                <button onclick="esconderModalCheck()" class="btn-check">OK</button>
-            </div>
-
-            <div class="modal-errado-nao-existe model">
-
-                <img src="img/error01 (1).gif" alt="">
-
-                <p>Feche a Vaga para Finalizar o Ticket!</p>
-
-                <button onclick="esconderModalFecharAntes()" class="btn-error">OK</button>
-            </div>
-
-
             <!-- ÁREA DE CLONES  -->
             <div class="manutencao model">
                 <div class="cont_information_manutencao">
@@ -468,16 +437,19 @@
 
                 <div class="inps_descri model">
 
-                    <p>Descrição da Manutenção</p>
+                    <div style="display: flex;">
+                        <p>Descrição*</p>
+                        <p class="erro_descricao_vazia model" style="color: red; margin-left: 10px;">[Descrição  Vazia*]</p>
+                    </div>
 
                     <textarea class="descricao" name="" id="" cols="40" rows="5"></textarea>
 
                     <div class="inp_valor">
-                        <div>
-                            <p>Valor</p>
-                            <input type="text" class="valor">
-
+                        <div style="display: flex;">
+                            <p>Valor*</p>
+                            <p class="erro_valores_vazia model" style="color: red; margin-left: 10px;">[Valor  Vazio*]</p>
                         </div>
+                        <input type="number" class="valor" name="" id="">
                     </div>
 
                     <p class="id_manutencao_hidden model"></p>
@@ -495,13 +467,11 @@
                             <input type="text" class="data_fim_inp model" disabled="">
                         </div>
 
-
-
                     </div>
 
                     <div class="cont_button">
                         <button onclick="salvarEdicaoCard(this)">Salvar</button>
-                        <button class="btn-voltar" onclick="fecharModaisDaManutencao(this)">Fechar</button>
+                        <button class="btn-voltar" onclick="fecharModaisCardDaManutencao(this)">Fechar</button>
                     </div>
 
                 </div>

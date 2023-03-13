@@ -17,6 +17,8 @@ main {
     margin-bottom: 3%;
 }
 
+
+
 .inp_datas button {
     padding: 5px 15px;
     border-radius: 30px;
@@ -332,7 +334,7 @@ tbody tr td img {
     margin-left: 10px;
 }
 
-.cont-button-status  button {
+.cont-button-status  button, .cont_button button , .cont_button_c_manutencao button {
     cursor: pointer;
     padding: 5px 15px;
     margin-left: 10px;
@@ -342,21 +344,18 @@ tbody tr td img {
     cursor: pointer;
 }
 
-.cont-button-status  button:nth-child(1) {
+.cont-button-status  button:nth-child(1) ,.cont_button button:nth-child(1) , .cont_button_c_manutencao  button:nth-child(1) {
     background-color: black;
     color: white;
 }
 
-.cont-button-status  button:nth-child(2) {
+.cont-button-status  button:nth-child(2), .cont_button button:nth-child(2) , .cont_button_c_manutencao  button:nth-child(2) {
     background-color: rgb(255, 255, 255);
     border: none;
     box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.336);
     color: rgb(0, 0, 0);
 }
 
-.cont-btns {
-    cursor: pointer;
-}
 
 .modal-certo button {
     background-color: #12D76E;
@@ -391,8 +390,10 @@ tbody tr td img {
 
 .inp_valor {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-top: 3%;
+    margin: 3% auto;
+    width: 30%;
 }
 
 .inp_valor p {

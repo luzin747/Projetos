@@ -10,6 +10,10 @@ var operacoes = []
 var motoristas = []
 var manutencao = []
 
+var userinfo = JSON.parse(localStorage.getItem("info"));
+
+document.querySelector('.name_user').innerHTML = userinfo.nome
+
 function carregar() {
 
 
@@ -76,6 +80,8 @@ function VerificarAcesso() {
 
     var userinfo = JSON.parse(localStorage.getItem("info"));
 
+    document.querySelector('.user').innerHTML = userinfo.nome
+
     if (userinfo == null) {
         window.location.href = '../login/login.html '
     }
@@ -123,7 +129,7 @@ function preencherTabelas() {
 
     var linhaOperacoes = document.querySelector('.operacoes')
 
-    
+
 
     operacoes.forEach(o => {
 
@@ -171,6 +177,18 @@ function preencherTabelas() {
 
     var linhaVeiculos = document.querySelector('.veiculos')
 
+
+    motoristas.forEach(m => {
+
+        if (m.disponivel == "Ativo") {
+            disponivelMotorista[0]++
+        }
+
+        if (m.disponivel == "Em Operação") {
+            disponivelMotorista[1]++
+        }
+    })
+
     veiculos.forEach(v => {
 
         console.log(veiculos);
@@ -206,18 +224,6 @@ function preencherTabelas() {
 
 
 
-    motoristas.forEach(m => {
-
-        if (m.disponivel == "Ativo") {
-            disponivelMotorista[0]++
-        }
-
-        if (m.disponivel == "Em Operação") {
-            disponivelMotorista[1]++
-        }
-    })
-
-   
     console.log(disponivelVeiculos);
     Graficos(disponivel, disponivelVeiculos, disponivelMotorista)
     GraficoDeLinha()
@@ -291,7 +297,7 @@ function Graficos(disponivel, disponivelVeiculos) {
 function GraficoDeLinha() {
 
     const manutencoesPorMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    const manutencoesValorPorMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    // const manutencoesValorPorMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     const operacoesPorMes = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
@@ -300,9 +306,8 @@ function GraficoDeLinha() {
         const mesDaManutencao = dataDaManutencao.getMonth()
         manutencoesPorMes[mesDaManutencao]++
 
-        manutencoesValorPorMes[mesDaManutencao] += m.valor
-        console.log(m.valor);
-        console.log(manutencoesValorPorMes);
+        console.log(dataDaManutencao);
+        console.log(manutencoesPorMes);
     })
 
     operacoes.forEach(o => {
@@ -312,8 +317,7 @@ function GraficoDeLinha() {
 
         operacoesPorMes[mesDaOperacao]++
 
-
-
+        console.log(operacoesPorMes);
     })
 
 
@@ -328,17 +332,7 @@ function GraficoDeLinha() {
                 backgroundColor: 'Yellow',
                 borderColor: '#212124',
                 borderWidth: 1
-            },
-
-            {
-                label: 'Valor Manutenções',
-                data: manutencoesValorPorMes,
-                backgroundColor: 'Yellow',
-                borderColor: '#212124',
-                borderWidth: 1
-            },
-
-
+            }
             ],
 
         },
@@ -594,8 +588,8 @@ function modalCliente(e) {
 
                 document.querySelector('.descricao').value = m.descricao
                 document.querySelector('.valor').value = m.valor
-                document.querySelector('.h_entrada').value = m.data_inicio          
-                 document.querySelector('.h_saida').value = m.data_inicio
+                document.querySelector('.h_entrada').value = m.data_inicio
+                document.querySelector('.h_saida').value = m.data_inicio
 
 
             }

@@ -97,6 +97,7 @@ function preencherTabela() {
         novoCardMotorista.querySelector('.cpf').innerHTML = m.cpf
         novoCardMotorista.querySelector('.cnh').innerHTML = m.cnh
         novoCardMotorista.querySelector('.nome').innerHTML = m.nome
+        novoCardMotorista.querySelector('.disponivel').innerHTML = m.disponivel
 
         document.querySelector('.contTickets').appendChild(novoCardMotorista)
     })
@@ -132,6 +133,7 @@ function editar(e) {
             document.querySelector('.n_editar').value = m.nome
             document.querySelector('.cpf_editar').value = m.cpf
             document.querySelector('.cnh_tipo').value = m.cnh
+            document.querySelector('.disponivel_editar').value = m.disponivel
 
         }
 
@@ -141,19 +143,18 @@ function editar(e) {
 
 }
 
-var disponivel = true
-
 function salvar(e) {
 
-    var select_status = document.querySelector(".select_status")
-    let seleStatus = select_status.options[select_status.selectedIndex].value;
-    if (seleStatus == 'sim') { var disponivel = true; }
-    if (seleStatus == 'nao') { var disponivel = false; }
+    // var select_status = document.querySelector(".select_status")
+    // let seleStatus = select_status.options[select_status.selectedIndex].value;
+    // if (seleStatus == 'sim') { var disponivel = true; }
+    // if (seleStatus == 'nao') { var disponivel = false; }
 
     var id_motorista = document.querySelector('.id_editar').innerHTML
     var nome = document.querySelector('.n_editar').value
     var cpf = document.querySelector('.cpf_editar').value
     var cnh = document.querySelector('.cnh_tipo').value
+    var disponivel = document.querySelector('.disponivel_editar').value
 
     let data = {
         "nome": nome,
