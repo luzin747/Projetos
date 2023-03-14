@@ -63,22 +63,28 @@ export default function Home({ navigation }) {
 
 
     return (
-        
+
         <View style={style.container}>
             <View style={style.containerHome}>
 
-                
-
-
-
                 <View style={style.containerTitle}>
-                    <Image style={style.imgLogin} source={AgroTecLogo} />
+                <Image style={style.imageStar} source="https://images6.alphacoders.com/108/1082090.jpg"/> 
                     <Text style={style.titleLogin}>AgroTec</Text>
                 </View>
-               
+
                 <View>
 
+        <View>
+            
+            <View>
+                <Image />
 
+                <Text>
+                    Veiculo
+                </Text>
+            </View>
+
+        </View>
 
 
 

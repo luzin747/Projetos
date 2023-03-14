@@ -6,27 +6,32 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 import Login from './src/pages/Login/Login'
-import Home from './src/pages/Home/Home'
+import Routes from './src/components/routes.js'
 
 const Stack = createNativeStackNavigator();
+
+var userinfo = JSON.parse(localStorage.getItem("info"));
+
+console.log(userinfo);
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-         {/* <Stack.Screen name="Login" component={Login}
+        <Stack.Screen name="Login" component={Login}
           options={{
             title: '',
             headerTransparent: true,
             headerShow: false
-          }} />   */}
+          }} />
 
-         <Stack.Screen name="Home" component={Home}
+        <Stack.Screen name="Routes" component={Routes}
           options={{
             title: '',
             headerTransparent: true,
-            headerShow: false
-          }} /> 
+            headerShow: false,
+            headerLeft: null
+          }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

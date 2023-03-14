@@ -14,7 +14,7 @@ var userinfo = JSON.parse(localStorage.getItem("info"));
 
 document.querySelector('.name_user').innerHTML = userinfo.nome
 
-function carregar() {
+function carregar() {''
 
 
     trocarTables()

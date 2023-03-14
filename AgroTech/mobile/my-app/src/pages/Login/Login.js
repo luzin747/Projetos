@@ -10,7 +10,7 @@ import style from './style';
 
 import Home from '../Home/Home'
 
-var uriCard_Usuarios = 'http://localhost:3000/usuarios'
+var uriCard_Usuarios = 'http://10.87.207.23:3000/usuarios'
 
 var usuarios = []
 
@@ -25,7 +25,16 @@ fetch(uriCard_Usuarios, options)
     )
     .catch(err => console.error(err));
 
+    var userInfo = JSON.parse(localStorage.getItem("info"))
+
+
 export default function LogoutPage({ navigation }) {
+
+     if(userInfo != "") {
+         navigation.navigate("Routes")
+
+     }
+    
     const [input, setInput] = useState('')
     const [hidePass, sideHidePass] = useState(true);
 
@@ -47,7 +56,7 @@ export default function LogoutPage({ navigation }) {
 
         console.log(data);
 
-        fetch("http://localhost:3000/usuarios/login", {
+        fetch("http://10.87.207.23:3000/usuarios/login", {
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json"
