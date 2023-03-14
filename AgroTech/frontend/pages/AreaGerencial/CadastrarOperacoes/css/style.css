@@ -39,7 +39,7 @@ hr {
 }
 
 .section-01 input {
-    width: 350px;
+    width: 100%;
     height: 30px;
     border: 1px solid rgba(0, 0, 0, 0.329);
     /* border: none; */
@@ -55,7 +55,7 @@ hr {
 }
 
 .section-01  select {
-    width: 90%;
+    width: 100%;
     margin: 5px;
     /* border-radius: 8px; */
     height: 30px;

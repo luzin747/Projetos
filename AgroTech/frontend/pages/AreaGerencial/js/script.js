@@ -14,6 +14,9 @@ var manutencoes = []
 
 var cardMotorista = document.querySelector('.tickets')
 
+var userinfo = JSON.parse(localStorage.getItem("info"));
+
+document.querySelector('.name_user').innerHTML = userinfo.nome
 
 function carregar() {
 
@@ -316,7 +319,7 @@ function salvar(e) {
         .then(resp => resp.status)
         .then(resp => {
             if (resp == 200) {
-                alert('Editar com Suesso')
+                alert('Operação Editada com Suesso')
 
                 fecharEditarCliente()
 
@@ -396,8 +399,6 @@ function inativarFunction() {
     }
 
 
-    trocarStatusMotorista(motorista)
-
     fetch('http://localhost:3000/operacao/' + id_operacao, {
         "method": "PUT",
         "headers": {
@@ -409,6 +410,7 @@ function inativarFunction() {
         .then(resp => {
             if (resp == 200) {
                 trocarStatusMotorista(motorista)
+                trocarStatusVeiculo(veiculo)
                 window.location.reload()
             }
 

@@ -14,6 +14,9 @@ var manutencoes = []
 
 var cardMotorista = document.querySelector('.tickets')
 
+var userinfo = JSON.parse(localStorage.getItem("info"));
+
+document.querySelector('.name_user').innerHTML = userinfo.nome
 
 function carregar() {
 

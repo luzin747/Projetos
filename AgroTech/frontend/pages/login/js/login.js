@@ -19,9 +19,6 @@ var usuarios = []
 
 function logar() {
 
-    
-
-
     document.querySelector('.e1').classList.add('model')
     document.querySelector('.e2').classList.add('model')
     document.querySelector('.e3').classList.add('model')

@@ -12,7 +12,9 @@ var manutencao = []
 var cardVeiculos = document.querySelector('.tickets')
 var cardManutencoes = document.querySelector('.manutencao')
 
+var userinfo = JSON.parse(localStorage.getItem("info"));
 
+document.querySelector('.name_user').innerHTML = userinfo.nome
 
 function carregar() {
 
@@ -631,8 +633,27 @@ function fecharModaisCardDaManutencao(e) {
 
     teste.classList.add('model')
     cardManutencao.classList.add('model')
-    e.parentNode.parentNode.querySelector('.btn_finalizar_card').classList.remove('model')
-    e.parentNode.parentNode.querySelector('.data_fim_inp').classList.add('model')
+
+    var id_manutencao = e.parentNode.parentNode.querySelector('.id_manutencao_hidden').innerHTML
+
+    manutencao.forEach(m => {
+
+        if (id_manutencao == m.id_manutencao) {
+
+
+            if (m.data_fim == "---") {
+                e.parentNode.parentNode.querySelector('.btn_finalizar_card').classList.add('model')
+                e.parentNode.parentNode.querySelector('.data_fim_inp').classList.remove('model')
+            }
+            else {
+                e.parentNode.parentNode.querySelector('.btn_finalizar_card').classList.remove('model')
+                e.parentNode.parentNode.querySelector('.data_fim_inp').classList.add('model')
+            }
+        }
+
+    })
+
+
 }
 
 function carregarManutencoes(e) {
@@ -696,8 +717,11 @@ function carregarManutencoes(e) {
                 novoCardManutencao.querySelector('.data_fim_inp').value = data_fim_formatada
                 novoCardManutencao.querySelector('.btn_finalizar_card').classList.add('model')
                 novoCardManutencao.querySelector('.data_fim_inp').classList.remove('model')
+            }else {
+                novoCardManutencao.querySelector('.btn_finalizar_card').classList.remove('model')
+                novoCardManutencao.querySelector('.data_fim_inp').classList.add('model')
             }
-
+            
             document.querySelector('.cont_manutencao').appendChild(novoCardManutencao)
 
         }
@@ -714,8 +738,28 @@ function HabilitarEdicaoManu(e) {
 
         if (m.id_veiculo == id_veiculo) {
 
+
             card_descri_manutencao.classList.remove('model')
 
+            // if (m.data_fim == "---") {
+
+            //    var teste0 = e.parentNode.parentNode.parentNode.querySelector('.btn_finalizar_card')
+            //    var teste1 = e.parentNode.parentNode.parentNode.querySelector('.data_fim_inp')
+
+            //     teste0.classList.remove('model')
+            //     teste1.classList.add('model')
+
+            //     console.log(e.parentNode.parentNode.parentNode.querySelector('.btn_finalizar_card'));
+
+            // }
+            // if (m.data_fim !== "---") {
+            //     var teste2 = e.parentNode.parentNode.parentNode.querySelector('.btn_finalizar_card')
+            //     var teste = e.parentNode.parentNode.parentNode.querySelector('.data_fim_inp')
+
+            //     teste2.classList.add('model')
+            //     teste.classList.remove('model')
+
+            // }
         }
     })
 
@@ -869,3 +913,34 @@ function inativarFunction() {
         })
 
 }
+
+
+var search_btn = document.querySelector('.btn-filter')
+const INPUT_BUSCA = document.querySelector('.search')
+const TABELA_CLIENTES = document.querySelector('.contTickets')
+
+search_btn.addEventListener('click', () => {
+
+    let expressao = INPUT_BUSCA.value
+
+    let linhas = TABELA_CLIENTES.getElementsByTagName('tr')
+
+
+
+    for (let posicao in linhas) {
+        if (true === isNaN(posicao)) {
+            continue
+        }
+
+        let conteudoDaLinha = linhas[posicao].innerHTML
+
+        if (true === conteudoDaLinha.includes(expressao)) {
+            linhas[posicao].style.display = ''
+        } else {
+            linhas[posicao].style.display = 'none'
+
+        }
+
+    }
+
+})

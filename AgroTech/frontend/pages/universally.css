@@ -103,7 +103,7 @@ tbody tr:last-child::before {
 
 .menu {
     position: fixed;
-    width: 15%;
+    width: 17%;
     height: 100vh;
     background-color: #212124;
     display: flex;
@@ -361,12 +361,15 @@ tbody tr:last-child::before {
 
 .cont-qtd {
     display: flex;
+    justify-content:  center;
     align-items: center;
     color: rgb(255, 255, 255);
     border-radius: 10px;
     background-color: white;
     padding: 5px 10px;
     margin-left: 2%;
+    margin-right: 2%;
+    width: 18%;
 }
 .cont-qtd i {
     font-size: 25pt;

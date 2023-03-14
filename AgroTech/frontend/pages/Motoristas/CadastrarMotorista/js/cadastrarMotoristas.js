@@ -2,6 +2,10 @@ var uriMotorista = 'http://localhost:3000/motorista'
 
 var motorista = []
 
+var userinfo = JSON.parse(localStorage.getItem("info"));
+
+document.querySelector('.name_user').innerHTML = userinfo.nome
+
 function carregar() {
     const options = { method: 'GET' };
 

@@ -7,6 +7,9 @@ var motorista = []
 
 var cardMotorista = document.querySelector('.tickets')
 
+var userinfo = JSON.parse(localStorage.getItem("info"));
+
+document.querySelector('.name_user').innerHTML = userinfo.nome
 
 function carregar() {
 
@@ -65,41 +68,46 @@ function logout() {
     window.location.href = "../login/login.html"
 }
 
+var qtdOperacao = 0
+var qtdAtivo = 0
 
 function preencherTabela() {
 
     motorista.forEach(m => {
 
-        var novoCardMotorista = cardMotorista.cloneNode(true)
+        if (m.disponivel != "Inativo") {
 
-        novoCardMotorista.classList.remove('model')
-        novoCardMotorista.querySelector('.id_motorista').innerHTML = m.id_motorista
+            var novoCardMotorista = cardMotorista.cloneNode(true)
 
-        if (m.disponivel == "Ativo") {
-            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+            novoCardMotorista.classList.remove('model')
+            novoCardMotorista.querySelector('.id_motorista').innerHTML = m.id_motorista
 
+            if (m.disponivel == "Ativo") {
+                novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_on.png'
+                qtdAtivo +=1
+
+            }
+
+            if (m.disponivel == "Em Operação") {
+
+                novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_in_operacao.png'
+                // qtd_disponiveis += 1
+                qtdOperacao +=1
+            }
+
+
+            novoCardMotorista.querySelector('.cpf').innerHTML = m.cpf
+            novoCardMotorista.querySelector('.cnh').innerHTML = m.cnh
+            novoCardMotorista.querySelector('.nome').innerHTML = m.nome
+            novoCardMotorista.querySelector('.disponivel').innerHTML = m.disponivel
+
+            document.querySelector('.contTickets').appendChild(novoCardMotorista)
+
+            
         }
+        document.querySelector('.qtd-operacao').innerHTML = qtdOperacao
+        document.querySelector('.abertos').innerHTML = qtdAtivo
 
-        if (m.disponivel == "Em Operação") {
-
-            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_in_operacao.png'
-            // qtd_disponiveis += 1
-
-        }
-
-        if (m.disponivel == "Inativo") {
-            novoCardMotorista.querySelector('.img_situation').src = 'img/icons/cicle_inactive.png'
-            // qtd_disponiveis += 1
-
-        }
-
-
-        novoCardMotorista.querySelector('.cpf').innerHTML = m.cpf
-        novoCardMotorista.querySelector('.cnh').innerHTML = m.cnh
-        novoCardMotorista.querySelector('.nome').innerHTML = m.nome
-        novoCardMotorista.querySelector('.disponivel').innerHTML = m.disponivel
-
-        document.querySelector('.contTickets').appendChild(novoCardMotorista)
     })
 }
 
@@ -191,3 +199,66 @@ function fecharEditarCliente() {
 
 }
 
+function inativarFunction(e) {
+
+    var id_veiculo = document.querySelector('.id_editar').innerHTML
+    var cpf = document.querySelector('.cpf_editar').value
+    var cnh = document.querySelector('.cnh_tipo').value
+    var nome = document.querySelector('.n_editar').value
+
+    let data = {
+        "cpf": cpf,
+        "cnh": cnh,
+        "nome": nome,
+        "disponivel": "Inativo"
+    }
+
+    console.log(data);
+
+    fetch('http://localhost:3000/motorista/' + id_veiculo, {
+        "method": "PUT",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": JSON.stringify(data)
+    })
+        .then(resp => resp.status)
+        .then(resp => {
+            if (resp == 200) {
+                alert('Editar com Suesso')
+                window.location.reload()
+            }
+
+        })
+
+}
+
+
+
+var search_btn = document.querySelector('.btn-filter')
+const INPUT_BUSCA = document.querySelector('.search')
+const TABELA_CLIENTES = document.querySelector('.contTickets')
+
+search_btn.addEventListener('click', () => {
+
+    let expressao = INPUT_BUSCA.value
+
+    let linhas = TABELA_CLIENTES.getElementsByTagName('tr')
+
+    for (let posicao in linhas) {
+        if (true === isNaN(posicao)) {
+            continue
+        }
+
+        let conteudoDaLinha = linhas[posicao].innerHTML
+
+        if (true === conteudoDaLinha.includes(expressao)) {
+            linhas[posicao].style.display = ''
+        } else {
+            linhas[posicao].style.display = 'none'
+
+        }
+
+    }
+
+})

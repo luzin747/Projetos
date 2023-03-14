@@ -18,6 +18,10 @@ dataAtual = dia + '/' + mes + '/' + ano;
 
 document.querySelector('.data_saida').value = dataAtual
 
+var userinfo = JSON.parse(localStorage.getItem("info"));
+
+document.querySelector('.name_user').innerHTML = userinfo.nome
+
 function carregar() {
     const options = { method: 'GET' };
 

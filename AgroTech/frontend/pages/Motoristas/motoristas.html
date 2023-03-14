@@ -24,11 +24,20 @@
                 <div>
                     <h1>AgroTech</h1>
 
+                    <div class="cont_inf_user">
+
+                        <i class='bx bxs-user-circle'></i>
+    
+                        <div style="display:  flex; justify-content: center;">
+                            <h4>User :</h4>
+                            <h2 class="name_user"></h2>
+                        </div>
+    
+                    </div>
                     <!-- <p>Menu</p> -->
 
                     <ul>
-                        <li><a href="../../home.html"><i class='bx bx-category'></i></i><span class="nav-title">Painel
-                                    de Controle</span></a></li>
+                        <li><a href="../../home.html"><i class='bx bx-category'></i></i><span class="nav-title">Dashboard</span></a></li>
                         <li><a href="../AreaGerencial/AreaGerencial.html"><i class='bx bxs-parking'></i><span
                                     class="nav-title">Área Gerencial</span></a></li>
                         <li><a href="../AreaComum/areaComum.html"><i class='bx bx-group'></i><span
@@ -135,14 +144,15 @@
                         <div class="tools_pesquisa">
 
                             <div class="cont-qtd">
-                                <i class='bx bxs-quote-single-right user'></i>
-                                <p>Tickets: <b class="qtd-tickets">10</b></p>
+                                <img style="width: 5%;" src="img/icons/cicle_in_operacao.png" alt="" srcset="">
+                                <p>Em Operação: <b class="qtd-operacao">10</b></p>
                             </div>
 
 
                             <div class="cont-qtd">
-                                <i class='bx bx-lock-open open'></i>
-                                <p>Abertos: <b class="abertos">2</b></p>
+                                <img style="width: 5%;" src="img/icons/cicle_on.png" alt="" srcset="">
+                                
+                                <p>Livres: <b class="abertos">2</b></p>
                             </div>
 
                             <div class="filtro">
@@ -195,10 +205,6 @@
 
                                     </div>
 
-                                    
-
-
-
                                 </div>
 
                                 <div class="inps">
@@ -229,6 +235,11 @@
 
 
 
+                                </div>
+
+
+                                <div class="cont_trash" >
+                                    <i class='bx bxs-trash-alt' onclick="inativarFunction()"></i>
                                 </div>
 
                             </div>
